@@ -204,3 +204,4 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm,jetbrains,composer,codeigniter
 .idea/workspace.xml
+.env
