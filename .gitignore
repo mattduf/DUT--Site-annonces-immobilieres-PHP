@@ -193,3 +193,4 @@ modules.xml
 /writable/debugbar/*
 
 # End of https://www.toptal.com/developers/gitignore/api/codeigniter,phpstorm,jetbrains+all
+*.log
