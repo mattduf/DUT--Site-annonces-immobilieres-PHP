@@ -5,10 +5,10 @@
 		</div>
 
 		<div class="pure-u-1-3" id="two">
-			<i class="fas fa-search"></i><a href=""> Rechercher une annonce</a>
+			<a href="" class="middle"><i class="fas fa-search"></i> Rechercher une annonce</a>
 		</div>
 
 		<div class="pure-u-1-3" id="three">
-			<a href="">Gérer mon compte</a> • <a href="">Se déconnecter</a>
+			<a href="">Mon&nbspcompte</a><div class="vl"></div><a href=""><i class="fas fa-sign-out-alt"></i> Se&nbspdéconnecter</a>
 		</div>
 	</nav>
