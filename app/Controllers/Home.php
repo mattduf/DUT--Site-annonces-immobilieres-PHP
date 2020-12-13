@@ -4,9 +4,9 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return view('welcome_message');
+		echo view('templates/header.tpl');
+		echo view('templates/navbar-connected.tpl');
+		echo view('templates/footer.tpl');
 	}
-
-	//--------------------------------------------------------------------
 
 }

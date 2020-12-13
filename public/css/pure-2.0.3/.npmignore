@@ -1,0 +1,8 @@
+.*
+artifacts/
+CONTRIBUTING.md
+Gruntfile.js
+node_modules/
+release/
+src/
+tasks/
