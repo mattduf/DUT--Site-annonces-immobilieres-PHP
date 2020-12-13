@@ -194,3 +194,4 @@ modules.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/codeigniter,phpstorm,jetbrains+all
 *.log
+*.json
