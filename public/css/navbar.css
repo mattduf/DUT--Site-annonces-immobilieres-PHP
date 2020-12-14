@@ -5,6 +5,7 @@ nav{
 	top:0;
 	position:sticky;
 	margin-bottom:40px;
+	border-bottom:solid #c2262b 2px;
 	z-index:1;
 	width:100%;
 	height:auto;

@@ -1,25 +1,18 @@
 html {
   	scroll-behavior: smooth;
+  	height: 100%;
 }
 
 body{
 	margin:0;
 	position:relative;
+	height: 100%;
 }
 
 article{
 	margin: 50px auto;
 	max-width:1000px;
 	font-family:Helvetica;
-}
-
-.formulaire{
-	width:440px;
-	margin:0 auto;
-	border-radius:5px;
-	-webkit-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
-	box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
 }
 
 ::selection{
@@ -30,4 +23,33 @@ article{
 ::-moz-selection {
   	background-color: #c2262b;
   	color: white;
+}
+
+/* Formulaire */
+.formulaire{
+	width:440px;
+	margin:0 auto;
+	border-radius:5px;
+	-webkit-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 3px 3px 7px -3px rgba(0,0,0,0.75);
+}
+
+#lien-inscription{
+	text-align:right;
+	margin-top:20px;
+	padding-right:10px;
+	color:#c2262b;
+	font-weight:bold;
+	font-size:0.9em;
+	transition:color 0.3s;
+}
+
+#lien-inscription:hover{
+	color:black;
+	transition:color 0.3s;
+}
+
+.rouge{
+	color:#c2262b;
 }
