@@ -1,11 +1,10 @@
 /* Visuel général */
-body{
-	margin:0;
-}
+
 
 nav{
 	top:0;
-	position:fixed;
+	position:sticky;
+	margin-bottom:40px;
 	z-index:1;
 	width:100%;
 	height:auto;
@@ -26,7 +25,7 @@ nav div{
 
 }
 
-/*Lien "Rechercher une annonce" */
+/* Lien "Rechercher une annonce" */
 /* Source de l'animation: https://paulund.co.uk/css-animation-link-underline */
 nav a.middle
 {
@@ -40,10 +39,10 @@ nav a.middle
 nav a.middle:before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 92%;
   height: 2px;
   bottom: 0;
-  left: 0;
+  left: 18px;
   background-color: #c2262b;
   visibility: hidden;
   transform: scaleX(0);
