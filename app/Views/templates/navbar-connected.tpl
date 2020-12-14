@@ -1,7 +1,7 @@
 <body>
 	<nav class="pure-g">
 		<div class="pure-u-1-3" id="one">
-			<a href="/Home"><img src="../../../images/logo.png"></a>
+			<a href="/"><img src="../../../images/logo.png"></a>
 		</div>
 
 		<div class="pure-u-1-3" id="two">

@@ -9,10 +9,7 @@ class Inscription extends Controller
 {
 	public function signup()
 	{
-		echo view('templates/header.tpl');
-		echo view('templates/navbar.tpl');
-		echo view('templates/signup-form.tpl');
-		echo view('templates/footer.tpl');
+		
 	}
 
 }
