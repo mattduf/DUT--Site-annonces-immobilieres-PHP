@@ -1,9 +1,12 @@
+/* Visuel général */
 body{
 	margin:0;
 }
 
 nav{
 	top:0;
+	position:fixed;
+	z-index:1;
 	width:100%;
 	height:auto;
 	background-color: white;
@@ -17,19 +20,14 @@ nav div{
 	vertical-align:middle;
 }
 
-nav #three a{
-	color:black;
-	text-decoration:none;
-	font-family:Helvetica;
-	font-weight:bold;
-	transition:color 0.3s;
+/* Image */
+#one{
+	width:33%;
+
 }
 
-nav #three a:hover{
-	color:#c2262b;
-	transition:color 0.3s;
-}
-
+/*Lien "Rechercher une annonce" */
+/* Source de l'animation: https://paulund.co.uk/css-animation-link-underline */
 nav a.middle
 {
     position: relative;
@@ -57,14 +55,23 @@ nav a.middle:hover:before {
   transform: scaleX(1);
 }
 
-#one{
-	width:33%;
-
-}
-
 #two{
 	text-align:center;
 	width:33%;
+}
+
+/* Lien "Se connecter" */
+nav #three a{
+	color:black;
+	text-decoration:none;
+	font-family:Helvetica;
+	font-weight:bold;
+	transition:color 0.3s;
+}
+
+nav #three a:hover{
+	color:#c2262b;
+	transition:color 0.3s;
 }
 
 #three{
@@ -72,6 +79,14 @@ nav a.middle:hover:before {
 	width:33%;
 }
 
+/* Séparation horizontale */
+.vl{
+	border-left:solid #c2262b 2px;
+	height:15px;
+	margin: 0 10px;
+}
+
+/* Affichage responsif */
 @media (max-width:800px){
 	#one{
 		width:100%;
@@ -86,10 +101,4 @@ nav a.middle:hover:before {
 	#three{
 		text-align:center;
 	}
-}
-
-.vl{
-	border-left:solid #c2262b 2px;
-	height:15px;
-	margin: 0 10px;
 }
