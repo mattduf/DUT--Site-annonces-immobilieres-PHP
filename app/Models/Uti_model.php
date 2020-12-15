@@ -19,7 +19,9 @@ class Uti_Model extends Model
 	    return $this->asArray()->select('U_mail')->where(['U_mail' => $mail])->where(['U_mdp' => $mdp])->first();
     }
     public function getUserInfo($mail){
-    	    return $this->asArray()->select('U_mail,U_pseudo,U_nom,U_prenom')->where(['U_mail' => $mail])->first();
+	    $query = 'SELECT U_mail,U_pseudo,U_nom,U_prenom FROM '.$this->table .' WHERE U_mail = "'. $mail.'"';
+        return $this->simpleQuery($query);
+
     }
 
 }

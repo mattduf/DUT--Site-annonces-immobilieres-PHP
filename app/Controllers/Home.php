@@ -14,17 +14,27 @@ class Home extends BaseController
 	        // Whoops, we don't have a page for that!
 	        throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
 	    }
+		if (!empty($session->get('mail'))){
+            $data = ['mail' => $session->get('mail'),
+                'pseudo' => $session->get('pseudo'),
+                'nom' => $session->get('nom'),
+                'prenom' => $session->get('prenom')
+            ];
+        }
+        $data['title'] = ucfirst($page);
+	    echo view('templates/header.tpl',$data);
 
-	    echo view('templates/header.tpl');
-
-	    echo view('templates/navbar.tpl');
-
+		if (!empty($session->get('mail'))){
+		    echo view('templates/navbar-connected.tpl',$data);
+        }else {
+            echo view('templates/navbar.tpl',$data);
+        }
 	    if (!empty($session->getFlashdata('warning'))){
 	        echo $session->getFlashdata('warning');
         }
-	    echo view('pages/'.$page.'.php');
+	    echo view('pages/'.$page.'.php',$data);
 
-	    echo view('templates/footer.tpl');
+	    echo view('templates/footer.tpl',$data);
 	}
 
 }
