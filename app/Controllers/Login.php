@@ -38,10 +38,10 @@ class Login extends Controller
             'nom' => $session->get('nom'),
             'prenom' => $session->get('prenom')
             ];
-            $session->setFlashdata('warning','connexion réussie');
+            $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Connexion réussie !</div>');
 
         }else{
-            $session->setFlashdata('warning','erreur');
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Adresse mail ou mot de passe invalide.</div>');
         }
 
         $data['title'] = ucfirst('Connexion');

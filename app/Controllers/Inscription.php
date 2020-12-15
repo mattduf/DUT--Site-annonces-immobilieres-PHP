@@ -27,27 +27,27 @@ class Inscription extends Controller
             $verifMail = $model->verifMail($mail);
 
             if (!empty($verifPseudo)){
-                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> ce pseudo existe déjà <i class="fas fa-exclamation-triangle"></i></div>');
+                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
             }
             else{
                 if (empty($verifMail)){
                     $insert = $model->insertUti($mail,$mdp,$pseudo,$nom,$prenom);
                     
                     if ($this->request->getMethod() === 'post'&& $insert){
-                        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS :</strong> inscription réussie <i class="fas fa-check"></i></div>');
+                        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Inscription réussie !</div>');
                         return redirect()->to('Connexion');
                     }
                     else{
-                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> l\'inscription a échoué <i class="fas fa-exclamation-triangle"></i></div>');
+                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'inscription a échoué.</div>');
                     }
                 }
                 else{
-                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> cette adresse mail existe déjà <i class="fas fa-exclamation-triangle"></i></div>');
+                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Cette adresse mail existe déjà.</div>');
                 }
             }
         }
         else{
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> les mots de passe saisis ne correspondent pas <i class="fas fa-exclamation-triangle"></i></div>');
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les mots de passe saisis ne correspondent pas.</div>');
         }
 
         return redirect()->to('Inscription');
