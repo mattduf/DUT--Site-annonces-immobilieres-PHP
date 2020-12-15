@@ -190,8 +190,14 @@ modules.xml
 .idea/workspace.xml
 *.env
 .env
-/writable/debugbar/*
+writable/debugbar/*
 
 # End of https://www.toptal.com/developers/gitignore/api/codeigniter,phpstorm,jetbrains+all
 *.log
 *.json
+
+#Smarty useless files
+writable/smarty/templates_c/*
+
+#Session useless files
+writable/session/*
