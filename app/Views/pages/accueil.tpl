@@ -24,8 +24,8 @@
 
 			</div>
 
-			<div id="carte-deux" class="grow">
-				<a href="">Parcourir toutes les annonces</a>
+			<div id="carte-deux" class="decrease">
+				<a href="">Parcourir toutes les annonces <i class="far fa-eye"></i></a>
 			</div>
 		</section>
 	</article>
