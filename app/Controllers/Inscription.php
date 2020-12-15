@@ -23,21 +23,33 @@ class Inscription extends Controller
 
         if ($mdp == $confmdp){
             $mdp=SHA1($mdp);
-            $verifmail = $model->verifMail($mail);
-            if (empty($verifmail)){
-                $insert = $model->insertUti($mail,$mdp,$pseudo,$nom,$prenom);
-                if ($this->request->getMethod() === 'post'&& $insert){
-                    $session->setFlashdata('warning','');
-                    return redirect()->to('Connexion');
-                }else{
-                    $session->setFlashdata('warning','');
-                }
-            }else{
-                $session->setFlashdata('warning','');
+            $verifPseudo = $model->verifPseudo($pseudo);
+            $verifMail = $model->verifMail($mail);
+
+            if (!empty($verifPseudo)){
+                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> ce pseudo existe déjà <i class="fas fa-exclamation-triangle"></i></div>');
             }
-        }else{
-            $session->setFlashdata('warning','');
+            else{
+                if (empty($verifMail)){
+                    $insert = $model->insertUti($mail,$mdp,$pseudo,$nom,$prenom);
+                    
+                    if ($this->request->getMethod() === 'post'&& $insert){
+                        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS :</strong> inscription réussie <i class="fas fa-check"></i></div>');
+                        return redirect()->to('Connexion');
+                    }
+                    else{
+                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> l\'inscription a échoué <i class="fas fa-exclamation-triangle"></i></div>');
+                    }
+                }
+                else{
+                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> cette adresse mail existe déjà <i class="fas fa-exclamation-triangle"></i></div>');
+                }
+            }
         }
+        else{
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR :</strong> les mots de passe saisis ne correspondent pas <i class="fas fa-exclamation-triangle"></i></div>');
+        }
+
         return redirect()->to('Inscription');
 	}
 
