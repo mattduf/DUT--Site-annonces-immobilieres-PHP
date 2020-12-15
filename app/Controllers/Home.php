@@ -8,6 +8,7 @@ class Home extends BaseController
 	}
 
 	public function views($page = 'accueil'){
+        $session = \Config\Services::session();
 		if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.tpl'))
 	    {
 	        // Whoops, we don't have a page for that!
@@ -18,6 +19,9 @@ class Home extends BaseController
 
 	    echo view('templates/navbar.tpl');
 
+	    if (!empty($session->getFlashdata('warning'))){
+	        echo $session->getFlashdata('warning');
+        }
 	    echo view('pages/'.$page.'.php');
 
 	    echo view('templates/footer.tpl');
