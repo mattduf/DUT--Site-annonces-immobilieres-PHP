@@ -9,14 +9,23 @@
 	text-align:center;
 }
 
-@media (min-width:1000px){
+#carte-deux{
+	background-color:#c2262b;
+	max-width:500px;
+	margin: 0 auto;
+	border-radius:3px;
+	margin-top:50px;
+	padding:20px 0;
+}
+
+@media (min-width:1020px){
 	.carte{
 		height:330px;
 		width:320px;
 	}
 }
 
-@media (max-width:1000px){
+@media (max-width:1020px){
 	.carte{
 		height:270px;
 		width:260px;

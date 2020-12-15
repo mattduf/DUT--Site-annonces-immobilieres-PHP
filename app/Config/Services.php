@@ -1,7 +1,10 @@
 <?php namespace Config;
 
 use CodeIgniter\Config\Services as CoreServices;
-
+use CodeIgniter\Config\BaseConfig;
+use Config\App;
+use App\Libraries\CI4Smarty;
+require_once SYSTEMPATH . 'Config/Services.php';
 /**
  * Services Configuration file.
  *
@@ -27,4 +30,7 @@ class Services extends CoreServices
 	//
 	//        return new \CodeIgniter\Example();
 	//    }
+	public static function SmartyEngine($getShared = true){
+        return ($getShared === true ? static::getSharedInstance('SmartyEngine') : new CI4Smarty());
+    }
 }

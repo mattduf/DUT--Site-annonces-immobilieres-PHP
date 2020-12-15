@@ -18,7 +18,7 @@ class Home extends BaseController
 
 	    echo view('templates/navbar.tpl');
 
-	    echo view('pages/'.$page.'.tpl');
+	    echo view('pages/'.$page.'.php');
 
 	    echo view('templates/footer.tpl');
 	}
