@@ -28,7 +28,7 @@
                     <input type="password" id="aligned-confpassword" placeholder="Confirmation" required/>
                 </div>
                 <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">S'inscrire</button>
+                    <button type="submit" class="pure-button pure-button-primary"><i class="fas fa-user-plus"></i> S'inscrire</button>
                 </div>
             </fieldset>
         </form>

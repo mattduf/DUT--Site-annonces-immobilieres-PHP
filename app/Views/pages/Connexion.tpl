@@ -12,7 +12,7 @@
                     <input type="password" id="aligned-password" placeholder="Mot de passe" required/>
                 </div>
                 <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">Se connecter</button>
+                    <button type="submit" class="pure-button pure-button-primary"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
                 </div>
 
                 <div id="lien-inscription"><a href="/Inscription" id="lien-inscription">Pas encore inscrit ? Inscrivez-vous !</a></div>

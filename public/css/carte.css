@@ -1,0 +1,24 @@
+.carte{
+	background-color:lightgrey;
+	display:inline-block;
+	margin:5px;
+	border-radius:3px;
+}
+
+#cartes-section{
+	text-align:center;
+}
+
+@media (min-width:1000px){
+	.carte{
+		height:330px;
+		width:320px;
+	}
+}
+
+@media (max-width:1000px){
+	.carte{
+		height:270px;
+		width:260px;
+	}
+}
