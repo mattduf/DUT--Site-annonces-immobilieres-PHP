@@ -15,5 +15,12 @@ class Uti_Model extends Model
 	public function verifMail($mail){
 	    return $this->asArray()->select('U_mail')->where(['U_mail' => $mail])->first();
 	}
+	public function userexist($mail,$mdp){
+	    return $this->asArray()->select('U_mail')->where(['U_mail' => $mail])->where(['U_mdp' => $mdp])->first();
+    }
+    public function getUserInfo($mail){
+    	    return $this->asArray()->select('U_mail,U_pseudo,U_nom,U_prenom')->where(['U_mail' => $mail])->first();
+    }
+
 }
 ?>
