@@ -23,12 +23,12 @@ a{
 }
 
 ::selection{
-  	background-color: #c2262b;
+  	background-color:#d93b40;
   	color: white;
 }
 
 ::-moz-selection {
-  	background-color: #c2262b;
+  	background-color:#d93b40;
   	color: white;
 }
 
