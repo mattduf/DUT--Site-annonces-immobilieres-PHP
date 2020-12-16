@@ -1,6 +1,6 @@
 	<article>
 		<section id="cartes-section">
-			<!--
+			
 			{foreach $annonce as $a}
 			<div class="carte grow">
 				<div class="annonce-image">
@@ -14,7 +14,8 @@
 				</div>
 			</div>
 			{/foreach}
-			-->
+			
+			<!--
 			<div class="carte grow">
 				<div class="annonce-image">
 					<img src="../../../images/annonces/1.png" class="img-responsive">
@@ -68,9 +69,9 @@
 					
 				</div>
 			</div>
-			
+			-->
 
-			<a href=""><div id="carte-deux" class="decrease">
+			<a href="/Annonces"><div id="carte-deux" class="decrease">
 				Parcourir toutes les annonces <i class="far fa-eye"></i>
 			</div></a>
 		</section>

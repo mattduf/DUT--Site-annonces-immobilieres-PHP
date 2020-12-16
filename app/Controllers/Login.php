@@ -47,7 +47,7 @@ class Login extends Controller
         $data['title'] = ucfirst('Connexion');
 
         if (!empty($session->get('mail'))){
-            return redirect()->to('/');
+            return redirect()->to('Mon-profil');
         }else{
             return redirect()->to('Connexion');
         }
