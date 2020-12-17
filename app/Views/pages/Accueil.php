@@ -1,7 +1,7 @@
 <?php
 	use App\Models\Annonce_Model;
 	$model = new Annonce_Model();
-	$annonce = $model->getAnnonce();
+	$annonce = $model->getAnnonceAccueil();
 
 	service('SmartyEngine')->assign('annonce',$annonce);
 
