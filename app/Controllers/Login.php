@@ -24,7 +24,8 @@ class Login extends Controller
             ];
         }
 
-        if ($this->request->getMethod() === 'post' && !empty($userexist)){
+        if ($this->request->getMethod() === 'post' && !empty($userexist))
+        {
             $info = $model->getUserInfo($mail);
             foreach ($info->fetch_all() as $item) {
                 $setdata['mail'] = $item[0];
@@ -40,18 +41,20 @@ class Login extends Controller
             ];
             $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Connexion réussie !</div>');
 
-        }else{
+        }
+        else
+        {
             $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Adresse mail ou mot de passe invalide.</div>');
         }
 
         $data['title'] = ucfirst('Connexion');
 
         if (!empty($session->get('mail'))){
-            return redirect()->to('Mon-profil');
-        }else{
+            return redirect()->to('Mon-compte');
+        }
+        else
+        {
             return redirect()->to('Connexion');
         }
-
 	}
-
 }

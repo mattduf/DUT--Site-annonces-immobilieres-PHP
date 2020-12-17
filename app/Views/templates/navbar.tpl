@@ -1,3 +1,6 @@
+<head>
+	<link rel="stylesheet" href="../../../css/navbar.css">
+</head>
 <body>
 	<nav class="pure-g">
 		<div class="pure-u-1-3" id="one">
