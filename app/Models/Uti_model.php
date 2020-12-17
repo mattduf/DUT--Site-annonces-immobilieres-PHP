@@ -30,6 +30,19 @@ class Uti_Model extends Model
         return $this->simpleQuery($query);
 
     }
+    public function UpdateInfoWithoutMdp($mail,$pseudo,$nom,$prenom){
+        $query = 'UPDATE '.$this->table .' SET U_pseudo = "'.$pseudo.'", U_nom = "'.$nom.'", U_prenom = "'.$prenom.'" where U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
+    public function UpdateInfoWithMdp($mail,$pseudo,$nom,$prenom,$mdp){
+        $query = 'UPDATE '.$this->table .' SET U_pseudo = "'.$pseudo.'", U_nom = "'.$nom.'", U_prenom = "'.$prenom.'", U_mdp = "'.$mdp.'" where U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
 
+    public function deleteAccount($mail){
+        $this->where('U_mail',$mail);
+        $this->delete();
+
+    }
 }
 ?>

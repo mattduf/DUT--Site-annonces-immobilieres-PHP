@@ -86,12 +86,12 @@ section{
 @media (min-width:1125px){
 	aside{
 		width:200px;
-		height:700px;
+		height:100%;
 	}
 
 	section{
 		width:900px;
-		height:700px;
+		height:100%;
 	}
 }
 

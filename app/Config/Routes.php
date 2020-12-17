@@ -35,6 +35,7 @@ $routes->get('Deconnexion', 'Deconnexion::deconnexion');
 $routes->get('(:any)', 'Home::views/$1');
 $routes->post('Connexion', 'Login::signin');
 $routes->post('Inscription', 'Inscription::signup');
+$routes->post('Mon-compte', 'ModifInfoProfil::index');
 $routes->setAutoRoute(false);
 
 
