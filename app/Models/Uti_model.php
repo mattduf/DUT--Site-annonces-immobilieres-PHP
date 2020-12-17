@@ -30,6 +30,9 @@ class Uti_Model extends Model
         return $this->simpleQuery($query);
 
     }
+    public function getPassword($mdp){
+	    return $this->asArray()->where(['U_mdp' =>$mdp])->first();
+    }
     public function UpdateInfoWithoutMdp($mail,$pseudo,$nom,$prenom){
         $query = 'UPDATE '.$this->table .' SET U_pseudo = "'.$pseudo.'", U_nom = "'.$nom.'", U_prenom = "'.$prenom.'" where U_mail = "'.$mail.'"';
         return $this->simpleQuery($query);

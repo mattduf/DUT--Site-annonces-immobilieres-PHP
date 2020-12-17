@@ -29,6 +29,10 @@
 						<label for="pseudo">Pseudo :</label>
 						<input type="text" id="pseudo" placeholder="{$pseudo}" name="pseudo" />
 					</div>
+				<div class="pure-control-group">
+					<label for="oldpassword">Ancien Mot de passe :</label>
+					<input type="password" id="oldpassword" placeholder="*********" name="oldpassword" />
+				</div>
 					<div class="pure-control-group">
 						<label for="password">Mot de passe :</label>
 						<input type="password" id="password" placeholder="*********" name="password" />
