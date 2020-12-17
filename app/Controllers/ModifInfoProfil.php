@@ -30,7 +30,7 @@ class ModifInfoProfil extends Controller
         }else{
             $verifPseudo = $model->verifPseudo($pseudo);
             if (!empty($verifPseudo)){
-                $session->setFlashdata('warning','Pseudo déja éxistant');
+                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
             }
         }
 //TODO Update $session after updating the table
@@ -41,23 +41,23 @@ class ModifInfoProfil extends Controller
                     $updateWithMdp = $model->UpdateInfoWithMdp($session->get('mail'),$pseudo,$nom,$prenom,$mdpSHA);
 
                     if ($this->request->getMethod() === 'post' && $updateWithMdp){
-                        $session->setFlashdata('warning','Modification des informations réussie');
+                        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
                     }else{
-                        $session->setFlashdata('warning','La modification des informations a échouée');
+                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
                     }
                 }else{
-                    $session->setFlashdata('warning','L ancien mot de passe n est pas correct');
+                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ancien mot de passe est incorrect.</div>');
                 }
             }else{
-                $session->setFlashdata('warning','Les deux mot de passe ne sont pas identiques');
+                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les deux mots de passe ne sont pas identiques.</div>');
             }
         } else{
             $updateUtiWithoutMdp = $model->UpdateInfoWithoutMdp($session->get('mail'),$pseudo,$nom,$prenom);
             if ($this->request->getMethod() === 'post' && $updateUtiWithoutMdp){
-                $session->setFlashdata('warning','Modification des informations réussie');
+                $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
 
             }else{
-                $session->setFlashdata('warning','La modification des informations a échouée');
+                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
             }
         }
         return redirect()->to('Mon-compte');
