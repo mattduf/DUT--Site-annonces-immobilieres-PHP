@@ -191,11 +191,25 @@ h1{
 	transition: max-height 0.2s ease-out;
 }
 
-#coche-suppresion:hover, #coche-suppresion-label:hover{
+#coche-suppression:hover, #coche-suppression-label:hover{
 cursor: pointer;
 }
 
 .btn-suppression{
 	margin-top:15px;
 	background-color:#c2262b;
+}
+
+#ajout-description{
+	text-align:center;
+	margin-top:20px;
+}
+
+#ajout-description textarea{
+	width:500px;
+	max-width:500px;
+	min-width:100px;
+	min-height:100px;
+	max-height:300px;
+	font-family:Helvetica;
 }
