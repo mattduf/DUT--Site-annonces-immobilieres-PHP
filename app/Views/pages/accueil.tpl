@@ -1,5 +1,5 @@
 	<article>
-		<h1 class="accueil-h1">Les dernières annonces publiées sur <em>ImmoAnnonce</em></h1>
+		<h1>Les dernières annonces publiées sur <em>ImmoAnnonce</em></h1>
 		<section id="cartes-section">
 			{foreach $annonce as $a}
 			<div class="carte grow">

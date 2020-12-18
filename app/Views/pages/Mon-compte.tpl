@@ -11,40 +11,71 @@
 			</ul>
 		</aside>
 		<section>
-
+			<h1><i class="fas fa-edit"></i> Modifier les informations personnelles</h1>
 			<form class="pure-form pure-form-aligned formulaire" method="post" name="changeprofil">
 				<div class="pure-control-group">
-					<label >Mail :</label>
+					<label >Mail</label>
 					<input type="text" placeholder="{$mail}" disabled/>
 				</div>
 					<div class="pure-control-group">
-						<label for="name">Nom :</label>
+						<label for="name">Nom</label>
 						<input type="text" id="name" placeholder="{$nom}" name="name" />
 					</div>
 					<div class="pure-control-group">
-						<label for="firstname">Prénom :</label>
+						<label for="firstname">Prénom</label>
 						<input type="text" id="firstname" placeholder="{$prenom}" name="firstname" />
 					</div>
 					<div class="pure-control-group">
-						<label for="pseudo">Pseudo :</label>
+						<label for="pseudo">Pseudo</label>
 						<input type="text" id="pseudo" placeholder="{$pseudo}" name="pseudo" />
 					</div>
 				<div class="pure-control-group">
-					<label for="oldpassword">Ancien Mot de passe :</label>
-					<input type="password" id="oldpassword" placeholder="*********" name="oldpassword" />
+					<label for="oldpassword"><strong>Mot de passe actuel&nbsp<span class="rouge">*</strong></span></label>
+					<input type="password" id="oldpassword" placeholder="*********" name="oldpassword" required/>
 				</div>
 					<div class="pure-control-group">
-						<label for="password">Mot de passe :</label>
+						<label for="password">Nouveau mot de passe</label>
 						<input type="password" id="password" placeholder="*********" name="password" />
 					</div>
 					<div class="pure-control-group">
-						<label for="confpassword">Confirmation :</label>
+						<label for="confpassword">Confirmation</label>
 						<input type="password" id="confpassword" placeholder="*********" name="confpassword" />
 					</div>
 					<div class="pure-controls">
-						<button type="submit" class="pure-button pure-button-primary">Modifier mes informations</button>
+						<button type="submit" class="pure-button pure-button-primary">Enregistrer les modifications</button>
 					</div>
-			</form>
+				</form>
+			<hr>
+				<div id="section-suppr">
+					<button type="button" class="collapsible"><i class="fas fa-trash-alt"></i> Supprimer mon compte</button>
+					<div class="content"
+						<p>Voulez-vous vraiment supprimer votre compte ? Cela impliquera la suppression des données suivantes : informations du compte, annonces publiées et messages&nbsppostés.</p>
+
+						<input id="coche-suppresion" type="checkbox" name="coche-suppresion">
+						<label for="coche-suppresion" id="coche-suppresion-label"><strong>Je comprends et je souhaite poursuivre</strong></label><br/>
+
+						<button type="submit" class="pure-button pure-button-primary btn-suppression">Supprimer</button>
+					</div>
+				</div>
+
 
 		</section>
 	</div>
+
+	<script>
+		//JS pour onglets collapsibles
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.maxHeight){
+				  content.style.maxHeight = null;
+				} else {
+				  content.style.maxHeight = content.scrollHeight + "px";
+				} 
+			  });
+			}
+	</script>
