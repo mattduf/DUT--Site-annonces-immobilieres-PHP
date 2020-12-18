@@ -37,11 +37,20 @@ class ModifInfoProfil extends Controller
                     return redirect()->to('Mon-compte');
                 }
             }
-//TODO Update $session after updating the table
+
             if (!empty($mdp) || !empty($confmdp)) {
                 if ($mdp == $confmdp) {
                     $mdpSHA = SHA1($mdp);
                     $updateWithMdp = $model->UpdateInfoWithMdp($session->get('mail'), $pseudo, $nom, $prenom, $mdpSHA);
+
+                    $newdata = [
+                        'mail'  => $session->get('mail'),
+                        'pseudo' => $pseudo,
+                        'nom' => $nom,
+                        'prenom' => $prenom
+                    ];
+
+                    $session->set($newdata);
 
                     if ($this->request->getMethod() === 'post' && $updateWithMdp) {
                         $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
@@ -53,6 +62,15 @@ class ModifInfoProfil extends Controller
                 }
         } else {
             $updateUtiWithoutMdp = $model->UpdateInfoWithoutMdp($session->get('mail'), $pseudo, $nom, $prenom);
+
+                $newdata = [
+                    'mail'  => $session->get('mail'),
+                    'pseudo'  => $pseudo,
+                    'nom' => $nom,
+                    'prenom' => $prenom
+                ];
+
+                $session->set($newdata);
             if ($this->request->getMethod() === 'post' && $updateUtiWithoutMdp) {
                 $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
 
