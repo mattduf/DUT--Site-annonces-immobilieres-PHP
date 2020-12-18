@@ -29,8 +29,9 @@ class ModifInfoProfil extends Controller
             $pseudo = $session->get('pseudo');
         }else{
             $verifPseudo = $model->verifPseudo($pseudo);
-            if (!empty($verifPseudo)){
-                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+            if (!empty($verifPseudo)) {
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+                return redirect()->to('Mon-compte');
             }
         }
 //TODO Update $session after updating the table
