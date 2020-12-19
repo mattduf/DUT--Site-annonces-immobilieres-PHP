@@ -46,17 +46,19 @@
 					</div>
 				</form>
 			<hr>
+			<form action="Delete" method="post">
 				<div id="section-suppr">
 					<button type="button" class="collapsible"><i class="fas fa-trash-alt"></i> Supprimer mon compte</button>
 					<div class="content"
 						<p>Voulez-vous vraiment supprimer votre compte ? Cela impliquera la suppression des données suivantes : informations du compte, annonces publiées et messages&nbsppostés.</p>
 
-						<input id="coche-suppresion" type="checkbox" name="coche-suppresion">
+						<input id="coche-suppresion" type="checkbox" name="coche-suppresion[]" value="1">
 						<label for="coche-suppresion" id="coche-suppresion-label"><strong>Je comprends et je souhaite poursuivre</strong></label><br/>
 
-						<button type="submit" class="pure-button pure-button-primary btn-suppression">Supprimer</button>
+						<button type="submit" name="deletebutton" class="pure-button pure-button-primary btn-suppression">Supprimer</button>
 					</div>
 				</div>
+			</form>
 
 
 		</section>

@@ -17,5 +17,9 @@ class Annonce_Model extends Model
 		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
+    public function deleteAnnonce($mail){
+        $this->where('A_U_mail',$mail);
+        $this->delete();
+    }
 }
 ?>

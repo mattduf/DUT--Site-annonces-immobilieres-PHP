@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Uti_Model extends Model
 {
 	protected $table = 't_utilisateur';
+    protected $message = 't_message';
 
 	public function insertUti($mail,$mdp,$pseudo,$nom,$prenom,$isadmin = 0){
 		$query = 'INSERT INTO '.$this->table. ' VALUES ("'.$mail.'","'.$mdp.'","'.$pseudo.'","'.$nom.'","'.$prenom.'","'.$isadmin.'")';
@@ -45,7 +46,14 @@ class Uti_Model extends Model
     public function deleteAccount($mail){
         $this->where('U_mail',$mail);
         $this->delete();
+    }
 
+    //TODO A déplacer
+    public function deleteMessage($mail){
+	    $query = 'DELETE FROM '.$this->message.' WHERE M_U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+       // $this->where('M_U_mail',$mail);
+        //$this->delete();
     }
 }
 ?>
