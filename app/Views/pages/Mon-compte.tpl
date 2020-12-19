@@ -52,7 +52,7 @@
 				<div class="content">
 					<p>Voulez-vous vraiment supprimer votre compte ? Cela impliquera la suppression des données suivantes : <u>informations du compte</u>, <u>annonces publiées</u> et <u>messages&nbsppostés</u>.</p>
 
-					<input id="coche-suppression" type="checkbox" name="coche-suppression" value="1">
+					<input id="coche-suppression" type="checkbox" name="coche-suppression">
 					<label for="coche-suppression" id="coche-suppression-label"><strong>Je comprends et je souhaite poursuivre</strong></label><br/>
 
 					<button type="submit" name="deletebutton" class="pure-button pure-button-primary btn-suppression">Supprimer</button>

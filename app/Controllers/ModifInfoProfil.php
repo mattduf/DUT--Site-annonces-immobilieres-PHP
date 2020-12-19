@@ -85,20 +85,23 @@ class ModifInfoProfil extends Controller
         return redirect()->to('Mon-compte');
 
     }
+
     public function Delete(){
         $session = \Config\Services::session();
         $model = new Uti_Model();
         $modelAnnonce = new Annonce_Model();
         $check = $this->request->getVar('coche-suppression');
-        if($check != null) {
+        
+        if(isset($check)) {
             $model->deleteMessage($session->get('mail'));
             $modelAnnonce->deleteAnnonce($session->get('mail'));
             $model->deleteAccount($session->get('mail'));
             return redirect()->to('Deconnexion');
-        }else{
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez pas cochez la case de confirmation.</div>');
+        }
+        else
+        {
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppresion.</div>');
             return redirect()->to('Mon-compte');
         }
     }
-
 }
