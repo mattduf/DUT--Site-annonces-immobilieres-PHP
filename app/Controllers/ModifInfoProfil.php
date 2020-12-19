@@ -89,7 +89,7 @@ class ModifInfoProfil extends Controller
         $session = \Config\Services::session();
         $model = new Uti_Model();
         $modelAnnonce = new Annonce_Model();
-        $check = $this->request->getVar('coche-suppresion');
+        $check = $this->request->getVar('coche-suppression');
         if($check != null) {
             $model->deleteMessage($session->get('mail'));
             $modelAnnonce->deleteAnnonce($session->get('mail'));
