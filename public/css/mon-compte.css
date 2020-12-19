@@ -213,3 +213,7 @@ cursor: pointer;
 	max-height:300px;
 	font-family:Helvetica;
 }
+
+#hidden_div{
+	display:none;
+}

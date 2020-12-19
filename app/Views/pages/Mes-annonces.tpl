@@ -35,11 +35,6 @@
 					</div>
 
 					<div class="pure-control-group">
-						<label for="date">Date de création</label>
-						<input type="date" id="date" placeholder="Date de création de l'annonce" name="date" required/>
-					</div>
-
-					<div class="pure-control-group">
 						<label for="type">Type</label>
 						<select id="type" name="type-select">
 						    <option value="T1">T1</option>
@@ -58,13 +53,13 @@
 
 					<div class="pure-control-group">
 						<label for="type-chauffage">Type de chauffage</label>
-						<select id="type-chauffage" name="type-chauffage-select">
-						    <option value="collectif">Collectif</option>
-						    <option value="individuel">Individuel</option>
+						<select id="type-chauffage" name="type-chauffage-select" onchange="showEnergie('hidden_div', this)">>
+						    <option value="0">Collectif</option>
+						    <option value="1">Individuel</option>
 						</select>
 					</div>
 
-					<div class="pure-control-group">
+					<div class="pure-control-group" id="hidden_div">
 						<label for="mode-energie">Mode d'énergie</label>
 						<select id="mode-energie" name="mode-energie-select">
 						    <option value="fioul">Fioul</option>
@@ -82,6 +77,11 @@
 						<input type="text" id="code-postal" placeholder="Code postal" name="code-postal" required/>
 					</div>
 
+					<div class="pure-control-group">
+						<label for="date">Date de création</label>
+						<input type="date" id="date" placeholder="Date de création de l'annonce" name="date" required/>
+					</div>
+					
 					<div class="pure-control-group" id="ajout-description">
 						<label for="description">Description</label><br/>
 						<textarea id="description" name="description" rows="5" cols="40" maxlength="1000" placeholder="Description de l'annonce"></textarea>
@@ -94,3 +94,15 @@
 			</div>
 		</section>
 	</div>
+
+	<script>
+		//JS pour faire apparaître le mode d'énergie si "Indivuel" est sélectionné
+		//Source : https://www.tutorialspoint.com/how-can-i-show-a-hidden-div-when-a-select-option-is-selected-in-javascript
+		function showEnergie(id, elementValue) {
+	      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+	   }
+
+	   //JS pour compter le nb de caractères restant pour la description
+	   //Source : 
+
+	</script>
