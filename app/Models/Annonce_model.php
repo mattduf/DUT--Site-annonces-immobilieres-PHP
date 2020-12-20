@@ -8,7 +8,7 @@ class Annonce_Model extends Model
 {
 	protected $table = 't_annonce';
 
-	public function getAnnonce(){ //A completer
+	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
 		$query = 'SELECT * FROM '.$this->table;
         return $this->simpleQuery($query);
 	}
