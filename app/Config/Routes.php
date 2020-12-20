@@ -32,12 +32,12 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::views');
 $routes->get('Deconnexion', 'Deconnexion::deconnexion');
-//$routes->get('Delete', 'ModifInfoProfil::Delete');
 $routes->get('(:any)', 'Home::views/$1');
 $routes->post('Connexion', 'Login::signin');
 $routes->post('Inscription', 'Inscription::signup');
 $routes->post('Mon-compte', 'ModifInfoProfil::index');
 $routes->post('Delete', 'ModifInfoProfil::Delete');
+$routes->post('Ajouter-une-annonce', 'Ajouter_une_annonce::addAnnonce');
 $routes->setAutoRoute(false);
 
 

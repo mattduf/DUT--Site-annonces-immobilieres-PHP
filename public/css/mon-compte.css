@@ -174,17 +174,6 @@ h1{
 	transition: background-color 0.3s;
 }
 
-.collapsible:after {
-  content: '\02B07'; /* Unicode character for "plus" sign (+) */
-  font-size:1em;
-  color: #c2262b;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\02B06"; /* Unicode character for "minus" sign (-) */
-}
-
 .content {
 	max-height: 0;
 	overflow: hidden;
@@ -200,20 +189,7 @@ cursor: pointer;
 	background-color:#c2262b;
 }
 
-#ajout-description{
-	text-align:center;
-	margin-top:20px;
-}
-
-#ajout-description textarea{
-	width:500px;
-	max-width:500px;
-	min-width:100px;
-	min-height:100px;
-	max-height:300px;
-	font-family:Helvetica;
-}
-
 #hidden_div{
 	display:none;
 }
+

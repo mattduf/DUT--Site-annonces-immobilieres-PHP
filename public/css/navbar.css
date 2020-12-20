@@ -1,6 +1,4 @@
 /* Visuel général */
-
-
 nav{
 	top:0;
 	position:sticky;
@@ -40,7 +38,7 @@ nav a.middle
 nav a.middle:before {
   content: "";
   position: absolute;
-  width: 92%;
+  width: calc(100% - 17px);
   height: 2px;
   bottom: 0;
   left: 18px;

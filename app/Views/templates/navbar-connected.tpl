@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="pure-u-1-3" id="two">
-			<a href="/Annonces" class="middle"><i class="fas fa-search"></i> Rechercher une annonce</a>
+			<a href="/Annonces" class="middle"><i class="fas fa-search"></i> Rechercher une annonce</a><div class="vl"></div><a href="/Ajouter-une-annonce" class="middle"><i class="far fa-plus-square"></i> Ajouter une annonce</a>
 		</div>
 
 		<div class="pure-u-1-3" id="three">
