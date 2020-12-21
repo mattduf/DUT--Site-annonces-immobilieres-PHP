@@ -3,10 +3,10 @@
 </head>
 
 	<article>
-		<h1><i class="far fa-plus-square"></i> Ajouter une annonce</h1>
+		<h1 class="h1-custom"><span><i class="far fa-plus-square"></i> Ajouter une annonce</span></h1>
 		<section>
 		<div id="section-ajouter-annonce">
-				
+			<h2>Informations générales</h2>
 				<form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce">
 					<div class="pure-control-group">
 						<label for="title">Titre</label>
@@ -43,8 +43,8 @@
 					<div class="pure-control-group">
 						<label for="type-chauffage">Type de chauffage</label>
 						<select id="type-chauffage" name="typechauffageselect" onchange="showEnergie('hidden_div', this)">>
-						    <option value="0">Collectif</option>
-						    <option value="1">Individuel</option>
+						    <option value="Collectif">Collectif</option>
+						    <option value="Individuel">Individuel</option>
 						</select>
 					</div>
 
@@ -73,15 +73,39 @@
 					
 					<div class="pure-control-group" id="ajout-description">
 						<label style="width:auto;" for="description">Description <span id="lblRemainingCount"></span></label><br/>
-						<textarea id="description" name="description" rows="5" cols="40" maxlength="1000" placeholder="Description de l'annonce" onkeypress="textareaLengthCheck(this)"></textarea>
-						
+						<textarea id="description" name="description" rows="5" cols="40" maxlength="1000" placeholder="Description de l'annonce" onkeypress="textareaLengthCheck(this)" required></textarea>
 					</div>
+
+				<h2>Photo(s) du logement (5 max.)</h2>
+					<div class="pure-control-group">
+						<input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+					</div>
+
+					<div class="pure-control-group">
+						<input type="file" name="image2" id="image2" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+					</div>
+
+					<div class="pure-control-group">
+						<input type="file" name="image3" id="image3" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+					</div>
+
+					<div class="pure-control-group">
+						<input type="file" name="image4" id="image4" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+					</div>
+
+					<div class="pure-control-group">
+						<input type="file" name="image5" id="image5" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+					</div>
+
+					<p>Aperçu de la dernière photo chargée</p>
+					<img id="imageoutput" src="#" style="margin-bottom:10px;"/>
 
 					<div>
 						<button type="submit" class="pure-button pure-button-primary btn-enregistrement">Enregistrer l'annonce (brouillon)</button>
 						<button type="submit" class="pure-button pure-button-primary">Publier l'annonce</button>
 					</div>
 				</form>
+
 			</div>
 		</section>
 		</article>
@@ -90,7 +114,7 @@
 		//JS pour faire apparaître le mode d'énergie si "Indivuel" est sélectionné
 		//Source : https://www.tutorialspoint.com/how-can-i-show-a-hidden-div-when-a-select-option-is-selected-in-javascript
 		function showEnergie(id, elementValue) {
-	      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+	      document.getElementById(id).style.display = elementValue.value == 'Individuel' ? 'block' : 'none';
 	   }
 
 	   //JS pour compter le nb de caractères restant pour la description
@@ -101,4 +125,18 @@
 		  var count = document.getElementById('lblRemainingCount');
 		  count.innerHTML = "(" + charactersLeft + " / 1000)";
 		}
+
+		//JS pour afficher l'aperçu d'une image chargée
+		//Source : https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+		var loadFile = function(event) {
+		    var imageoutput = document.getElementById('imageoutput');
+		    imageoutput.src = URL.createObjectURL(event.target.files[0]);
+		    imageoutput.onload = function() {
+		      URL.revokeObjectURL(imageoutput.src) // free memory
+		    }
+		  };
+
+	  	//JS pour annuler l'import d'une image
+	  	//Source :
+
 		</script>

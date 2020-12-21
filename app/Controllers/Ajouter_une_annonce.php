@@ -12,7 +12,7 @@ class Ajouter_une_annonce extends Controller
 	    $session = \Config\Services::session();
         $model = new Annonce_Model();
         $mail = $session->get('mail'); //a voir
-        $titre = $this->request->getPost('titre');
+        $titre = $this->request->getPost('title');
         $coutlocation = $this->request->getPost('coutlocation');
         $coutcharges = $this->request->getPost('coutcharges');
         $type = $this->request->getPost('typeselect');
@@ -33,6 +33,14 @@ class Ajouter_une_annonce extends Controller
         $description = $this->request->getPost('description');
 
         $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description);
+
+        if ($this->request->getMethod() === 'post'&& $insert){
+            $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
+            return redirect()->to('Mes-annonces');
+        }
+        else{
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'annonce a échoué.</div>');
+        }
 	}
 
 }

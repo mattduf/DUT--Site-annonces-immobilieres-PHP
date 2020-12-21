@@ -1,3 +1,5 @@
+* { font-family:Helvetica; }
+
 html {
   	scroll-behavior: smooth;
   	height:100%
@@ -12,7 +14,6 @@ body{
 article{
 	margin: 50px auto;
 	max-width:1000px;
-	font-family:Helvetica;
 	min-height:100%;
 }
 
@@ -22,9 +23,20 @@ a{
 	font-weight:bold;
 }
 
-h1{
+.h1-custom{
 	text-align:center;
-	text-decoration: underline #c2262b;
+	/* text-decoration: underline #c2262b; */
+	background: linear-gradient(#fff 100%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
+	background: -webkit-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
+	background: -moz-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
+	background: -ms-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
+	background: -o-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
+	/* Source : http://memo-web.fr/categorie-css-200/ */;
+}
+
+.h1-custom span{
+background:#fff;
+padding:0 20px;
 }
 
 ::selection{

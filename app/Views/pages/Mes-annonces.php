@@ -1,9 +1,16 @@
 <?php
+	use App\Models\Annonce_Model;
+	
 	if(!isset($_SESSION['mail'])){
 		header('Location:Connexion');
 		exit;
 	}
 	else{
+		$model = new Annonce_Model();
+		$annonceUti = $model->getAnnonceUtilisateur($_SESSION['mail']);
+
+		service('SmartyEngine')->assign('annonceUti',$annonceUti);
+
 		service('SmartyEngine')->assign('mail',$_SESSION['mail']);
         service('SmartyEngine')->assign('pseudo',$_SESSION['pseudo']);
         service('SmartyEngine')->assign('nom',$_SESSION['nom']);

@@ -9,7 +9,7 @@ class Annonce_Model extends Model
 	protected $table = 't_annonce';
 
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-		$query = 'SELECT * FROM '.$this->table;
+		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
@@ -17,6 +17,12 @@ class Annonce_Model extends Model
 		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
+
+    public function getAnnonceUtilisateur($mail){
+        $query = 'SELECT * FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        return $this->simpleQuery($query);
+    }
+
     public function deleteAnnonce($mail){
         $this->where('A_U_mail',$mail);
         $this->delete();

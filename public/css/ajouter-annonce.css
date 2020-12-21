@@ -16,7 +16,7 @@ section{
 
 @media (min-width:1125px){
 	section{
-		width:900px;
+		width:1000px;
 	}
 }
 
@@ -75,4 +75,12 @@ section{
 
 #hidden_div{
 	display:none;
+}
+
+#imageoutput{
+	max-width:250px;
+	border:solid #c2262b 1px;
+	-webkit-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
 }

@@ -11,7 +11,7 @@
 			</ul>
 		</aside>
 		<section>
-			<h1><i class="fas fa-edit"></i> Modifier mes informations personnelles</h1>
+			<h1 class="h1-custom"><span><i class="fas fa-edit"></i> Modifier mes informations personnelles</span></h1>
 			<form class="pure-form pure-form-aligned formulaire" method="post" name="changeprofil">
 				<div class="pure-control-group">
 					<label>Mail</label>

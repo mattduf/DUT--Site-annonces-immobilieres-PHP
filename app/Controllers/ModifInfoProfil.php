@@ -100,7 +100,7 @@ class ModifInfoProfil extends Controller
         }
         else
         {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppresion.</div>');
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppression.</div>');
             return redirect()->to('Mon-compte');
         }
     }
