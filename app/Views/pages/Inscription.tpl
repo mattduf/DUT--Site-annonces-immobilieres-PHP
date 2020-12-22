@@ -13,7 +13,7 @@
                 </div>
                 <div class="pure-control-group">
                     <label for="pseudo">Pseudo <span class="rouge">*</span></label>
-                    <input type="text" id="pseudo" placeholder="Pseudo" name="pseudo" required/>
+                    <input type="text" id="pseudo" placeholder="Pseudo" name="pseudo" maxlength="19" required/>
                 </div>
                 <div class="pure-control-group">
                     <label for="email">E-mail <span class="rouge">*</span></label>
