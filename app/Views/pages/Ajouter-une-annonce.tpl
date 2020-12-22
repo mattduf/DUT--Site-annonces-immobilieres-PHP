@@ -7,7 +7,7 @@
 		<section>
 		<div id="section-ajouter-annonce">
 			<h2>Informations générales</h2>
-				<form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce">
+				<form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce" enctype="multipart/form-data">
 					<div class="pure-control-group">
 						<label for="title">Titre</label>
 						<input type="text" id="title" placeholder="Titre de l'annonce" name="title" required/>
@@ -78,7 +78,7 @@
 
 				<h2>Photo(s) du logement (5 max.)</h2>
 					<div class="pure-control-group">
-						<input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
+						<input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)" required/>
 					</div>
 
 					<div class="pure-control-group">

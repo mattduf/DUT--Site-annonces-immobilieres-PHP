@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Annonce_Model extends Model
 {
 	protected $table = 't_annonce';
+    protected $tablePhoto = 't_photo';
 
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
 		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC';
@@ -20,6 +21,11 @@ class Annonce_Model extends Model
 
     public function getAnnonceUtilisateur($mail){
         $query = 'SELECT * FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        return $this->simpleQuery($query);
+    }
+
+    public function getLastAnnonce($mail){
+        $query = 'SELECT A_idannonce FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC LIMIT 1';
         return $this->simpleQuery($query);
     }
 

@@ -4,7 +4,7 @@
 			{foreach $annonce as $a}
 				<div class="carte grow">
 					<div class="annonce-image">
-						<img src="../../../images/annonces/2.jpg" class="img-responsive">
+						<img src="../../../images/annonces/5.jpg" class="img-responsive">
 					</div>
 					<div class="annonce-description" >
 						<span class="description-titre">{$a.A_titre}</span>
@@ -16,6 +16,9 @@
 						<span class="description-plus"><a href="Annonces/{$a.A_idannonce}">En&nbspsavoir&nbspplus <i class="fas fa-info-circle"></i></a></span>
 					</div>
 				</div>
+				{if $a@last}
+				    <div style="margin-top:20px;"><em>{$a@total} annonces chargées.</em></div>
+			  	{/if}
 			{/foreach}
 			<!--TODO charger plus d'annonces-->
 			<a href="#"><div id="carte-deux" class="decrease">
