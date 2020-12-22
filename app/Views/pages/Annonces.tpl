@@ -16,6 +16,11 @@
 						<span class="description-plus"><a href="Annonces/{$a.A_idannonce}">En&nbspsavoir&nbspplus <i class="fas fa-info-circle"></i></a></span>
 					</div>
 				</div>
+				<!--
+				{if $a@iteration >= 15}
+					{break}
+				{/if}
+				-->
 				{if $a@last}
 				    <div style="margin-top:20px;"><em>{$a@total} annonces chargée(s).</em></div>
 			  	{/if}

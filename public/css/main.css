@@ -25,18 +25,19 @@ a{
 
 .h1-custom{
 	text-align:center;
-	/* text-decoration: underline #c2262b; */
-	background: linear-gradient(#fff 100%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
-	background: -webkit-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
-	background: -moz-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
-	background: -ms-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
-	background: -o-linear-gradient(#fff 0%,#fff 45%,#c2262b 46%,#c2262b 54%,  #fff 54%,#fff 100%);
-	/* Source : http://memo-web.fr/categorie-css-200/ */;
 }
 
 .h1-custom span{
-background:#fff;
-padding:0 20px;
+    font-size: 30px;
+    color: #ffffff;
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-shadow: 0px 0px 0 rgb(198,42,47),
+                 1px 1px 0 rgb(184,28,33),
+                 2px 2px 0 rgb(160,14,19),
+                 3px 3px  0 rgb(146,0,5),
+                 4px 4px 5px rgba(0,0,0,0.6),
+                 4px 4px 1px rgba(0,0,0,0.5),
+                 0px 0px 5px rgba(0,0,0,.2);
 }
 
 ::selection{

@@ -20,9 +20,9 @@ class Ajouter_une_annonce extends Controller
         $superficie = $this->request->getPost('superficie');
         $typechauffage = $this->request->getPost('typechauffageselect');
         
-        if($typechauffage === "collectif")
+        if($typechauffage === "Collectif")
         {
-            $modeenergie ="NULL";
+            $modeenergie = '4';
         }
         else
         {
