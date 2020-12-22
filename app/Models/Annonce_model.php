@@ -25,8 +25,7 @@ class Annonce_Model extends Model
     }
 
     public function getLastAnnonce($mail){
-        $query = 'SELECT A_idannonce FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC LIMIT 1';
-        return $this->simpleQuery($query);
+        return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->orderBy('A_idannonce', 'DESC')->first();
     }
 
     public function deleteAnnonce($mail){

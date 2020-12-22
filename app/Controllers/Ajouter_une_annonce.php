@@ -33,46 +33,21 @@ class Ajouter_une_annonce extends Controller
         $ville = $this->request->getPost('ville');
         $codepostal = $this->request->getPost('codepostal');
         $description = $this->request->getPost('description');
+		$dossier = ROOTPATH."public/images/annonces/";
+
+		$insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description);
         
-        
+        //Upload image sur le serveur
+        for ($i=1; $i<=5 ; $i++) { 
+        	${"fichier".$i} = basename($_FILES["image"."$i"]["name"]);
+        	${"image".$i} = 'image'.$i;
+        	$idAnnonce = $model->getLastAnnonce($mail);
 
-        $target_dir = ROOTPATH."public/images/annonces/";
-		$target_file =basename($_FILES["image1"]["name"]);
-
-
-		$uploadOk = 1;
-		// Check if image file is a actual image or fake image
-		if(isset($_POST["submit"])) {
-		  $check = getimagesize($_FILES["image1"]["tmp_name"]);
-		  if($check !== false) {
-		    echo "File is an image - " . $check["mime"] . ".";
-		    $uploadOk = 1;
-		  } else {
-		    echo "File is not an image.";
-		    $uploadOk = 0;
-		  }
-		}
-
-		// Check if $uploadOk is set to 0 by an error
-		if ($uploadOk == 0) {
-		  echo "Sorry, your file was not uploaded.";
-		// if everything is ok, try to upload file
-		} else {
-		  if (move_uploaded_file($_FILES["image1"]["tmp_name"], $target_dir . $target_file)) {
-
-		    echo "The file ". htmlspecialchars( basename( $_FILES["image1"]["name"])). " has been uploaded.";
-		  } else {
-		    echo "Sorry, there was an error uploading your file.";
-		  }
-		}
-
-
-
-
-
-
-        $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description);
-       
+        	if(!empty(${"fichier".$i}))
+			{
+				$this->uploadImage(${"fichier".$i},${"image".$i},$dossier, $idAnnonce);
+		    }
+        }
 
         if ($this->request->getMethod() === 'post'&& $insert){
             $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
@@ -83,4 +58,17 @@ class Ajouter_une_annonce extends Controller
         }
 	}
 
+	public function uploadImage($fichier,$image,$dossier,$idAnnonce){
+		$temp = explode(".", $_FILES[$image]["name"]);
+		$newfilename = current($temp) . '-' . current($idAnnonce) . '.' . end($temp);
+
+		if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+	    {
+	        echo 'Upload effectué avec succès !';
+	    }
+	    else //Sinon (la fonction renvoie FALSE).
+	    {
+	        echo 'Echec de l\'upload !';
+	    }
+	}
 }
