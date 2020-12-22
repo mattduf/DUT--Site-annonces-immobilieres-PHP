@@ -35,12 +35,12 @@ class Ajouter_une_annonce extends Controller
         $description = $this->request->getPost('description');
         
         
-        /* UPLOAD IMAGE NE MARCHE PAS
-        $target_dir = "../../public/image/annonces/";
-		$target_file = $target_dir . basename($_FILES["image1"]["name"]);
-		$uploadOk = 1;
-		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+        $target_dir = ROOTPATH."public/images/annonces/";
+		$target_file =basename($_FILES["image1"]["name"]);
+
+
+		$uploadOk = 1;
 		// Check if image file is a actual image or fake image
 		if(isset($_POST["submit"])) {
 		  $check = getimagesize($_FILES["image1"]["tmp_name"]);
@@ -58,13 +58,14 @@ class Ajouter_une_annonce extends Controller
 		  echo "Sorry, your file was not uploaded.";
 		// if everything is ok, try to upload file
 		} else {
-		  if (move_uploaded_file($_FILES["image1"]["tmp_name"], $target_file)) {
+		  if (move_uploaded_file($_FILES["image1"]["tmp_name"], $target_dir . $target_file)) {
+
 		    echo "The file ". htmlspecialchars( basename( $_FILES["image1"]["name"])). " has been uploaded.";
 		  } else {
 		    echo "Sorry, there was an error uploading your file.";
 		  }
 		}
-		*/
+
 
 
 
