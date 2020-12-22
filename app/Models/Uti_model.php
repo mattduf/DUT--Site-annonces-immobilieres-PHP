@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class Uti_Model extends Model
 {
 	protected $table = 't_utilisateur';
+    
     protected $message = 't_message';
 
 	public function insertUti($mail,$mdp,$pseudo,$nom,$prenom,$isadmin = 0){
@@ -47,6 +48,8 @@ class Uti_Model extends Model
         $this->where('U_mail',$mail);
         $this->delete();
     }
+
+    
 
     //TODO A déplacer
     public function deleteMessage($mail){

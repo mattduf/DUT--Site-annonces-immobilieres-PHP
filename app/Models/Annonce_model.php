@@ -10,17 +10,17 @@ class Annonce_Model extends Model
     protected $tablePhoto = 't_photo';
 
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
 	public function getAnnonceAccueil(){
-		$query = 'SELECT * FROM '.$this->table.' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
 
     public function getAnnonceUtilisateur($mail){
-        $query = 'SELECT * FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
 
