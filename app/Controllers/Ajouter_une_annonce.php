@@ -59,12 +59,14 @@ class Ajouter_une_annonce extends Controller
 	}
 
 	public function uploadImage($fichier,$image,$dossier,$idAnnonce){
-		$temp = explode(".", $_FILES[$image]["name"]);
+        $model = new Annonce_Model();
+        $temp = explode(".", $_FILES[$image]["name"]);
 		$newfilename = current($temp) . '-' . current($idAnnonce) . '.' . end($temp);
 
 		if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
 	    {
 	        echo 'Upload effectué avec succès !';
+	        $model->insertImageAnnonce($dossier.$newfilename,$idAnnonce);
 	    }
 	    else //Sinon (la fonction renvoie FALSE).
 	    {

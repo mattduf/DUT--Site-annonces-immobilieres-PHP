@@ -37,5 +37,9 @@ class Annonce_Model extends Model
     	$query = 'INSERT INTO '.$this->table. ' VALUES(\'\',"'.$titre.'","'.$coutlocation.'","'.$coutcharges.'","'.$typechauffage.'","'.$superficie.'","'.$description.'","'.$adresse.'","'.$ville.'","'.$codepostal.'",CURRENT_TIMESTAMP,\'brouillon\',"'.$mail.'","'.$modeenergie.'","'.$type.'")';
 	    return $this->simpleQuery($query);
     }
+    public function insertImageAnnonce($nom,$idannonce){
+        $query = 'INSERT INTO '.$this->tablePhoto. ' VALUES(\'\',\'\',"'.$nom.'","'.$idannonce.'")';
+        return $this->simpleQuery($query);
+    }
 }
 ?>
