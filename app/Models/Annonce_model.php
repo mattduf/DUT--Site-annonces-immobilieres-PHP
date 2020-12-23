@@ -12,14 +12,14 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite
     //Utilisation : page "Annonces" qui liste toutes les annonces
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, occurrences limitées à 6
     //Utilisation : page d'accueil qui liste les 6 dernières annonces publiées
 	public function getAnnonceAccueil(){
-		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
 
@@ -45,8 +45,8 @@ class Annonce_Model extends Model
 
     //Requête qui crée une annonce
     //[INSERT INTO] Utilisation : page "Ajouter-une-annonce" avec un formulaire de création d'annonce
-    public function insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description){
-    	$query = 'INSERT INTO '.$this->table. ' VALUES(\'\',"'.$titre.'","'.$coutlocation.'","'.$coutcharges.'","'.$typechauffage.'","'.$superficie.'","'.$description.'","'.$adresse.'","'.$ville.'","'.$codepostal.'",CURRENT_TIMESTAMP,\'brouillon\',"'.$mail.'","'.$modeenergie.'","'.$type.'")';
+    public function insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,$etat){
+    	$query = 'INSERT INTO '.$this->table. ' VALUES(\'\',"'.$titre.'","'.$coutlocation.'","'.$coutcharges.'","'.$typechauffage.'","'.$superficie.'","'.$description.'","'.$adresse.'","'.$ville.'","'.$codepostal.'",CURRENT_TIMESTAMP,"'.$etat.'","'.$mail.'","'.$modeenergie.'","'.$type.'")';
 	    return $this->simpleQuery($query);
     }
 

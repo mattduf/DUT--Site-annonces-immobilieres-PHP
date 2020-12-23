@@ -101,8 +101,8 @@
 					<img id="imageoutput" src="#" style="margin-bottom:10px;"/>
 
 					<div>
-						<button type="submit" class="pure-button pure-button-primary btn-enregistrement">Enregistrer l'annonce (brouillon)</button>
-						<button type="submit" class="pure-button pure-button-primary">Publier l'annonce</button>
+						<button type="submit" name="button" value="enregistrer" class="pure-button pure-button-primary btn-enregistrement">Enregistrer l'annonce (brouillon)</button>
+						<button type="submit" name="button" value="publiée" class="pure-button pure-button-primary">Publier l'annonce</button>
 					</div>
 				</form>
 

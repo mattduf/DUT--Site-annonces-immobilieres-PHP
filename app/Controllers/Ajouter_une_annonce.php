@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 Use App\Models\Annonce_Model;
+use phpDocumentor\Reflection\Types\True_;
 
 
 class Ajouter_une_annonce extends Controller
@@ -19,7 +20,7 @@ class Ajouter_une_annonce extends Controller
         $type = $this->request->getPost('typeselect');
         $superficie = $this->request->getPost('superficie');
         $typechauffage = $this->request->getPost('typechauffageselect');
-        
+        $selectedbutton = $this->request->getPost('button');
         if($typechauffage === "Collectif")
         {
             $modeenergie = '4';
@@ -34,9 +35,13 @@ class Ajouter_une_annonce extends Controller
         $codepostal = $this->request->getPost('codepostal');
         $description = $this->request->getPost('description');
 		$dossier = ROOTPATH."public/images/annonces/";
+		if ($selectedbutton === "publiée"){
+            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,"publiée");
+        }else{
+            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,"brouillon");
+        }
 
-		$insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description);
-        
+
         //Upload image sur le serveur
         for ($i=1; $i<=5 ; $i++) { 
         	${"fichier".$i} = basename($_FILES["image"."$i"]["name"]);
