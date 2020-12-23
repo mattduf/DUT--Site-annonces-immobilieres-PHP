@@ -3,8 +3,6 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 Use App\Models\Annonce_Model;
-use phpDocumentor\Reflection\Types\True_;
-
 
 class Ajouter_une_annonce extends Controller
 {
