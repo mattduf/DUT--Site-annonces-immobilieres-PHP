@@ -32,18 +32,6 @@ a{
 	padding:0 5px;
 	border-radius:3px;
 	border-bottom:solid 1px #c2262b;
-	/* Style 3D
-    font-size: 30px;
-    color: #ffe9e9;
-    font-family: "Arial Black", Gadget, sans-serif;
-    text-shadow: 0px 0px 0 rgb(198,42,47),
-                 1px 1px 0 rgb(184,28,33),
-                 2px 2px 0 rgb(160,14,19),
-                 3px 3px  0 rgb(146,0,5),
-                 4px 4px 5px rgba(0,0,0,0.6),
-                 4px 4px 1px rgba(0,0,0,0.5),
-                 0px 0px 5px rgba(0,0,0,.2);
-	 */
 }
 
 ::selection{

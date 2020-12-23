@@ -21,6 +21,13 @@ nav div{
 /* Image */
 #one{
 	width:33%;
+	opacity: 1;
+	transition: opacity 0.3s;
+}
+
+#one:hover{
+	opacity: 0.7;
+	transition: opacity 0.3s;
 }
 
 /* Lien "Rechercher une annonce" */
