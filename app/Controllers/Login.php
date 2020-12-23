@@ -40,7 +40,6 @@ class Login extends Controller
             'prenom' => $session->get('prenom')
             ];
             $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Connexion réussie !</div>');
-
         }
         else
         {
