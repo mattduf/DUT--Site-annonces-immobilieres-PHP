@@ -1,8 +1,10 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\Uti_Model;
 use CodeIgniter\Controller;
 Use App\Models\Annonce_Model;
+use CodeIgniter\Session\Session;
 
 class Ajouter_une_annonce extends Controller
 {
@@ -75,4 +77,16 @@ class Ajouter_une_annonce extends Controller
 	        echo 'Echec de l\'upload !';
 	    }
 	}
+	public function deleteannonce($id){
+        $session = \Config\Services::session();
+        $model = new Annonce_Model();
+        $utimodel = new Uti_Model();
+
+        $utimodel->deletePhoto($id);
+        $model->deleteOneAnnonce($session->get('mail'),$id);
+        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée !</div>');
+        //TODO delete message
+        return redirect()->to('/Mes-annonces');
+
+    }
 }

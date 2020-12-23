@@ -42,6 +42,11 @@ class Annonce_Model extends Model
         $this->where('A_U_mail',$mail);
         $this->delete();
     }
+    public function deleteOneAnnonce($mail,$id){
+        $this->where('A_U_mail',$mail);
+        $this->where('A_idannonce', $id);
+        $this->delete();
+    }
 
     //Requête qui crée une annonce
     //[INSERT INTO] Utilisation : page "Ajouter-une-annonce" avec un formulaire de création d'annonce

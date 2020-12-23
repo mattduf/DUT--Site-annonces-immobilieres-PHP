@@ -69,6 +69,10 @@ class Uti_Model extends Model
         $this->delete();
     }
 
+    public function deletePhoto($id){
+	    $query = 'DELETE FROM t_photo WHERE P_A_idannonce = "'.$id.'"';
+	    return $this->simpleQuery($query);
+    }
     
 
     //TODO A déplacer
