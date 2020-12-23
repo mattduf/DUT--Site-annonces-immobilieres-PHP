@@ -37,4 +37,7 @@ class Home extends BaseController
 	    echo view('templates/footer.tpl',$data);
 	}
 
+    public function affiche($page = 'Annonces'){
+
+    }
 }
