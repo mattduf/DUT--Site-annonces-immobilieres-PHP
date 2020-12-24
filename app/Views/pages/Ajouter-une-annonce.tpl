@@ -73,7 +73,7 @@
 					
 					<div class="pure-control-group" id="ajout-description">
 						<label style="width:auto;" for="description">Description <span id="lblRemainingCount"></span></label><br/>
-						<textarea id="description" name="description" rows="5" cols="40" maxlength="1000" placeholder="Description de l'annonce" onkeypress="textareaLengthCheck(this)" required></textarea>
+						<textarea id="description" name="description" rows="5" cols="40" maxlength="1100" placeholder="Description de l'annonce" onkeypress="textareaLengthCheck(this)" required></textarea>
 					</div>
 
 				<h2>Photo(s) du logement (5 max.)</h2>
@@ -121,9 +121,9 @@
 	   //Source : https://stackoverflow.com/questions/34453095/javascript-display-remaining-characters-of-text-area/34453262#answer-34453257
 		function textareaLengthCheck(el) {
 		  var textArea = el.value.length;
-		  var charactersLeft = 1000 - textArea;
+		  var charactersLeft = 1099 - textArea;
 		  var count = document.getElementById('lblRemainingCount');
-		  count.innerHTML = "(" + charactersLeft + " / 1000)";
+		  count.innerHTML = "(" + charactersLeft + " / 1100)";
 		}
 
 		//JS pour afficher l'aperçu d'une image chargée
