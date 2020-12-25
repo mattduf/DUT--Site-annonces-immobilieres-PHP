@@ -18,9 +18,6 @@
 				</div>
 			</div>
 			{/foreach}
-
-			<a href="/Annonces"><div id="carte-deux" class="decrease">
-				Parcourir toutes les annonces <i class="far fa-eye"></i>
-			</div></a>
+			<a href="/Annonces"><div id="carte-deux" class="decrease">Parcourir toutes les annonces <i class="far fa-eye"></i></div></a>
 		</section>
 	</article>

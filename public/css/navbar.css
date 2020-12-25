@@ -7,10 +7,11 @@ nav{
 	z-index:1;
 	width:100%;
 	height:auto;
+	min-height:42px;
 	background-color: white;
-	-webkit-box-shadow: 0px 4px 10px -4px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 4px 10px -4px rgba(0,0,0,0.75);
-	box-shadow: 0px 4px 10px -4px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 4px 10px -4px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 4px 10px -4px rgba(0,0,0,0.75);
+	box-shadow: 0 4px 10px -4px rgba(0,0,0,0.75);
 }
 
 nav div{
@@ -37,7 +38,6 @@ nav a.middle
     position: relative;
     color:black;
 	text-decoration:none;
-	font-family:Helvetica;
 	font-weight:bold;
 }
 
@@ -68,7 +68,6 @@ nav a.middle:hover:before {
 nav #three a{
 	color:black;
 	text-decoration:none;
-	font-family:Helvetica;
 	font-weight:bold;
 	transition:color 0.3s;
 }

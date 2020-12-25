@@ -1,5 +1,3 @@
-*{font-family:Helvetica;}
-
 article{
 	text-align:center;
 }
@@ -9,9 +7,9 @@ section{
 	display:inline-block;
 	margin:0;
 	border-radius:3px;
-	-webkit-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
 @media (min-width:1125px){
@@ -62,7 +60,6 @@ section{
 	min-width:210px;
 	min-height:100px;
 	max-height:300px;
-	font-family:Helvetica;
 }
 
 .formulaire{
@@ -80,8 +77,8 @@ section{
 #imageoutput{
 	max-width:250px;
 	border:solid #c2262b 1px;
-	-webkit-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 	border-radius:3px;
 }

@@ -51,7 +51,5 @@
         </div>
         <div id="date"><em>Publié le {$a.A_date_creation}</em></div>
         {/foreach}
-
-
     </section>
 </div>

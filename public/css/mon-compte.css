@@ -9,16 +9,15 @@ section{
 	display:inline-block;
 	margin:0;
 	border-radius:3px;
-	-webkit-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
 #aside-article{
 	max-width:1105px;
 	margin: 50px auto;
 	min-height:100%;
-	font-family:Helvetica;
 }
 
 #menu{
@@ -65,9 +64,9 @@ section{
 	border:solid #c2262b 1px !important;
 	margin-bottom:2px;
 	background-color:white !important;
-	-webkit-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 7px -3px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
 #menu-pseudo:hover{
@@ -94,8 +93,7 @@ section{
 
 #section-suppr{
 	max-width:440px;
-	margin: 0 auto;
-	margin-bottom:20px;
+	margin: 0 auto 20px;
 	text-align:center;
 }
 
