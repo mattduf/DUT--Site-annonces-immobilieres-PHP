@@ -81,5 +81,9 @@ class Annonce_Model extends Model
         $query = 'INSERT INTO '.$this->tablePhoto. ' VALUES(\'\',\'\',"'.$nom.'","'.$idannonce.'")';
         return $this->simpleQuery($query);
     }
+
+    public function verifAnnonce($mail,$id){
+        return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
+    }
 }
 ?>
