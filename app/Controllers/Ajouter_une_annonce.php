@@ -82,11 +82,17 @@ class Ajouter_une_annonce extends Controller
         $model = new Annonce_Model();
         $utimodel = new Uti_Model();
 
-        $utimodel->deletePhoto($id);
-        $model->deleteOneAnnonce($session->get('mail'),$id);
-        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée !</div>');
-        //TODO delete message
-        return redirect()->to('/Mes-annonces');
+       $verifUser =  $model->verifAnnonce($session->get('mail'),$id);
+        if (!empty($verifUser)) {
 
+            $utimodel->deletePhoto($id);
+            $model->deleteOneAnnonce($session->get('mail'), $id);
+            $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée !</div>');
+            //TODO delete message
+            return redirect()->to('/Mes-annonces');
+        }else{
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
+            return redirect()->to('/Mes-annonces');
+        }
     }
 }

@@ -201,3 +201,4 @@ writable/smarty/templates_c/*
 
 #Session useless files
 writable/session/*
+*.jpg

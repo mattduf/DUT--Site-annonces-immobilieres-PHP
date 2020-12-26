@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::views');
 $routes->get('Deconnexion', 'Deconnexion::deconnexion');
 $routes->get('Annonce-(:num)', 'Home::affiche/$1');
+$routes->get('Gestion/Annonce-(:num)', 'ModifierAnnonce::edit/$1');
 $routes->get('Supprimer-annonces/(:num)','Ajouter_une_annonce::deleteannonce/$1');
 $routes->get('(:any)', 'Home::views/$1');
 $routes->post('Connexion', 'Login::signin');
