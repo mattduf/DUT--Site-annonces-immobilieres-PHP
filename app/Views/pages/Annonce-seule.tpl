@@ -11,7 +11,7 @@
         <a href=""><div class="info-proprietaire" id="envoyer-msg"><i class="fas fa-comment"></i> Envoyer un message</div></a>
     </aside>
     <section>
-        <div class="entete" id="annonce"><h1>{$a.A_titre} (annonce #{$a.A_idannonce})</h1></div>
+        <div class="entete" id="annonce"><h1>{$a.A_titre}</h1></div>
         <div id="section-image">
             <table align="center">
                 <tr>
@@ -43,13 +43,13 @@
         </div>
         <div class="section-infos">
             <h1>Description</h1>
-                <div>{$a.A_description}</div>
+                <div style="text-align: justify;">{$a.A_description}</div>
         </div>
         <div class="section-infos">
             <h1>Localisation</h1>
-                <iframe id="localisation" width="600" height="500" src="https://maps.google.com/maps?q={$a.A_adresse}%20{$a.A_CP}%20{$a.A_ville}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <div id="map-responsive"><iframe width="600" height="500" src="https://maps.google.com/maps?q={$a.A_adresse}%20{$a.A_CP}%20{$a.A_ville}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
         </div>
-        <div id="date"><em>Publié le {$a.A_date_creation}</em></div>
+        <div id="date"><em>Publié le {$a.A_date_modifiee} - Annonce #{$a.A_idannonce}</em></div>
         {/foreach}
     </section>
 </div>

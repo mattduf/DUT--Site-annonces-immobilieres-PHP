@@ -3,6 +3,7 @@ aside{
     overflow:hidden;
     vertical-align: top; /* IMPORTANT */
     border-radius:3px;
+    background-color:white;
     -webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
     box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
@@ -170,7 +171,7 @@ h1{
 
 #date{
     margin:0 auto;
-    max-width:200px;
+    max-width:300px;
     text-align:center;
     border-top-right-radius:3px;
     border-top-left-radius:3px;
@@ -181,6 +182,19 @@ h1{
     padding:3px;
 }
 
-#localisation{
+/* Carte responsive, source : https://alphadesign.fr/blog/34-web-design-developpement/469-creez-une-google-map-responsive-pour-n-importe-quel-site.html */
+#map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
     border-radius:3px;
+}
+
+#map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }

@@ -4,6 +4,11 @@
 		<section id="cartes-section">
 			{foreach $annonce as $a}
 			<div class="carte grow">
+
+				{if $a.A_U_mail eq $mail}
+					<a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="annonce-uti">Votre annonce</div></a>
+				{/if}
+
 				<div class="annonce-image">
 					<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$a.P_nom}" class="img-responsive"></a>
 				</div>

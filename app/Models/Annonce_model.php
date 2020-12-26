@@ -15,14 +15,14 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite
     //Utilisation : page "Annonces" qui liste toutes les annonces
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, occurrences limitées à 6
     //Utilisation : page d'accueil qui liste les 6 dernières annonces publiées
 	public function getAnnonceAccueil(){
-		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
 
@@ -36,7 +36,7 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie toutes les infos d'une annonce
     //Utilisation : page correspondant à une annonce en particulier
     public function getAnnonceEntiere($idannonce){
-        $query = 'SELECT * FROM '.$this->table.' a JOIN '.$this->tableType.' t ON a.A_T_type = t.T_type JOIN '.$this->tableEnergie.' e ON a.A_E_id_engie = e.E_id_engie JOIN '.$this->tableUti.' u ON a.A_U_mail = u.U_mail WHERE A_idannonce = \''.$idannonce.'\'';
+        $query = 'SELECT *, DATE_FORMAT(A_date_creation, \'%d-%m-%Y\') AS "A_date_modifiee" FROM '.$this->table.' a JOIN '.$this->tableType.' t ON a.A_T_type = t.T_type JOIN '.$this->tableEnergie.' e ON a.A_E_id_engie = e.E_id_engie JOIN '.$this->tableUti.' u ON a.A_U_mail = u.U_mail WHERE A_idannonce = \''.$idannonce.'\'';
         return $this->simpleQuery($query);
     }
 
