@@ -19,6 +19,19 @@ nav div{
 	vertical-align:middle;
 }
 
+/* Style des liens */
+nav a{
+	color:black;
+	text-decoration:none;
+	font-weight:bold;
+	transition:color 0.3s;
+}
+
+nav a:hover{
+	color:#c2262b;
+	transition:color 0.3s;
+}
+
 /* Image */
 #one{
 	width:33%;
@@ -31,52 +44,13 @@ nav div{
 	transition: opacity 0.3s;
 }
 
-/* Lien "Rechercher une annonce" */
-/* Source de l'animation: https://paulund.co.uk/css-animation-link-underline */
-nav a.middle
-{
-    position: relative;
-    color:black;
-	text-decoration:none;
-	font-weight:bold;
-}
-
-nav a.middle:before {
-  content: "";
-  position: absolute;
-  width: calc(100% - 17px);
-  height: 2px;
-  bottom: 0;
-  left: 18px;
-  background-color: #c2262b;
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: all 0.3s ease-in-out;
-}
-
-nav a.middle:hover:before {
-  visibility: visible;
-  transform: scaleX(1);
-}
-
+/* Liens centraux */
 #two{
 	text-align:center;
 	width:33%;
 }
 
-/* Lien "Se connecter" */
-nav #three a{
-	color:black;
-	text-decoration:none;
-	font-weight:bold;
-	transition:color 0.3s;
-}
-
-nav #three a:hover{
-	color:#c2262b;
-	transition:color 0.3s;
-}
-
+/* Liens à droite */
 #three{
 	text-align:right;
 	width:33%;
