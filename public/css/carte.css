@@ -27,9 +27,11 @@
 
 .annonce-uti{
 	position:absolute;
-	background-color: rgba(255,255,255, 0.7);
+	background-color: rgba(24, 200, 49, 0.7);
 	padding:5px 0;
 	transition:background-color 0.3s;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 .annonce-uti:hover{

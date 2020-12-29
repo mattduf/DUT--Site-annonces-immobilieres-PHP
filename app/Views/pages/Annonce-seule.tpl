@@ -8,8 +8,9 @@
         <div class="entete" id="proprietaire"><h1>Propriétaire</h1></div>
         <div class="info-proprietaire"><strong>{$a.U_pseudo}</strong></div>
         <div class="info-proprietaire">{$a.U_mail}</div>
-        <a href=""><div class="info-proprietaire" id="envoyer-msg"><i class="fas fa-comment"></i> Envoyer un message</div></a>
+        <a href=""><div class="info-proprietaire" id="envoyer-msg"><strong><i class="fas fa-comment"></i> CONTACTER</strong></div></a>
     </aside>
+
     <section>
         <div class="entete" id="annonce"><h1>{$a.A_titre}</h1></div>
         <div id="section-image">
@@ -52,4 +53,6 @@
         <div id="date"><em>Publié le {$a.A_date_modifiee} - Annonce #{$a.A_idannonce}</em></div>
         {/foreach}
     </section>
+
+    <a href="/Annonces"><div id="retour-annonces" class="decrease"><i class="fas fa-chevron-left"></i> Retour aux annonces</div></a>
 </div>

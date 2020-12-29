@@ -1,6 +1,11 @@
 	<article>
 		<section id="cartes-section">
-			<!-- TODO barre de recherche-->
+			<div id="recherche-annonce">
+
+
+				<a href="#"><div id="bouton-rechercher" class="decrease"><i class="fas fa-search"></i> Rechercher</div></a>
+			</div>
+
 			{foreach $annonce as $a}
 				<div class="carte grow">
 
