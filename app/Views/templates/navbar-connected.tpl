@@ -12,6 +12,6 @@
 		</div>
 
 		<div class="pure-u-1-3" id="three">
-			<a href="Mon-compte"><i class="fas fa-user"></i> Mon&nbspcompte</a><div class="vl"></div><a href="Deconnexion"><i class="fas fa-sign-out-alt"></i> Se&nbspdéconnecter</a>
+			<a href="/Mon-compte"><i class="fas fa-user"></i> Mon&nbspcompte</a><div class="vl"></div><a href="/Deconnexion"><i class="fas fa-sign-out-alt"></i> Se&nbspdéconnecter</a>
 		</div>
 	</nav>
