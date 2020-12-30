@@ -42,7 +42,7 @@
 
 					<div class="pure-control-group">
 						<label for="type-chauffage">Type de chauffage</label>
-						<select id="type-chauffage" name="typechauffageselect" onchange="showEnergie('hidden_div', this)">>
+						<select id="type-chauffage" name="typechauffageselect" onchange="showEnergie('hidden_div', this)">
 						    <option value="Collectif">Collectif</option>
 						    <option value="Individuel">Individuel</option>
 						</select>
@@ -64,6 +64,26 @@
 						<input type="text" id="ville" placeholder="Ville" name="ville" style="margin-bottom:2px;" required/><br/>
 						<label for=""></label>
 						<input type="text" id="code-postal" placeholder="Code postal" name="codepostal" required/>
+					</div>
+
+					<div class="pure-control-group">
+						<label for=""></label>
+						<select id="region" name="region" required>
+							<option value="">--Sélectionner une région--</option>
+							<option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
+							<option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
+							<option value="Bretagne">Bretagne</option>
+							<option value="Centre-Val de Loire">Centre-Val de Loire</option>
+							<option value="Corse">Corse</option>
+							<option value="Grand Est">Grand Est</option>
+							<option value="Hauts-de-France">Hauts-de-France</option>
+							<option value="Île-de-France">Île-de-France</option>
+							<option value="Normandie">Normandie</option>
+							<option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+							<option value="Occitanie">Occitanie</option>
+							<option value="Pays de la Loire">Pays de la Loire</option>
+							<option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+						</select>
 					</div>
 
 					<div class="pure-control-group">
@@ -135,8 +155,4 @@
 		      URL.revokeObjectURL(imageoutput.src) // free memory
 		    }
 		  };
-
-	  	//JS pour annuler l'import d'une image
-	  	//Source :
-
 		</script>

@@ -38,7 +38,7 @@
                     <td><i class="fas fa-burn rouge"></i> Mode d'énergie : {$a.E_description}</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><i class="fas fa-map-marker-alt rouge"></i> Localisation : {$a.A_adresse}, {$a.A_ville} ({$a.A_CP})</td>
+                    <td colspan="2"><i class="fas fa-map-marker-alt rouge"></i> Localisation : {$a.A_adresse}, {$a.A_ville} ({$a.A_CP}), <em>{$a.A_region}</em></td>
                 </tr>
             </table>
         </div>

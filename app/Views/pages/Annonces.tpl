@@ -1,11 +1,61 @@
 	<article>
 		<section id="cartes-section">
+			<!-- Section recherche d'annonces -->
 			<div id="recherche-annonce">
+				<form class="pure-form" method="post" name="searchAnonce">
+					<label for="localisation">Localisation</label>
+					<input type="text" id="localisation" placeholder="Ville ou code postal" name="localisation" style="margin-bottom:2px;"/>
 
+					<select id="region" name="region" style="margin-bottom:2px; height:2.3em;">
+						<option value="">Sélectionner une région</option>
+						<option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
+						<option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
+						<option value="Bretagne">Bretagne</option>
+						<option value="Centre-Val de Loire">Centre-Val de Loire</option>
+						<option value="Corse">Corse</option>
+						<option value="Grand Est">Grand Est</option>
+						<option value="Hauts-de-France">Hauts-de-France</option>
+						<option value="Île-de-France">Île-de-France</option>
+						<option value="Normandie">Normandie</option>
+						<option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+						<option value="Occitanie">Occitanie</option>
+						<option value="Pays de la Loire">Pays de la Loire</option>
+						<option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+					</select>
 
-				<a href="#"><div id="bouton-rechercher" class="decrease"><i class="fas fa-search"></i> Rechercher</div></a>
+					<label for="type">Type</label>
+					<select id="type" name="typeselect" style="margin-bottom:2px; height:2.3em;">
+						<option value="">Sélectionner</option>
+						<option value="T1">T1</option>
+						<option value="T2">T2</option>
+						<option value="T3">T3</option>
+						<option value="T4">T4</option>
+						<option value="T5">T5</option>
+						<option value="T6">T6</option>
+					</select>
+
+					<label for="type-chauffage">Type de chauffage</label>
+					<select id="type-chauffage" name="typechauffageselect" style="margin-bottom:2px; height:2.3em;">
+						<option value="">Sélectionner</option>
+						<option value="Collectif">Collectif</option>
+						<option value="Individuel">Individuel</option>
+					</select><br/>
+
+					<label for="superficie">Superficie</label>
+					<input type="number" id="superficie" placeholder="Superficie du logement" name="superficie"/>
+
+					<label for="loyer-min">Loyer min.</label>
+					<input style="width:50px;" type="number" id="loyer-min" placeholder="" name="loyer-min"/>
+
+					<label for="loyer-max">Loyer max.</label>
+					<input style="width:50px;" type="number" id="loyer-max" placeholder="" name="loyer-max"/>
+
+					<button type="submit" name="button" id="bouton-rechercher" class="decrease pure-button pure-button-primary"><i class="fas fa-search"></i> Rechercher</button>
+				</form>
 			</div>
+			<!-- Fin section recherche d'annonces -->
 
+			<!-- Affichage des annonces -->
 			{foreach $annonce as $a}
 				<div class="carte grow">
 
@@ -34,12 +84,12 @@
 				    <div style="margin-top:20px;"><em>{$a@total} annonces chargée(s).</em></div>
 			  	{/if}
 			{/foreach}
+			<!-- Fin de l'affichage des annonces -->
+
 			<!--TODO charger plus d'annonces-->
 			<a href="#"><div id="carte-deux" class="decrease">
 					Charger plus d'annonces <i class="far fa-eye"></i>
 				</div></a>
 
 		</section>
-
-
 	</article>

@@ -53,6 +53,13 @@ class Annonce_Model extends Model
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->orderBy('A_idannonce', 'DESC')->first();
     }
 
+    //[SELECT]
+    //
+    public function searchAnnonce($ville,$codepostal,$region,$type,$typechauffage,$superficie,$loyermin,$loyermax){
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' AND A_ville LIKE '.$ville.' AND A_CP LIKE '.$codepostal.' AND A_region LIKE '.$region.' AND A_T_type LIKE'.$type.' AND A_type_chauffage LIKE '.$typechauffage.' AND A_superficie LIKE '.$superficie.' AND A_cout_loyer BETWEEN '.$loyermin.' AND '.$loyermax.' ORDER BY A_idannonce DESC';
+        return $this->simpleQuery($query);
+    }
+
     //[DELETE] Requête qui supprime les annonces d'un utilisateur
     //Utilisation : losrqu'un utilisateur supprime son compte
     public function deleteAnnonce($mail){
@@ -70,8 +77,8 @@ class Annonce_Model extends Model
 
     //[INSERT INTO] Requête qui crée une annonce
     //Utilisation : page "Ajouter-une-annonce" avec un formulaire de création d'annonce
-    public function insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,$etat){
-    	$query = 'INSERT INTO '.$this->table. ' VALUES(\'\',"'.$titre.'","'.$coutlocation.'","'.$coutcharges.'","'.$typechauffage.'","'.$superficie.'","'.$description.'","'.$adresse.'","'.$ville.'","'.$codepostal.'",CURRENT_TIMESTAMP,"'.$etat.'","'.$mail.'","'.$modeenergie.'","'.$type.'")';
+    public function insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,$etat){
+    	$query = 'INSERT INTO '.$this->table. ' VALUES(\'\',"'.$titre.'","'.$coutlocation.'","'.$coutcharges.'","'.$typechauffage.'","'.$superficie.'","'.$description.'","'.$adresse.'","'.$ville.'","'.$region.'","'.$codepostal.'",CURRENT_TIMESTAMP,"'.$etat.'","'.$mail.'","'.$modeenergie.'","'.$type.'")';
 	    return $this->simpleQuery($query);
     }
 

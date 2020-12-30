@@ -32,13 +32,14 @@ class Ajouter_une_annonce extends Controller
 
         $adresse = $this->request->getPost('adresse');
         $ville = $this->request->getPost('ville');
+        $region = $this->request->getPost('region');
         $codepostal = $this->request->getPost('codepostal');
         $description = $this->request->getPost('description');
 		$dossier = ROOTPATH."public/images/annonces/";
 		if ($selectedbutton === "publiée"){
-            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,"publiée");
+            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,"publiée");
         }else{
-            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$codepostal,$description,"brouillon");
+            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,"brouillon");
         }
 
 
