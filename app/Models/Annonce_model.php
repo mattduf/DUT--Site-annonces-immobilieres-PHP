@@ -43,7 +43,7 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie toutes les photos d'une annonce
     //Utilisation : page correspondant à une annonce en particulier
     public function getPhotos($idannonce){
-        $query = 'SELECT P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = \''.$idannonce.'\' AND A_idannonce = P_A_idannonce ORDER BY A_idannonce DESC';
+        $query = 'SELECT P_nom,P_idphoto FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = \''.$idannonce.'\' AND A_idannonce = P_A_idannonce ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
 
