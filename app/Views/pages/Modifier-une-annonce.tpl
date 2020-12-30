@@ -3,29 +3,30 @@
 </head>
 
 <article>
-    <h1 class="h1-custom"><span><i class="far fa-plus-square"></i> Ajouter une annonce</span></h1>
+    <h1 class="h1-custom"><span><i class="fas fa-edit"></i> Modifier une annonce</span></h1>
     <section>
+        {foreach $annonce as $a}
         <div id="section-ajouter-annonce">
             <h2>Informations générales</h2>
             <form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce" enctype="multipart/form-data">
                 <div class="pure-control-group">
                     <label for="title">Titre</label>
-                    <input type="text" id="title" placeholder="Titre de l'annonce" name="title" required/>
+                    <input type="text" id="title" value="{$a.A_titre}" name="title" required/>
                 </div>
 
                 <div class="pure-control-group">
                     <label for="cout-location">Coût mensuel de location</label>
-                    <input type="number" id="cout-location" placeholder="Coût mensuel de location" name="coutlocation" required/>
+                    <input type="number" id="cout-location" value="{$a.A_cout_loyer}" name="coutlocation" required/>
                 </div>
 
                 <div class="pure-control-group">
                     <label for="cout-charges">Coût éventuel des charges</label>
-                    <input type="number" id="cout-charges" placeholder="Coût des charges" name="coutcharges"/>
+                    <input type="number" id="cout-charges" value="{$a.A_cout_charges}" name="coutcharges"/>
                 </div>
-
                 <div class="pure-control-group">
                     <label for="type">Type</label>
-                    <select id="type" name="typeselect">
+                    <select id="type" name="typeselect" required>
+                        <option value="">---</option>
                         <option value="T1">T1</option>
                         <option value="T2">T2</option>
                         <option value="T3">T3</option>
@@ -37,12 +38,13 @@
 
                 <div class="pure-control-group">
                     <label for="superficie">Superficie</label>
-                    <input type="number" id="superficie" placeholder="Superficie du logement" name="superficie" required/>
+                    <input type="number" id="superficie" value="{$a.A_superficie}" name="superficie" required/>
                 </div>
 
                 <div class="pure-control-group">
                     <label for="type-chauffage">Type de chauffage</label>
-                    <select id="type-chauffage" name="typechauffageselect" onchange="showEnergie('hidden_div', this)">>
+                    <select id="type-chauffage" name="typechauffageselect" required onchange="showEnergie('hidden_div', this)">>
+                        <option value="">---</option>
                         <option value="Collectif">Collectif</option>
                         <option value="Individuel">Individuel</option>
                     </select>
@@ -59,51 +61,33 @@
 
                 <div class="pure-control-group">
                     <label for="adresse">Localisation</label>
-                    <input type="text" id="adresse" placeholder="Adresse" name="adresse" style="margin-bottom:2px;" required/><br/>
+                    <input type="text" id="adresse" value="{$a.A_adresse}" name="adresse" style="margin-bottom:2px;" required/><br/>
                     <label for=""></label>
-                    <input type="text" id="ville" placeholder="Ville" name="ville" style="margin-bottom:2px;" required/><br/>
+                    <input type="text" id="ville" value="{$a.A_ville}" name="ville" style="margin-bottom:2px;" required/><br/>
                     <label for=""></label>
-                    <input type="text" id="code-postal" placeholder="Code postal" name="codepostal" required/>
-                </div>
-
-                <div class="pure-control-group">
-                    <label for="date">Date de création</label>
-                    <input type="date" id="date" placeholder="Date de création de l'annonce" name="date"/>
+                    <input type="text" id="code-postal" value="{$a.A_CP}" name="codepostal" required/>
                 </div>
 
                 <div class="pure-control-group" id="ajout-description">
                     <label style="width:auto;" for="description">Description <span id="lblRemainingCount"></span></label><br/>
-                    <textarea id="description" name="description" rows="5" cols="40" maxlength="1100" placeholder="Description de l'annonce" onkeypress="textareaLengthCheck(this)" required></textarea>
+                <textarea id="description" name="description" rows="5" cols="40" maxlength="1100" onkeypress="textareaLengthCheck(this)" required>{$a.A_description}</textarea>
                 </div>
 
-                <h2>Photo(s) du logement (5 max.)</h2>
-                <div class="pure-control-group">
-                    <input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)" required/>
-                </div>
+                <table>
+                    <tr>
+                        {foreach $photos as $p}
+                            <td> <input type="checkbox" name="deletePhoto[]" value="{$p.P_idphoto}"></td>
+                            <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}" width="100%"></a></td>
+                        {/foreach}
+                    </tr>
+                </table>
+                {/foreach}
 
-                <div class="pure-control-group">
-                    <input type="file" name="image2" id="image2" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <input type="file" name="image3" id="image3" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <input type="file" name="image4" id="image4" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
-                </div>
-
-                <div class="pure-control-group">
-                    <input type="file" name="image5" id="image5" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)"/>
-                </div>
-
-                <p>Aperçu de la dernière photo chargée</p>
-                <img id="imageoutput" src="#" style="margin-bottom:10px;"/>
 
                 <div>
-                    <button type="submit" name="button" value="enregistrer" class="pure-button pure-button-primary btn-enregistrement">Enregistrer l'annonce (brouillon)</button>
-                    <button type="submit" name="button" value="publiée" class="pure-button pure-button-primary">Publier l'annonce</button>
+                    <button type="submit" name="button" value="edit" class="pure-button pure-button-primary">Modifier l'annonce</button>
                 </div>
+
             </form>
 
         </div>
@@ -135,8 +119,5 @@
             URL.revokeObjectURL(imageoutput.src) // free memory
         }
     };
-
-    //JS pour annuler l'import d'une image
-    //Source :
 
 </script>

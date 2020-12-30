@@ -15,7 +15,10 @@ class ModifierAnnonce extends Controller
         $utimodel = new Uti_Model();
 
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
-        if (!empty($verifUser)) {
+        if (0 == 1) { #TODO check etat annonce accueil consultation aussi
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Cette annonce est bloquée. </div>');
+            return redirect()->to('/Mes-annonces');
+        }elseif(!empty($verifUser)) {
             if (!empty($session->get('mail'))){
                 $data = ['mail' => $session->get('mail'),
                     'pseudo' => $session->get('pseudo'),
@@ -40,7 +43,6 @@ class ModifierAnnonce extends Controller
             echo view('pages/Modifier-une-annonce.php',$data);
 
             echo view('templates/footer.tpl',$data);
-
 
         }else{
             $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
