@@ -198,3 +198,13 @@ h1{
     width:100%;
     position:absolute;
 }
+
+#retour-annonces{
+    position:sticky;
+    bottom:50px;
+    max-width:200px;
+    background-color:#c2262b;
+    border-radius:3px;
+    padding:8px 0;
+    text-align: center;
+}
