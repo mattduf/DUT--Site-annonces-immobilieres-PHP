@@ -29,7 +29,7 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce publiée par un utilisateur spécifique
     //Utilisation : page "Mes-annonces" qui liste les annonces d'un utilisateur
     public function getAnnonceUtilisateur($mail){
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,A_etat,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
 
@@ -51,13 +51,6 @@ class Annonce_Model extends Model
     //Utilisée pour associer les photos à une annonce
     public function getLastAnnonce($mail){
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->orderBy('A_idannonce', 'DESC')->first();
-    }
-
-    //[SELECT]
-    //
-    public function searchAnnonce($ville,$codepostal,$region,$type,$typechauffage,$superficie,$loyermin,$loyermax){
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' AND A_ville LIKE '.$ville.' AND A_CP LIKE '.$codepostal.' AND A_region LIKE '.$region.' AND A_T_type LIKE'.$type.' AND A_type_chauffage LIKE '.$typechauffage.' AND A_superficie LIKE '.$superficie.' AND A_cout_loyer BETWEEN '.$loyermin.' AND '.$loyermax.' ORDER BY A_idannonce DESC';
-        return $this->simpleQuery($query);
     }
 
     //[DELETE] Requête qui supprime les annonces d'un utilisateur

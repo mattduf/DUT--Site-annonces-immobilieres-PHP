@@ -25,29 +25,63 @@
 	text-align: center;
 }
 
-.annonce-uti{
+.entete-uti{
 	position:absolute;
 	background-color: rgba(24, 200, 49, 0.7);
-	padding:5px 0;
-	transition:background-color 0.3s;
+	color:black;
+	padding:2px 0;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
+	transition:background-color 0.3s;
 }
 
-.annonce-uti:hover{
-	background-color: white;
+.entete-uti:hover{
+	background-color: rgb(22, 177, 44);
+	color:white;
+	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	transition:background-color 0.3s;
+}
+
+.entete-etat{
+	position:absolute;
+	color:black;
+	padding:2px 0;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	font-size:1.2em;
+	font-weight:bold;
 }
 
 #lien-annonce-uti{
 	font-size:1.2em;
-	color:black;
-	transition:color 0.3s;
 }
 
-#lien-annonce-uti:hover{
-	color: #c2262b;
-	transition:color 0.3s;
+#msg1{
+	display:inline-block;
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0.5s;
+}
+
+#msg2{
+	text-shadow: 1px 1px 2px black;
+	display:none;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.5s;
+}
+
+#lien-annonce-uti:hover #msg1{
+	display:none;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.5s;
+}
+
+#lien-annonce-uti:hover #msg2{
+	display:inline-block;
+	visibility: visible;
+	opacity: 1;
 }
 
 .annonce-image{
@@ -58,6 +92,7 @@
 .annonce-description{
 	height:auto;
 	text-align:center;
+	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .description-titre{
@@ -109,7 +144,7 @@
 }
 
 @media (min-width:1020px){
-	.carte, .annonce-uti{
+	.carte, .entete-uti, .entete-etat{
 		width:320px;
 	}
 
@@ -120,7 +155,7 @@
 }
 
 @media (max-width:1020px){
-	.carte, .annonce-uti{
+	.carte, .entete-uti, .entete-etat{
 		width:260px;
 	}
 
@@ -128,4 +163,13 @@
 		max-width: 260px;
 		vertical-align: bottom;
 	}
+}
+
+abbr[title]{
+	text-decoration:none;
+	border-bottom:dashed black 1px;
+}
+
+abbr[title]:hover{
+	cursor: help;
 }

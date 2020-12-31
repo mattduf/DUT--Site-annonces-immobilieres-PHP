@@ -28,7 +28,7 @@ a{
 }
 
 .h1-custom span{
-	background-color: #eeeeee;
+	/* background-color: #eeeeee; */
 	padding:0 5px;
 	border-radius:3px;
 	border-bottom:solid 1px #c2262b;
