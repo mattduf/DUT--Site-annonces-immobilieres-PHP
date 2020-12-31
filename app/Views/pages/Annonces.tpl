@@ -2,7 +2,7 @@
 		<section id="cartes-section">
 			<!-- Section recherche d'annonces -->
 			<div id="recherche-annonce">
-				<form class="pure-form" method="post" name="searchAnonce">
+				<form class="pure-form" method="post" action="Recherche.php" name="searchAnonce">
 					<label for="localisation">Localisation</label>
 					<input type="text" id="localisation" placeholder="Ville ou code postal" name="localisation" style="margin-bottom:2px;"/>
 
@@ -20,7 +20,7 @@
 						<option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
 						<option value="Occitanie">Occitanie</option>
 						<option value="Pays de la Loire">Pays de la Loire</option>
-						<option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+						<option value="Provence-Alpes-Côte d\'Azur">Provence-Alpes-Côte d'Azur</option>
 					</select>
 
 					<label for="type">Type</label>
@@ -42,13 +42,13 @@
 					</select><br/>
 
 					<label for="superficie">Superficie</label>
-					<input type="number" id="superficie" placeholder="Superficie du logement" name="superficie"/>
+					<input type="number" min="0" id="superficie" placeholder="Superficie du logement" name="superficie"/>
 
 					<label for="loyer-min">Loyer min.</label>
-					<input style="width:50px;" type="number" id="loyer-min" placeholder="" name="loyer-min"/>
+					<input style="width:50px;" type="number" min="0" id="loyer-min" placeholder="" name="loyer-min"/>
 
 					<label for="loyer-max">Loyer max.</label>
-					<input style="width:50px;" type="number" id="loyer-max" placeholder="" name="loyer-max"/>
+					<input style="width:50px;" type="number" min="0" id="loyer-max" placeholder="" name="loyer-max"/>
 
 					<button type="submit" name="button" id="bouton-rechercher" class="decrease pure-button pure-button-primary"><i class="fas fa-search"></i> Rechercher</button>
 				</form>
@@ -66,7 +66,7 @@
 					<div class="annonce-image">
 						<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$a.P_nom}" class="img-responsive"></a>
 					</div>
-					<div class="annonce-description" >
+					<div class="annonce-description">
 						<span class="description-titre">{$a.A_titre}</span>
 						<span class="description-divers"><i class="fas fa-chart-area"></i> {$a.A_superficie} m²</span>
 						<span class="description-divers">{$a.A_cout_loyer}€/mois</span>

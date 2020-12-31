@@ -15,12 +15,12 @@
 
 					<div class="pure-control-group">
 						<label for="cout-location">Coût mensuel de location</label>
-						<input type="number" id="cout-location" placeholder="Coût mensuel de location" name="coutlocation" required/>
+						<input type="number" min="0" id="cout-location" placeholder="Coût mensuel de location" name="coutlocation" required/>
 					</div>
 
 					<div class="pure-control-group">
 						<label for="cout-charges">Coût éventuel des charges</label>
-						<input type="number" id="cout-charges" placeholder="Coût des charges" name="coutcharges"/>
+						<input type="number" min="0" id="cout-charges" placeholder="Coût des charges" name="coutcharges"/>
 					</div>
 
 					<div class="pure-control-group">
@@ -37,7 +37,7 @@
 
 					<div class="pure-control-group">
 						<label for="superficie">Superficie</label>
-						<input type="number" id="superficie" placeholder="Superficie du logement" name="superficie" required/>
+						<input type="number" min="0" id="superficie" placeholder="Superficie du logement" name="superficie" required/>
 					</div>
 
 					<div class="pure-control-group">
