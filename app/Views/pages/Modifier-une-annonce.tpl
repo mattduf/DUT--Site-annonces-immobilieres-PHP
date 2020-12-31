@@ -16,12 +16,12 @@
 
                 <div class="pure-control-group">
                     <label for="cout-location">Coût mensuel de location</label>
-                    <input type="number" id="cout-location" value="{$a.A_cout_loyer}" name="coutlocation" required/>
+                    <input type="number" min="0" id="cout-location" value="{$a.A_cout_loyer}" name="coutlocation" required/>
                 </div>
 
                 <div class="pure-control-group">
                     <label for="cout-charges">Coût éventuel des charges</label>
-                    <input type="number" id="cout-charges" value="{$a.A_cout_charges}" name="coutcharges"/>
+                    <input type="number" min="0" id="cout-charges" value="{$a.A_cout_charges}" name="coutcharges"/>
                 </div>
                 <div class="pure-control-group">
                     <label for="type">Type</label>
@@ -38,7 +38,7 @@
 
                 <div class="pure-control-group">
                     <label for="superficie">Superficie</label>
-                    <input type="number" id="superficie" value="{$a.A_superficie}" name="superficie" required/>
+                    <input type="number" min="0" id="superficie" value="{$a.A_superficie}" name="superficie" required/>
                 </div>
 
                 <div class="pure-control-group">
@@ -81,7 +81,15 @@
                         {/foreach}
                     </tr>
                 </table>
+                <div>
+                    <button type="submit" name="button" value="delete" class="pure-button pure-button-primary btn-enregistrement">Supprimer la/les photo(s) selectionée</button>
+                </div>
                 {/foreach}
+
+                <h2>Photo(s) du logement (5 max.)</h2>
+                <div class="pure-control-group">
+                    <input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)" required/>
+                </div
 
 
                 <div>
