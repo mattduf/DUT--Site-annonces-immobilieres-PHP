@@ -169,9 +169,9 @@
                         while ($data = mysqli_fetch_assoc($resultat)) {
                             echo '<div class="carte grow">';
                                 /* TODO recup le mail avec la session
-                                if($data["A_U_mail"] == $mail){
-                                    echo '<a id="lien-annonce-uti" href="Gestion/Annonce-'.$data["A_idannonce"].'"><div class="annonce-uti">Votre annonce</div></a>';
-                                }
+                                {if $a.A_U_mail eq $mail}
+                                    <a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="entete-uti"><div id="msg1">Votre annonce <i class="fas fa-info-circle"></i></div><div id="msg2"><i class="fas fa-caret-right"></i> Gérer</div></div></a>
+                                {/if}
                                 */
 
                                 echo '<div class="annonce-image"><a href="Annonce-'.$data["A_idannonce"].'"><img src="../../../images/annonces/'.$data["P_nom"].'" class="img-responsive"></a></div>';

@@ -6,7 +6,7 @@
 			<div class="carte grow">
 
 				{if $a.A_U_mail eq $mail}
-					<a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="annonce-uti">Votre annonce</div></a>
+					<a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="entete-uti"><div id="msg1">Votre annonce <i class="fas fa-info-circle"></i></div><div id="msg2"><i class="fas fa-caret-right"></i> Gérer</div></div></a>
 				{/if}
 
 				<div class="annonce-image">

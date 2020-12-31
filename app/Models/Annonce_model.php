@@ -29,7 +29,7 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce publiée par un utilisateur spécifique
     //Utilisation : page "Mes-annonces" qui liste les annonces d'un utilisateur
     public function getAnnonceUtilisateur($mail){
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,A_etat,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
 
