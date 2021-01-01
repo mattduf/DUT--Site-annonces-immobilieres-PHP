@@ -54,6 +54,14 @@ class Uti_Model extends Model
 	    return $this->asArray()->where(['U_mdp' =>$mdp])->first();
     }
 
+    //[SELECT] Requête qui renvoie le statut admin de l'utilisateur
+    //Utilisation : Pour vérifier si l'utilisateur est un admin
+    public function getIsAdmin($mail){
+    //    $query = 'SELECT U_isAdmin FROM '.$this->table.' WHERE U_mail = "'.$mail.'" ';
+      //  return $this->simpleQuery($query);
+        return $this->asArray()->select('U_isAdmin')->where(['U_mail' => $mail])->first();
+    }
+
     //[UPDATE] Requête qui modifie les informations d'un utilisateur
     //Utilisation : si le mdp reste inchangé
     public function UpdateInfoWithoutMdp($mail,$pseudo,$nom,$prenom){
