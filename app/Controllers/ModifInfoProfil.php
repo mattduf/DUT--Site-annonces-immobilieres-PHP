@@ -93,9 +93,16 @@ class ModifInfoProfil extends Controller
         $check = $this->request->getVar('coche-suppression');
         
         if(isset($check)) {
+            if($model->getIsAdmin($session->get('mail'))['U_isAdmin'] == 1)
+            {
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer un compte administrateur.</div>');
+                return redirect()->to('Mon-compte');
+            }
+
             $model->deleteMessage($session->get('mail'));
             $modelAnnonce->deleteAnnonce($session->get('mail'));
             $model->deleteAccount($session->get('mail'));
+
             return redirect()->to('Deconnexion');
         }
         else
@@ -115,6 +122,11 @@ class ModifInfoProfil extends Controller
 
         if (empty($verifMail)) {
             $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
+            return redirect()->to('Gestion-site');
+        }
+        else if($model->getIsAdmin($email)['U_isAdmin'] == 1)
+        {
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer un compte administrateur.</div>');
             return redirect()->to('Gestion-site');
         }
         else{

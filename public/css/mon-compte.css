@@ -1,3 +1,4 @@
+/* Style général */
 aside{
 	display:inline-block;
 	overflow:hidden;
@@ -14,12 +15,23 @@ section{
 	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
+hr{
+	max-width:500px;
+	margin:20px auto;
+}
+
+h1{
+	margin-left:10px;
+	margin-right:10px;
+}
+
 #aside-article{
 	max-width:1105px;
 	margin: 50px auto;
 	min-height:100%;
 }
 
+/* Style menu aside */
 #menu{
 	width:100%;
 	list-style:none;
@@ -37,7 +49,6 @@ section{
 #menu li:hover{
 	background-color:#c2262b;
 	transition:background-color 0.2s;
-	
 }
 
 #menu li a{
@@ -70,13 +81,9 @@ section{
 	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
-#menu-pseudo:hover{
-	background-color:white !important;
-}
+#menu-pseudo:hover{background-color:white !important;}
 
-#menu-actif{
-	background-color:#c2262b !important;
-}
+#menu-actif{background-color:#c2262b !important;}
 
 #menu-actif a{
 	color:white !important;
@@ -84,6 +91,7 @@ section{
 	pointer-events: none;
 }
 
+/* Style du formulaire */
 .formulaire{
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -92,64 +100,11 @@ section{
 	margin-bottom:20px;
 }
 
+/* Section pour supprimer compte */
 #section-suppr{
 	max-width:440px;
 	margin: 0 auto 20px;
 	text-align:center;
-}
-
-hr{
-	max-width:500px;
-	margin:20px auto;
-}
-
-h1{
-	margin-left:10px;
-	margin-right:10px;
-}
-
-@media (min-width:1125px){
-	aside{
-		width:200px;
-		height:auto;
-	}
-
-	section{
-		width:900px;
-		height:auto;
-	}
-}
-
-@media (max-width:1125px){
-	aside{
-		width:100%;
-		height:100%;
-	}
-
-	section{
-		max-width:900px;
-		width:100%;
-		height:auto;
-	}
-
-	#aside-article{
-		width:90%;
-		text-align:center;
-	}
-
-	#menu li{
-		display:inline-block;
-	}
-
-	#menu li a{
-		padding-left:20px;
-		padding-right:20px;
-	}
-
-	#menu-pseudo{
-		padding-left:20px;
-		padding-right:20px;
-	}
 }
 
 /* CSS pour onglets collapsibles */
@@ -179,16 +134,58 @@ h1{
 	transition: max-height 0.2s ease-out;
 }
 
-#coche-suppression:hover, #coche-suppression-label:hover{
-cursor: pointer;
-}
+/* Case a cocher */
+#coche-suppression:hover, #coche-suppression-label:hover{cursor: pointer;}
 
+/* Bouton pour supprimer le compte */
 .btn-suppression{
 	margin-top:15px;
 	background-color:#c2262b;
 }
 
-#hidden_div{
-	display:none;
+/* Cache le div */
+#hidden_div{display:none;}
+
+/* media queries pour l'affichage responsif */
+@media (min-width:1125px){
+	aside{
+		width:200px;
+		height:auto;
+	}
+
+	section{
+		width:900px;
+		height:auto;
+	}
+}
+
+@media (max-width:1125px){
+	aside{
+		width:100%;
+		height:100%;
+	}
+
+	section{
+		max-width:900px;
+		width:100%;
+		height:auto;
+	}
+
+	#aside-article{
+		width:90%;
+		text-align:center;
+	}
+
+	#menu li{display:inline-block;}
+
+	#menu li a{
+		padding-left:20px;
+		padding-right:20px;
+	}
+
+	#menu-pseudo{
+		padding-left:20px;
+		padding-right:20px;
+	}
 }
 

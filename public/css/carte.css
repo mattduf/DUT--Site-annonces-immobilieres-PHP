@@ -1,3 +1,9 @@
+/* Section contenant toutes les cartes */
+#cartes-section{
+	text-align:center;
+}
+
+/* Div principal des cartes */
 .carte{
 	background-color: #eeeeee;
 	display:inline-block;
@@ -11,10 +17,7 @@
 	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
-#cartes-section{
-	text-align:center;
-}
-
+/* Div rectangle rouge en bas de page */
 #carte-deux{
 	background-color:#c2262b;
 	max-width:500px;
@@ -25,6 +28,7 @@
 	text-align: center;
 }
 
+/* Entete qui signale l'annonce de l'utilisateur si connecté */
 .entete-uti{
 	position:absolute;
 	background-color: rgba(24, 200, 49, 0.7);
@@ -40,16 +44,6 @@
 	color:white;
 	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	transition:background-color 0.3s;
-}
-
-.entete-etat{
-	position:absolute;
-	color:black;
-	padding:2px 0;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
-	font-size:1.2em;
-	font-weight:bold;
 }
 
 #lien-annonce-uti{
@@ -84,17 +78,20 @@
 	opacity: 1;
 }
 
+/* Style de l'image de la carte */
 .annonce-image{
 	height:auto;
 	background-image:radial-gradient(#c2262b,white);
 }
 
+/* Style de la description de l'annonce */
 .annonce-description{
 	height:auto;
 	text-align:center;
 	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
+/* Titre de l'annonce */
 .description-titre{
 	display:inline-block;
 	background-color:#c2262b;
@@ -113,6 +110,7 @@
 	box-shadow: 0 3px 7px -3px rgba(0,0,0,0.75);
 }
 
+/* Etiquettes */
 .description-divers{
 	display:inline-block;
 	font-size:0.9em;
@@ -124,6 +122,7 @@
 	background-color:white;
 }
 
+/* Bouton en savoir plus */
 .description-plus{
 	display:inline-block;
 	font-size:0.9em;
@@ -143,10 +142,27 @@
 	transition:color 0.2s, text-shadow 0.2s;
 }
 
+/* Entete qui signale l'etat de l'annonce */
+.entete-etat{
+	position:absolute;
+	color:black;
+	padding:2px 0;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+abbr[title]{
+	text-decoration:none;
+	border-bottom:dashed black 1px;
+}
+
+abbr[title]:hover{cursor: help;}
+
+/* media queries pour l'affichage responsif */
 @media (min-width:1020px){
-	.carte, .entete-uti, .entete-etat{
-		width:320px;
-	}
+	.carte, .entete-uti, .entete-etat{ width:320px; }
 
 	.img-responsive{
 		max-width: 320px;
@@ -155,21 +171,10 @@
 }
 
 @media (max-width:1020px){
-	.carte, .entete-uti, .entete-etat{
-		width:260px;
-	}
+	.carte, .entete-uti, .entete-etat{ width:260px; }
 
 	.img-responsive{
 		max-width: 260px;
 		vertical-align: bottom;
 	}
-}
-
-abbr[title]{
-	text-decoration:none;
-	border-bottom:dashed black 1px;
-}
-
-abbr[title]:hover{
-	cursor: help;
 }

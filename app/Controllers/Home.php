@@ -1,4 +1,5 @@
 <?php namespace App\Controllers;
+use App\Models\Uti_Model;
 
 class Home extends BaseController
 {
@@ -9,6 +10,8 @@ class Home extends BaseController
 
 	public function views($page = 'accueil'){
         $session = \Config\Services::session();
+        $model = new Uti_model();
+
 		if ( ! is_file(APPPATH.'/Views/pages/'.$page.'.tpl'))
 	    {
 	        // Whoops, we don't have a page for that!
@@ -29,10 +32,19 @@ class Home extends BaseController
         }else {
             echo view('templates/navbar.tpl',$data);
         }
+
+
+
 	    if (!empty($session->getFlashdata('warning'))){
 	        echo $session->getFlashdata('warning');
         }
 	    echo view('pages/'.$page.'.php',$data);
+
+        if (!empty($session->get('mail'))) {
+            if ($model->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) {
+                echo view('templates/admin.tpl', $data);
+            }
+        }
 
 	    echo view('templates/footer.tpl',$data);
 	}
@@ -54,6 +66,7 @@ class Home extends BaseController
         }else {
             echo view('templates/navbar.tpl',$data);
         }
+
         if (!empty($session->getFlashdata('warning'))){
             echo $session->getFlashdata('warning');
         }

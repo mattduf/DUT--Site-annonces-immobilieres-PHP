@@ -195,6 +195,6 @@
     </article>
 
     <footer>
-        <a href="Panel-Administrateur">Panel Administrateur</a>
+
     </footer>
 </body>

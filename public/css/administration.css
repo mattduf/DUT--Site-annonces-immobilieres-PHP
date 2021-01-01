@@ -1,6 +1,5 @@
-.aside-article-gestion li.liste-gestion{
-	text-align: left !important;
-}
+/* Corps de la page */
+.aside-article-gestion li.liste-gestion{ text-align: left !important; }
 
 /* Tableau pour les journaux
 Source: https://nosmoking.developpez.com/demos/css/table-scroll-sticky.html */
@@ -11,7 +10,7 @@ Source: https://nosmoking.developpez.com/demos/css/table-scroll-sticky.html */
 }
 
 .table-journaux td, .table-journaux th{
-	font-family: "Courier New" !important;
+	font-family: "Courier New", serif !important;
 	border:solid lightgrey 1px;
 }
 
@@ -39,29 +38,24 @@ Source: https://nosmoking.developpez.com/demos/css/table-scroll-sticky.html */
 }
 
 .table-journaux a{
-	font-family: "Courier New" !important;
+	font-family: "Courier New", serif !important;
 	color: #0000ee;
 	text-decoration-line: underline;
 }
 
-.table-journaux a:visited {
-	color: #4f4fca;
-}
+.table-journaux a:visited {color: #4f4fca;}
 
-.table-journaux a:focus {
-	color: #f59642;
-}
+.table-journaux a:focus {color: #f59642;}
 
 /* Tableau pour la gestion */
-#table-gestion{
-	margin:0 auto;
-}
+#table-gestion{margin:0 auto;}
 
 #table-gestion tr{
 	vertical-align: middle;
 	text-align: center;
 }
 
+/* Style des boutons d'actions de gestion */
 .bouton-gestion{
 	padding:2px 5px !important;
 	margin:0 1px;

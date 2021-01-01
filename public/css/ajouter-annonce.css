@@ -1,6 +1,5 @@
-article{
-	text-align:center;
-}
+/* Style général */
+article{text-align:center;}
 
 section{
 	background-color:white;
@@ -12,44 +11,7 @@ section{
 	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
-@media (min-width:1125px){
-	section{
-		width:1000px;
-	}
-}
-
-@media (max-width:1125px){
-	section{
-		max-width:900px;
-		width:100%;
-	}
-}
-
-/* CSS pour onglets collapsibles */
-.collapsible {
-	background-color: white;
-	color: #c2262b;
-	font-weight:bold;
-	cursor: pointer;
-	padding: 7px;
-	width: 100%;
-	outline: none;
-	font-size: 15px;
-	border:solid 2px #f5f5f5;
-	border-radius: 3px;
-	margin-bottom:10px;
-	transition: background-color 0.3s;
-}
-
-.collapsible:hover {
-	background-color: #f1f1f1;
-	transition: background-color 0.3s;
-}
-
-.btn-enregistrement{
-	background-color:rgb(38, 194, 54);
-}
-
+/* Zone de texte pour la description */
 #ajout-description{
 	text-align:center;
 	margin-top:20px;
@@ -62,6 +24,7 @@ section{
 	max-height:300px;
 }
 
+/* Style du formulaire */
 .formulaire{
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -70,10 +33,10 @@ section{
 	margin-bottom:20px;
 }
 
-#hidden_div{
-	display:none;
-}
+/* Cache le div */
+#hidden_div{display:none;}
 
+/* Style de l'image affichée en sortie */
 #imageoutput{
 	max-width:250px;
 	border:solid #c2262b 1px;
@@ -81,4 +44,19 @@ section{
 	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 	border-radius:3px;
+}
+
+/* Bouton pour enregistrer en brouillon */
+.btn-enregistrement{background-color:rgb(38, 194, 54);}
+
+/* Media queries pour l'affichage responsif */
+@media (min-width:1125px){
+	section{ width:1000px;}
+}
+
+@media (max-width:1125px){
+	section{
+		max-width:900px;
+		width:100%;
+	}
 }

@@ -1,3 +1,4 @@
+/* Style général */
 aside{
     display:inline-block;
     overflow:hidden;
@@ -20,9 +21,7 @@ section{
     box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
 }
 
-h1{
-    margin:0;
-}
+h1{margin:0;}
 
 #aside-article{
     max-width:1105px;
@@ -36,12 +35,25 @@ h1{
     width:100%
 }
 
+/* Entete proprietaire */
+#proprietaire{
+    background-color: #b0b0b0;
+    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+/* Entete avec titre de l'annonce */
+#annonce{
+    background-color:#c2262b;
+    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
 .info-proprietaire{
     text-align:center;
     width:100%;
     margin:8px 0;
 }
 
+/* Style bouton pour contacter le proprietaire*/
 #envoyer-msg{
     background-color: #43b543;
     margin-bottom: 0 !important;
@@ -57,16 +69,7 @@ h1{
     transition:background-color 0.3s;
 }
 
-#proprietaire{
-    background-color: #b0b0b0;
-    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
-
-#annonce{
-    background-color:#c2262b;
-    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
-
+/* Style de la section image */
 #section-image{
     text-align:center;
     background-color:white;
@@ -93,18 +96,15 @@ h1{
     transition:opacity 0.3s;
 }
 
+/* Style de la section des infos */
 .section-infos{
     margin:15px;
     height:auto;
 }
 
-.section-infos h1{
-    margin-bottom:10px;
-}
+.section-infos h1{margin-bottom:10px;}
 
-.section-infos table{
-    width:80%;
-}
+.section-infos table{width:80%;}
 
 .section-infos td{
     border:solid #C1C1C1 1px;
@@ -113,6 +113,71 @@ h1{
     padding:8px;
 }
 
+/* Personnalisation scroll bar */
+#section-image::-webkit-scrollbar {
+    width: 10px;
+    border-radius:10px;
+}
+
+#section-image::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius:10px;
+}
+
+#section-image::-webkit-scrollbar-thumb {
+    background: #C1C1C1;
+    border-radius:10px;
+}
+
+#section-image::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+    border-radius:10px;
+}
+
+/* div avec la date et l'id de l'annonce */
+#date{
+    margin:0 auto;
+    max-width:300px;
+    text-align:center;
+    border-top-right-radius:3px;
+    border-top-left-radius:3px;
+    background-color: #d7d7d7;
+    -webkit-box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
+    box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
+    padding:3px;
+}
+
+/* Carte responsive
+Source : https://alphadesign.fr/blog/34-web-design-developpement/469-creez-une-google-map-responsive-pour-n-importe-quel-site.html */
+#map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    border-radius:3px;
+    background-color:lightgrey;
+}
+
+#map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+#retour-annonces{
+    position:sticky;
+    bottom:50px;
+    max-width:200px;
+    background-color:#c2262b;
+    border-radius:3px;
+    padding:8px 0;
+    text-align: center;
+}
+
+/* Media queries pour l'affichage responsif */
 @media (min-width:1125px){
     aside{
         width:200px;
@@ -144,70 +209,4 @@ h1{
         width:90%;
         text-align:center;
     }
-}
-
-/* Personnalisation scroll bar */
-#section-image::-webkit-scrollbar {
-    width: 10px;
-    border-radius:10px;
-}
-
-#section-image::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius:10px;
-}
-
-#section-image::-webkit-scrollbar-thumb {
-    background: #C1C1C1;
-    border-radius:10px;
-}
-
-#section-image::-webkit-scrollbar-thumb:hover {
-    background: #999999;
-    border-radius:10px;
-}
-
-.rouge{
-    color:#c2262b;
-}
-
-#date{
-    margin:0 auto;
-    max-width:300px;
-    text-align:center;
-    border-top-right-radius:3px;
-    border-top-left-radius:3px;
-    background-color: #d7d7d7;
-    -webkit-box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
-    box-shadow: inset 5px 5px 19px -12px rgba(0,0,0,0.75);
-    padding:3px;
-}
-
-/* Carte responsive, source : https://alphadesign.fr/blog/34-web-design-developpement/469-creez-une-google-map-responsive-pour-n-importe-quel-site.html */
-#map-responsive{
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
-    border-radius:3px;
-    background-color:lightgrey;
-}
-
-#map-responsive iframe{
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
-}
-
-#retour-annonces{
-    position:sticky;
-    bottom:50px;
-    max-width:200px;
-    background-color:#c2262b;
-    border-radius:3px;
-    padding:8px 0;
-    text-align: center;
 }

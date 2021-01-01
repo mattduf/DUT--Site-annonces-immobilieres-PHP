@@ -1,0 +1,1 @@
+    <div id="admin"><a href="Panneau-Administration">Accéder au panneau d'Administration</a></div>

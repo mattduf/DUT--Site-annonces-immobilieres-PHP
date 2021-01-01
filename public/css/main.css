@@ -1,3 +1,4 @@
+/* Style général */
 * { font-family: Helvetica, serif; }
 
 html {
@@ -23,9 +24,7 @@ a{
 	font-weight:bold;
 }
 
-.h1-custom{
-	text-align:center;
-}
+.h1-custom{ text-align:center; }
 
 .h1-custom span{
 	/* background-color: #eeeeee; */
@@ -41,6 +40,15 @@ a{
 ::-moz-selection {
   	background-color:#d93b40;
   	color: white;
+}
+
+/* Style du footer */
+footer{
+	width:100%;
+	height:44px;
+	position:static;
+	bottom:0;
+	background-color:#c2262b;
 }
 
 /* Formulaire */
@@ -76,18 +84,37 @@ a{
 	transition:color 0.3s;
 }
 
-.rouge{
-	color:#c2262b;
-}
+/* Colore l'élément en rouge */
+.rouge{ color:#c2262b; }
 
+/* Agrandit l'élément au survol */
 .grow { transition: all .2s ease-in-out; }
-
 .grow:hover { transform: scale(1.02); }
 
+/* Diminue l'élément au survol */
 .decrease{ transition: all .2s ease-in-out; }
-
 .decrease:hover { transform: scale(0.95); }
 
+/* Style de la barre de recherche */
+#recherche-annonce{
+	width:calc(100% - 10px);
+	margin:0 auto 20px;
+	border-radius:3px;
+	background-color:white;
+	-webkit-box-shadow:inset 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow:inset 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	padding:5px;
+}
+
+#bouton-rechercher{
+	max-width:200px;
+	background-color:#c2262b;
+	border-radius:3px;
+	margin:0 auto;
+}
+
+/* Style des flashdata */
 .alerte{
 	max-width:440px;
 	margin:0 auto;
@@ -111,20 +138,21 @@ a{
 	transition:background-color 0.7s ease-in-out;
 }
 
-#recherche-annonce{
-	width:calc(100% - 10px);
-	margin:0 auto 20px;
-	border-radius:3px;
+/* Bouton pour accéder au panneau d'administration */
+#admin{
+	position:fixed;
+	bottom:10px;
+	width:100%;
+	text-align:center;
+}
+
+#admin a{
+	color:black;
 	background-color:white;
+	padding:5px;
+	border-radius:3px;
+	border:solid black 1px;
 	-webkit-box-shadow:inset 0 0 7px -3px rgba(0,0,0,0.75);
 	-moz-box-shadow:inset 0 0 7px -3px rgba(0,0,0,0.75);
 	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
-	padding:5px;
-}
-
-#bouton-rechercher{
-	max-width:200px;
-	background-color:#c2262b;
-	border-radius:3px;
-	margin:0 auto;
 }
