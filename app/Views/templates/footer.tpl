@@ -3,6 +3,6 @@
 </head>
 
 	<footer>
-<a href="Panel-Administrateur">Panel Administrateur</a>
+<a href="Panneau-Administration">Panneau Administration</a>
 	</footer>
 </body>

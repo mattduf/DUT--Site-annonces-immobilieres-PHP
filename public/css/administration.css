@@ -1,0 +1,74 @@
+.aside-article-gestion li.liste-gestion{
+	text-align: left !important;
+}
+
+/* Tableau pour les journaux
+Source: https://nosmoking.developpez.com/demos/css/table-scroll-sticky.html */
+.table-journaux{
+	border-collapse: collapse;
+	background-color:white;
+	width:100%;
+}
+
+.table-journaux td, .table-journaux th{
+	font-family: "Courier New" !important;
+	border:solid lightgrey 1px;
+}
+
+.cadre-journaux {
+	display: inline-block;
+	max-height: 330px;
+	overflow-y: scroll;
+	border-collapse: collapse;
+	width:100%;
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+}
+.table-journaux thead th {
+	background-color:lightgrey;
+	position: sticky;
+	top: 0;
+}
+.table-journaux tfoot td {
+	background-color:lightgrey;
+	position: sticky;
+	bottom: 0;
+	text-align:center;
+	font-size:0.9em;
+}
+
+.table-journaux a{
+	font-family: "Courier New" !important;
+	color: #0000ee;
+	text-decoration-line: underline;
+}
+
+.table-journaux a:visited {
+	color: #4f4fca;
+}
+
+.table-journaux a:focus {
+	color: #f59642;
+}
+
+/* Tableau pour la gestion */
+#table-gestion{
+	margin:0 auto;
+}
+
+#table-gestion tr{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.bouton-gestion{
+	padding:2px 5px !important;
+	margin:0 1px;
+	font-size:0.9em;
+	border-radius:10px;
+	width:75px;
+	-webkit-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+	box-shadow: 0 0 7px -3px rgba(0,0,0,0.75);
+}

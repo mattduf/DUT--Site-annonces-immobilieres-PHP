@@ -40,6 +40,20 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
     }
 
+    //[SELECT] Requête qui renvoie infos annonces pour l'administration
+    //Utilisation : page "Panneau-Administration" qui liste toutes les annonces
+    public function getAnnonceAdministration(){
+        $query = 'SELECT A_idannonce,A_titre,A_etat,A_U_mail,DATE_FORMAT(A_date_creation, \'%d-%m-%Y\') AS "A_date_modifiee" FROM '.$this->table.' ORDER BY A_date_creation DESC, 1 DESC';
+        return $this->simpleQuery($query);
+    }
+
+    //[SELECT] Requête qui renvoie le nb d'annonces créées par un utilisateur pour l'administration
+    //Utilisation : page "Panneau-Administration" qui liste les utilisateurs créés
+    public function getNbAnnonce(){
+        $query = 'SELECT A_U_mail, COUNT(A_U_mail) AS "nb_annonces" FROM '.$this->table.' a INNER JOIN '.$this->tableUti.' u ON a.A_U_mail = u.U_mail GROUP BY A_U_mail ORDER BY 2 DESC';
+        return $this->simpleQuery($query);
+    }
+
     //[SELECT] Requête qui renvoie toutes les photos d'une annonce
     //Utilisation : page correspondant à une annonce en particulier
     public function getPhotos($idannonce){

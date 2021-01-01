@@ -30,7 +30,6 @@ a{
 .h1-custom span{
 	/* background-color: #eeeeee; */
 	padding:0 5px;
-	border-radius:3px;
 	border-bottom:solid 1px #c2262b;
 }
 
@@ -59,6 +58,7 @@ a{
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
 	color:white;
+	background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 #lien-inscription{

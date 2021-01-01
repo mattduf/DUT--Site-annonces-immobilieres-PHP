@@ -12,7 +12,7 @@ class Uti_Model extends Model
     //[INSERT INTO] Requête qui crée un utilisateur
     //Utilisation : page "Inscription" avec un formulaire de création de compte
 	public function insertUti($mail,$mdp,$pseudo,$nom,$prenom,$isadmin = 0){
-		$query = 'INSERT INTO '.$this->table. ' VALUES ("'.$mail.'","'.$mdp.'","'.$pseudo.'","'.$nom.'","'.$prenom.'","'.$isadmin.'")';
+		$query = 'INSERT INTO '.$this->table. ' VALUES ("'.$mail.'","'.$mdp.'","'.$pseudo.'","'.$nom.'","'.$prenom.'",CURRENT_TIMESTAMP,"'.$isadmin.'")';
 	    return $this->simpleQuery($query);
 	}
 
@@ -39,7 +39,13 @@ class Uti_Model extends Model
     public function getUserInfo($mail){
 	    $query = 'SELECT U_mail,U_pseudo,U_nom,U_prenom FROM '.$this->table .' WHERE U_mail = "'. $mail.'"';
         return $this->simpleQuery($query);
+    }
 
+    //[SELECT] Requête qui renvoie les infos de tous les utilisateurs
+    //Utilisation : page "Panneau-Administration" qui liste tous les utilisateurs
+    public function getAllUsers(){
+        $query = 'SELECT U_mail,U_pseudo,U_nom,U_prenom,DATE_FORMAT(U_date_creation, \'%d-%m-%Y\') AS "U_date_modifiee" FROM '.$this->table.' ORDER BY U_date_creation DESC';
+        return $this->simpleQuery($query);
     }
 
     //[SELECT] Requête qui renvoie le mdp d'un utilisateur

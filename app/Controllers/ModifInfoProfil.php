@@ -104,4 +104,39 @@ class ModifInfoProfil extends Controller
             return redirect()->to('Mon-compte');
         }
     }
+
+    public function ManageAsAdmin(){
+        $session = \Config\Services::session();
+        $model = new Uti_Model();
+        $modelAnnonce = new Annonce_Model();
+        $email = $this->request->getPost('email');
+        $verifMail = $model->verifMail($email);
+        $selectedbutton = $this->request->getPost('button');
+
+        if (empty($verifMail)) {
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
+            return redirect()->to('Gestion-site');
+        }
+        else{
+            if($selectedbutton === "supprimer") {
+                $model->deleteMessage($email);
+                $modelAnnonce->deleteAnnonce($email);
+                $model->deleteAccount($email);
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le compte a bien été supprimé.</div>');
+                return redirect()->to('Gestion-site');
+            }
+            else if($selectedbutton === "modifier"){
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test modifier.</div>');
+                return redirect()->to('Gestion-site');
+            }
+            else if($selectedbutton === "bloquer"){
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test bloquer.</div>');
+                return redirect()->to('Gestion-site');
+            }
+            else if($selectedbutton === "envoyermail"){
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test envoyermail.</div>');
+                return redirect()->to('Gestion-site');
+            }
+        }
+    }
 }
