@@ -1,7 +1,9 @@
 <head>
 	<link rel="stylesheet" href="../../../css/mon-compte.css">
 </head>
+
 	<div id="aside-article">
+		<!-- Element aside avec le menu -->
 		<aside>
 			<ul id="menu">
 				<li id="menu-pseudo">{$pseudo}</li>
@@ -10,8 +12,13 @@
 				<li><a href="Mes-messages">Mes messages <i class="fas fa-comments-dollar"></i></a></li>
 			</ul>
 		</aside>
+		<!-- FIN Element aside avec le menu -->
+
+		<!-- La section du profil -->
 		<section>
 			<h1 class="h1-custom"><span><i class="fas fa-edit"></i> Modifier mes informations personnelles</span></h1>
+
+			<!-- Formulaire pour modifier les infos du compte -->
 			<form class="pure-form pure-form-aligned formulaire" method="post" name="changeprofil">
 				<div class="pure-control-group">
 					<label>Mail</label>
@@ -19,50 +26,54 @@
 				</div>
 				<div class="pure-control-group">
 					<label for="name">Nom</label>
-					<input type="text" id="name" placeholder="{$nom}" name="name" />
+					<input name="name" id="name" type="text" placeholder="{$nom}"/>
 				</div>
 				<div class="pure-control-group">
 					<label for="firstname">Prénom</label>
-					<input type="text" id="firstname" placeholder="{$prenom}" name="firstname" />
+					<input name="firstname" id="firstname" type="text" placeholder="{$prenom}"/>
 				</div>
 				<div class="pure-control-group">
 					<label for="pseudo">Pseudo</label>
-					<input type="text" id="pseudo" placeholder="{$pseudo}" name="pseudo" maxlength="19"/>
+					<input name="pseudo" id="pseudo" type="text" placeholder="{$pseudo}" maxlength="19"/>
 				</div>
 				<div class="pure-control-group">
 					<label for="oldpassword"><strong>Mot de passe actuel&nbsp<span class="rouge">*</strong></span></label>
-					<input type="password" id="oldpassword" placeholder="*********" name="oldpassword" required/>
+					<input name="oldpassword" id="oldpassword" type="password" placeholder="*********" required/>
 				</div>
 				<div class="pure-control-group">
 					<label for="password">Nouveau mot de passe</label>
-					<input type="password" id="password" placeholder="*********" name="password" />
+					<input name="password" id="password" type="password" placeholder="*********"/>
 				</div>
 				<div class="pure-control-group">
 					<label for="confpassword">Confirmation</label>
-					<input type="password" id="confpassword" placeholder="*********" name="confpassword" />
+					<input name="confpassword" id="confpassword" type="password" placeholder="*********"/>
 				</div>
 				<div class="pure-controls">
 					<button type="submit" class="pure-button pure-button-primary">Enregistrer les modifications</button>
 				</div>
 			</form>
+			<!-- FIN Du formulaire pour modifier les infos du compte -->
 			<hr>
+
+			<!-- Formulaire pour supprimer le compte -->
 			<form action="Delete" method="post">
-			<div id="section-suppr">
-				<button type="button" class="collapsible"><i class="fas fa-trash-alt"></i> Supprimer mon compte</button>
-				<div class="content">
-					<p>Voulez-vous vraiment supprimer votre compte ? Cela impliquera la suppression des données suivantes : <u>informations du compte</u>, <u>annonces publiées</u> et <u>messages&nbsppostés</u>.</p>
+				<div id="section-suppr">
+					<button type="button" class="collapsible"><i class="fas fa-trash-alt"></i> Supprimer mon compte</button>
+					<div class="content">
+						<p>Voulez-vous vraiment supprimer votre compte ? Cela impliquera la suppression des données suivantes : <u>informations du compte</u>, <u>annonces publiées</u> et <u>messages&nbsppostés</u>.</p>
 
-					<input id="coche-suppression" type="checkbox" name="coche-suppression">
-					<label for="coche-suppression" id="coche-suppression-label"><strong>Je comprends et je souhaite poursuivre</strong></label><br/>
-
-					<button type="submit" name="deletebutton" class="pure-button pure-button-primary btn-suppression">Supprimer</button>
+						<input id="coche-suppression" type="checkbox" name="coche-suppression">
+						<label for="coche-suppression" id="coche-suppression-label"><strong>Je comprends et je souhaite poursuivre</strong></label><br/>
+						<button name="deletebutton" type="submit" class="pure-button pure-button-primary btn-suppression">Supprimer</button>
+					</div>
 				</div>
-			</div>
 			</form>
-
+			<!-- FIN Du formulaire pour supprimer le compte -->
 		</section>
+		<!-- FIN De la section du profil -->
 	</div>
 
+	<!-- JavaScript -->
 	<script>
 		//JS pour onglets collapsibles
 		//Source : https://www.w3schools.com/howto/howto_js_collapsible.asp

@@ -1,6 +1,8 @@
 	<article>
+		<!-- Section contenant les annonces -->
 		<section id="cartes-section">
-			<!-- Section recherche d'annonces -->
+
+			<!-- Barre de recherche -->
 			<div id="recherche-annonce">
 				<form class="pure-form" method="post" action="Recherche.php" name="searchAnonce">
 					<label for="localisation">Localisation</label>
@@ -43,29 +45,30 @@
 
 					<label for="superficie">Superficie</label>
 					<input type="number" min="0" id="superficie" placeholder="Superficie du logement" name="superficie"/>
-
 					<label for="loyer-min">Loyer min.</label>
 					<input style="width:50px;" type="number" min="0" id="loyer-min" placeholder="" name="loyer-min"/>
-
 					<label for="loyer-max">Loyer max.</label>
 					<input style="width:50px;" type="number" min="0" id="loyer-max" placeholder="" name="loyer-max"/>
-
 					<button type="submit" name="button" id="bouton-rechercher" class="decrease pure-button pure-button-primary"><i class="fas fa-search"></i> Rechercher</button>
 				</form>
 			</div>
-			<!-- Fin section recherche d'annonces -->
+			<!-- Fin Barre de recherche -->
 
 			<!-- Affichage des annonces -->
 			{foreach $annonce as $a}
 				<div class="carte grow">
 
+					<!-- Si l'annonce appartient à l'utilisateur, affiche l'entete -->
 					{if $a.A_U_mail eq $mail}
 						<a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="entete-uti"><div id="msg1">Votre annonce <i class="fas fa-info-circle"></i></div><div id="msg2"><i class="fas fa-caret-right"></i> Gérer</div></div></a>
 					{/if}
 
+					<!-- Image de l'annonce -->
 					<div class="annonce-image">
 						<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$a.P_nom}" class="img-responsive"></a>
 					</div>
+
+					<!-- Elements décrivant l'annonce -->
 					<div class="annonce-description">
 						<span class="description-titre">{$a.A_titre}</span>
 						<span class="description-divers"><i class="fas fa-chart-area"></i> {$a.A_superficie} m²</span>
@@ -76,20 +79,13 @@
 						<span class="description-plus"><a href="Annonce-{$a.A_idannonce}">En&nbspsavoir&nbspplus <i class="fas fa-info-circle"></i></a></span>
 					</div>
 				</div>
-				{* {if $a@iteration >= 15}
-					{break}
-				{/if} *}
 
+				<!-- Affiche le nombre d'annonces chargées -->
 				{if $a@last}
 				    <div style="margin-top:20px;"><em>{$a@total} annonces chargée(s).</em></div>
 			  	{/if}
 			{/foreach}
 			<!-- Fin de l'affichage des annonces -->
-
-			<!--TODO charger plus d'annonces-->
-			<a href="#"><div id="carte-deux" class="decrease">
-					Charger plus d'annonces <i class="far fa-eye"></i>
-				</div></a>
-
 		</section>
+		<!-- FIN Section contenant les annonces -->
 	</article>

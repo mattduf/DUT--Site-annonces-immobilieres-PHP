@@ -1,8 +1,7 @@
 <?php
 	use App\Models\Annonce_Model;
-	$model = new Annonce_Model();
-	$annonce = $model->getAnnonceAccueil();
 
+    /* Récupère le mail de l'utilisateur connecté pour afficher entete pour ses annonces */
     if(isset($_SESSION['mail'])){
         service('SmartyEngine')->assign('mail',$_SESSION['mail']);
     }
@@ -10,7 +9,9 @@
         service('SmartyEngine')->assign('mail','null');
     }
 
-	service('SmartyEngine')->assign('annonce',$annonce);
+    /* Prépare les 6 dernières annonce publiées */
+	$model = new Annonce_Model();
+	$annonce = $model->getAnnonceAccueil();
 
+	service('SmartyEngine')->assign('annonce',$annonce);
 	echo service('SmartyEngine')->view('../pages/Accueil.tpl');
-?>
