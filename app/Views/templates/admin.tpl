@@ -1,1 +1,1 @@
-    <div id="admin"><a href="Panneau-Administration">Accéder au panneau d'Administration</a></div>
+    <div id="admin" class="grow"><a href="Panneau-Administration"><i class="fas fa-user-shield rouge"></i> Accéder au panneau d'Administration</a></div>

@@ -7,13 +7,13 @@ html {
 }
 
 body{
-	margin:0;
+	margin: 80px 0 0;
 	position:relative;
 	height:100%;
 }
 
 article{
-	margin: 50px auto;
+	margin: 0 auto 50px;
 	max-width:1000px;
 	min-height:100%;
 }
@@ -141,9 +141,8 @@ footer{
 /* Bouton pour accéder au panneau d'administration */
 #admin{
 	position:fixed;
-	bottom:10px;
-	width:100%;
-	text-align:center;
+	bottom:20px;
+	left:20px;
 }
 
 #admin a{

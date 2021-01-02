@@ -1,3 +1,15 @@
+html{
+	background-color:grey;
+}
+
+section{
+	padding-bottom:20px;
+}
+
+aside li{
+	background-color:white;
+}
+
 /* Corps de la page */
 .aside-article-gestion li.liste-gestion{ text-align: left !important; }
 

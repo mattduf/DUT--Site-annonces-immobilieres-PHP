@@ -33,8 +33,6 @@ class Home extends BaseController
             echo view('templates/navbar.tpl',$data);
         }
 
-
-
 	    if (!empty($session->getFlashdata('warning'))){
 	        echo $session->getFlashdata('warning');
         }
@@ -51,6 +49,8 @@ class Home extends BaseController
 
     public function affiche($page = 'Annonces'){
         $session = \Config\Services::session();
+        $model = new Uti_model();
+
         if (!empty($session->get('mail'))){
             $data = ['mail' => $session->get('mail'),
                 'pseudo' => $session->get('pseudo'),
@@ -74,6 +74,12 @@ class Home extends BaseController
         $session->setFlashdata("id",$page);
 
         echo view('pages/Annonce-seule.php',$data);
+
+        if (!empty($session->get('mail'))) {
+            if ($model->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) {
+                echo view('templates/admin.tpl', $data);
+            }
+        }
 
         echo view('templates/footer.tpl',$data);
     }
