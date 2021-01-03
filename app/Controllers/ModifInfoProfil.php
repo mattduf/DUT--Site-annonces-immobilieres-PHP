@@ -116,24 +116,25 @@ class ModifInfoProfil extends Controller
         $session = \Config\Services::session();
         $model = new Uti_Model();
         $modelAnnonce = new Annonce_Model();
-        $email = $this->request->getPost('email');
-        $verifMail = $model->verifMail($email);
+        $emailUti = $this->request->getPost('email');
+        $verifMail = $model->verifMail($emailUti);
         $selectedbutton = $this->request->getPost('button');
+        $corpsmail = $this->request->getPost('corpsmail');
 
         if (empty($verifMail)) {
             $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
             return redirect()->to('Gestion-site');
         }
-        else if($model->getIsAdmin($email)['U_isAdmin'] == 1)
+        else if($model->getIsAdmin($emailUti)['U_isAdmin'] == 1)
         {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer un compte administrateur.</div>');
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas effectuer une action sur un compte administrateur.</div>');
             return redirect()->to('Gestion-site');
         }
         else{
             if($selectedbutton === "supprimer") {
-                $model->deleteMessage($email);
-                $modelAnnonce->deleteAnnonce($email);
-                $model->deleteAccount($email);
+                $model->deleteMessage($emailUti);
+                $modelAnnonce->deleteAnnonce($emailUti);
+                $model->deleteAccount($emailUti);
                 $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le compte a bien été supprimé.</div>');
                 return redirect()->to('Gestion-site');
             }
@@ -146,7 +147,17 @@ class ModifInfoProfil extends Controller
                 return redirect()->to('Gestion-site');
             }
             else if($selectedbutton === "envoyermail"){
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test envoyermail.</div>');
+                $email = \Config\Services::email();
+
+                $email->setFrom('fr.immoannonce@gmail.com', 'Immo Annonce');
+                $email->setTo($emailUti);
+
+                $email->setSubject('De la part de ImmoAnnonce');
+                $email->setMessage('<div style="width:500px; height:500px; color:red;">'.$corpsmail.'</div>');
+
+                $email->send();
+
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le mail a bien été envoyé.</div>');
                 return redirect()->to('Gestion-site');
             }
         }

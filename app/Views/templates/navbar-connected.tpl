@@ -16,6 +16,8 @@
 	</div>
 
 	<script>
+		//JS pour rendre la navbar responsive
+		//Source : https://www.w3schools.com/howto/howto_css_topnav_right.asp
 		function myFunction() {
 			var x = document.getElementById("myTopnav");
 			if (x.className === "topnav") {
