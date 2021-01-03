@@ -15,21 +15,26 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite
     //Utilisation : page "Annonces" qui liste toutes les annonces
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, occurrences limitées à 6
     //Utilisation : page d'accueil qui liste les 6 dernières annonces publiées
 	public function getAnnonceAccueil(){
-		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM '.$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
+
+    public function getAllphoto(){
+        $query = 'SELECT P_nom,P_A_idannonce FROM '.$this->tablePhoto;
+        return $this->simpleQuery($query);
+    }
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce publiée par un utilisateur spécifique
     //Utilisation : page "Mes-annonces" qui liste les annonces d'un utilisateur
     public function getAnnonceUtilisateur($mail){
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,A_etat,P_nom FROM '.$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = P_A_idannonce AND P_nom LIKE \'1-%\' AND A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_type_chauffage,A_ville,A_CP,A_etat FROM '.$this->table.' WHERE A_U_mail = \''.$mail.'\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
 
@@ -60,6 +65,13 @@ class Annonce_Model extends Model
         $query = 'SELECT P_nom,P_idphoto FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = \''.$idannonce.'\' AND A_idannonce = P_A_idannonce ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
     }
+    //[SELECT] Requête qui renvoie combien de photo l'annonce possède
+    //Utilisation : pour éviter que l'utilisateur supprime toutes ses photos
+    public function getHowManyPhotos($idannonce){
+        $query = 'SELECT COUNT(P_idphoto) AS "nbrphoto" FROM ' .$this->table.' INNER JOIN '.$this->tablePhoto.' WHERE A_idannonce = \''.$idannonce.'\' AND A_idannonce = P_A_idannonce ORDER BY A_idannonce DESC';
+        return $this->simpleQuery($query);
+    }
+
 
     //[SELECT] Requête qui renvoie l'id de la dernière annonce publiée par un utilisateur
     //Utilisée pour associer les photos à une annonce
@@ -82,6 +94,13 @@ class Annonce_Model extends Model
         $this->delete();
     }
 
+    //[DELETE] Requête qui supprime une ou plusieurs photos
+    //Utilisation : losrqu'un utilisateur clique pour supprimer une photo
+    public function deletePhoto($id){
+        $query = 'DELETE FROM t_photo WHERE P_idphoto = "'.$id.'"';
+        return $this->simpleQuery($query);
+    }
+
     //[INSERT INTO] Requête qui crée une annonce
     //Utilisation : page "Ajouter-une-annonce" avec un formulaire de création d'annonce
     public function insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,$etat){
@@ -96,8 +115,17 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
     }
 
+    //[UPDATE] Requête qui modifie les informations d'une annonce
+    //Utilisation : modifie une annonce
+    public function updateAnnonce($id,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,$etat){
+        $query = 'UPDATE '.$this->table .' SET A_titre = "'.$titre.'", A_cout_loyer = "'.$coutlocation.'", A_cout_charges = "'.$coutcharges.'", A_type_chauffage = "'.$typechauffage.'", A_superficie = "'.$superficie.'", A_description = "'.$description.'", A_adresse = "'.$adresse.'", A_ville = "'.$ville.'", A_region = "'.$region.'", A_CP = "'.$codepostal.'", A_etat = "'.$etat.'", A_E_id_engie = "'.$modeenergie.'", A_T_type = "'.$type.'" where A_idannonce = "'.$id .'"';
+        return $this->simpleQuery($query);
+    }
+
     public function verifAnnonce($mail,$id){
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
     }
+
+
 }
 ?>
