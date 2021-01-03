@@ -51,7 +51,7 @@ class Ajouter_une_annonce extends Controller
 
         	if(!empty(${"fichier".$i}))
 			{
-				$this->uploadImage(${"fichier".$i},${"image".$i},$dossier, $idAnnonce, $i);
+				$this->uploadImage(${"image" . $i}, $dossier, $idAnnonce, $i);
 		    }
         }
 
@@ -64,7 +64,7 @@ class Ajouter_une_annonce extends Controller
         }
 	}
 
-	public function uploadImage($fichier,$image,$dossier,$idAnnonce,$i){
+	public function uploadImage($image, $dossier, $idAnnonce, $i){
         $model = new Annonce_Model();
         $temp = explode(".", $_FILES[$image]["name"]);
 		$newfilename = $i . '-' . current($temp) . '-' . current($idAnnonce) . '.' . end($temp);

@@ -8,7 +8,15 @@
         {foreach $annonce as $a}
         <div id="section-ajouter-annonce">
             <h2>Informations générales</h2>
-            <form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce" enctype="multipart/form-data">
+            <form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce">
+
+                <div class="pure-control-group">
+                    <label for="">État de l'annonce </label>
+                    <select id="état" name="etat" required>
+                        <option value="publiée">Publique</option>
+                        <option value="brouillon">En cours de rédaction</option>
+                    </select>
+                </div>
                 <div class="pure-control-group">
                     <label for="title">Titre</label>
                     <input type="text" id="title" value="{$a.A_titre}" name="title" required/>
@@ -92,31 +100,32 @@
                     <label style="width:auto;" for="description">Description <span id="lblRemainingCount"></span></label><br/>
                 <textarea id="description" name="description" rows="5" cols="40" maxlength="1100" onkeypress="textareaLengthCheck(this)" required>{$a.A_description}</textarea>
                 </div>
-
-                <table>
-                    <tr>
-                        {foreach $photos as $p}
-                            <td> <input type="checkbox" name="deletePhoto[]" value="{$p.P_idphoto}"></td>
-                            <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}" width="100%"></a></td>
-                        {/foreach}
-                    </tr>
-                </table>
-                <div>
-                    <button type="submit" name="button" value="delete" class="pure-button pure-button-primary btn-enregistrement">Supprimer la/les photo(s) selectionée</button>
-                </div>
-                {/foreach}
-
-                <h2>Photo(s) du logement (5 max.)</h2>
-                <div class="pure-control-group">
-                    <input type="file" name="image1" id="image1" accept="image/x-png,image/gif,image/jpeg,image/jpg" onchange="loadFile(event)" required/>
-                </div
-
-
                 <div>
                     <button type="submit" name="button" value="edit" class="pure-button pure-button-primary">Modifier l'annonce</button>
                 </div>
 
             </form>
+<form class="pure-form pure-form-aligned formulaire" method="post">
+            <table>
+                <tr>
+                    {foreach $photos as $p}
+                        <td> <input type="checkbox" name="deletePhoto[]" value="{$p.P_idphoto}"></td>
+                        <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}" width="100%"></a></td>
+                    {/foreach}
+                </tr>
+            </table>
+            <div>
+                <button type="submit" name="buttondeletephoto" value="delete" class="pure-button pure-button-primary btn-enregistrement">Supprimer la/les photo(s) selectionée</button>
+            </div>
+            {/foreach}
+</form>
+    <form class="pure-form pure-form-aligned formulaire" method="post" enctype="multipart/form-data">
+            <h2>Photo(s) du logement (5 max.)</h2>
+            <div class="pure-control-group">
+                <input type="file" name="image" id="image" accept="image/*" onchange="loadFile(event)"/>
+                <button type="submit" name="buttonaddphoto" value="delete" class="pure-button pure-button-primary btn-enregistrement">Ajouter une photo</button>
+            </div>
+    </form>
 
         </div>
     </section>

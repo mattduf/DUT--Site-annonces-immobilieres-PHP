@@ -40,6 +40,7 @@ $routes->post('Connexion', 'Login::signin');
 $routes->post('Inscription', 'Inscription::signup');
 $routes->post('Mon-compte', 'ModifInfoProfil::index');
 $routes->post('Delete', 'ModifInfoProfil::Delete');
+$routes->post('Gestion/Annonce-(:num)', 'ModifierAnnonce::updateAnnonce');
 $routes->post('ManageAsAdmin', 'ModifInfoProfil::ManageAsAdmin');
 $routes->post('Ajouter-une-annonce', 'Ajouter_une_annonce::addAnnonce');
 $routes->setAutoRoute(false);
