@@ -6,6 +6,10 @@ section{
 	padding-bottom:20px;
 }
 
+aside{
+	background-color: transparent;
+}
+
 aside li{
 	background-color:white;
 }
