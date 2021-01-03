@@ -10,6 +10,11 @@
 		$model = new Annonce_Model();
 		$annonceUti = $model->getAnnonceUtilisateur($_SESSION['mail']);
 
+        $photo = $model->getAllphoto();
+        service('SmartyEngine')->assign('photo',$photo);
+
+        service('SmartyEngine')->assign('bool',0);
+
 		service('SmartyEngine')->assign('annonceUti',$annonceUti);
 		service('SmartyEngine')->assign('mail',$_SESSION['mail']);
         service('SmartyEngine')->assign('pseudo',$_SESSION['pseudo']);

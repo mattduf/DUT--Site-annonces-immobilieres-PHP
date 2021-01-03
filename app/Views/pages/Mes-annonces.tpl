@@ -15,7 +15,9 @@
 			<div id="section-liste-annonces">
 				<h1 class="h1-custom"><span><i class="far fa-list-alt"></i> Liste de mes annonces</span></h1>
 					<div id="cartes-section">
+
 					{foreach $annonceUti as $a}
+						{assign "bool" 0}
 					<div class="carte grow">
 						{if $a.A_etat eq "publiée"}
 							<div class="entete-etat" style="background-color: rgba(24, 200, 49, 0.7);"><abbr title="L'annonce est publiée sur le site, elle est par conséquent accessible à tous les utilisateurs.">{$a.A_etat}</abbr> <i class="fas fa-info-circle"></i></div>
@@ -23,13 +25,23 @@
 							<div class="entete-etat" style="background-color: rgba(24,138,200, 0.7);"><abbr title="L'annonce est encore en brouillon, elle n'est par conséquent pas visible.">{$a.A_etat}</abbr> <i class="fas fa-info-circle"></i></div>
 						{elseif $a.A_etat eq "archivée"}
 							<div class="entete-etat" style="background-color: rgba(200,191,24, 0.7);"><abbr title="L'annonce est archivée, elle n'est par conséquent plus accessible aux utilisateurs.">{$a.A_etat}</abbr> <i class="fas fa-info-circle"></i></div>
-						{else if $a.A_etat eq "bloquée"}
+						{elseif $a.A_etat eq "bloquée"}
 							<div class="entete-etat" style="background-color: rgba(200,24,24, 0.7);"><abbr title="L'annonce est bloquée, vous ne pouvez pas la modifier, ni la publier.">{$a.A_etat}</abbr> <i class="fas fa-info-circle"></i></div>
 						{/if}
 
-						<div class="annonce-image">
-							<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$a.P_nom}" class="img-responsive"></a>
-						</div>
+						{foreach $photo as $p}
+								{if $bool eq 0}
+
+									<!-- Image de l'annonce -->
+
+									<div class="annonce-image">
+										{if $p.P_A_idannonce eq $a.A_idannonce}
+									<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$p.P_nom}" class="img-responsive"></a>
+									{assign "bool" 1}
+								{/if}
+							</div>
+								{/if}
+						{/foreach}
 						<div class="annonce-description">
 							<span class="description-titre">{$a.A_titre}</span>
 							<span class="description-divers"><i class="fas fa-chart-area"></i> {$a.A_superficie} m²</span>

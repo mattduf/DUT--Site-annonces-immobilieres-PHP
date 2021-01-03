@@ -13,5 +13,11 @@
     $model = new Annonce_Model();
     $annonce = $model->getAnnonce();
 
+    $photo = $model->getAllphoto();
+    service('SmartyEngine')->assign('photo',$photo);
+
+    service('SmartyEngine')->assign('bool',0);
+
+
     service('SmartyEngine')->assign('annonce',$annonce);
     echo service('SmartyEngine')->view('../pages/Annonces.tpl');
