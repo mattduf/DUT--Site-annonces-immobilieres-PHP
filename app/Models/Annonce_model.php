@@ -15,14 +15,14 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite
     //Utilisation : page "Annonces" qui liste toutes les annonces
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, occurrences limitées à 6
     //Utilisation : page d'accueil qui liste les 6 dernières annonces publiées
 	public function getAnnonceAccueil(){
-		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM '.$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM '.$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
 
@@ -77,7 +77,6 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
     }
 
-
     //[SELECT] Requête qui renvoie l'id de la dernière annonce publiée par un utilisateur
     //Utilisée pour associer les photos à une annonce
     public function getLastAnnonce($mail){
@@ -85,22 +84,29 @@ class Annonce_Model extends Model
     }
 
     //[DELETE] Requête qui supprime les annonces d'un utilisateur
-    //Utilisation : losrqu'un utilisateur supprime son compte
+    //Utilisation : lorsqu'un utilisateur supprime son compte
     public function deleteAnnonce($mail){
         $this->where('A_U_mail',$mail);
         $this->delete();
     }
 
     //[DELETE] Requête qui supprime une seule annonce
-    //Utilisation : losrqu'un utilisateur clique pour supprimer une annonce
+    //Utilisation : lorsqu'un utilisateur clique pour supprimer une annonce
     public function deleteOneAnnonce($mail,$id){
         $this->where('A_U_mail',$mail);
         $this->where('A_idannonce', $id);
         $this->delete();
     }
 
+    //[DELETE] Requête qui supprime une seule annonce en fonction de l'id fourni
+    //Utilisation : administration
+    public function deleteOneAnnonceID($id){
+        $this->where('A_idannonce', $id);
+        $this->delete();
+    }
+
     //[DELETE] Requête qui supprime une ou plusieurs photos
-    //Utilisation : losrqu'un utilisateur clique pour supprimer une photo
+    //Utilisation : lorsqu'un utilisateur clique pour supprimer une photo
     public function deletePhoto($id){
         $query = 'DELETE FROM t_photo WHERE P_idphoto = "'.$id.'"';
         return $this->simpleQuery($query);
@@ -131,6 +137,36 @@ class Annonce_Model extends Model
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
     }
 
+    public function verifIDAnnonce($id){
+        return $this->select('A_idannonce')->where(['A_idannonce' => $id])->first();
+    }
 
+    //[UPDATE] Requête qui bloque une annonce en fonction de l'utilisateur
+    //Utilisation : administration, lorsqu'un utilisateur est bloqué
+    public function blockUserAnnonce($mail){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "bloquée" WHERE A_U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
+
+    //[UPDATE] Requête qui débloque une annonce
+    //Utilisation : administration, lorsqu'un utilisateur est débloqué
+    public function unblockUserAnnonce($mail){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "publiée" WHERE A_U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
+
+    //[UPDATE] Requête qui bloque une annonce en fonction de l'id
+    //Utilisation : administration
+    public function blockAnnonce($id){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "bloquée" WHERE A_idannonce = "'.$id.'"';
+        return $this->simpleQuery($query);
+    }
+
+    //[UPDATE] Requête qui débloque une annonce en fonction de l'id
+    //Utilisation : administration
+    public function unblockAnnonce($id){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "publiée" WHERE A_idannonce = "'.$id.'"';
+        return $this->simpleQuery($query);
+    }
 }
 ?>

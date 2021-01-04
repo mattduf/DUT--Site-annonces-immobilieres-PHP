@@ -151,13 +151,6 @@
 	font-weight:bold;
 }
 
-abbr[title]{
-	text-decoration:none;
-	border-bottom:dashed black 1px;
-}
-
-abbr[title]:hover{cursor: help;}
-
 /* media queries pour l'affichage responsif */
 @media (min-width:1020px){
 	.carte, .entete-uti, .entete-etat{ width:320px; }

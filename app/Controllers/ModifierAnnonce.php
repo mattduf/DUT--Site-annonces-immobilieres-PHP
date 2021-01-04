@@ -111,7 +111,7 @@ class ModifierAnnonce extends Controller
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));
             //$posPhoto = $annonceModel->getPosPhotos($id);
             if ($nombrePhoto['nbrphoto'] >= 5){
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas ajouter plus de photo à cette annonce (maximun 5).</div>');
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas ajouter plus de photos à cette annonce (maximum 5).</div>');
                 return redirect()->to('');
             }else{
                 $fichier = basename($_FILES["image"]["name"]);

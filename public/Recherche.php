@@ -16,14 +16,14 @@
     <link rel="stylesheet" href="../../../css/footer.css">
 </head>
 
-    <!--TODO afficher navbar connected si connecté -->
     <div class="topnav" id="myTopnav">
         <a href="/" id="logo-navbar"><img src="../../../images/logo.png"></a>
         <a href="/Annonces"><i class="fas fa-search"></i> Rechercher une annonce</a>
     </div>
 
 <body>
-
+    <button onclick="topFunction()" id="myBtn" title="Retour en haut"><i class="fas fa-chevron-up"></i></button>
+    <script src="../../../js/backToTop.js"></script>
     <article>
         <section id="cartes-section">
             <!-- Section recherche d'annonces -->
@@ -149,7 +149,7 @@
                         $loyermax = 9999999;
                     }
 
-                    $select_annonce = "SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM t_annonce INNER JOIN t_photo WHERE A_idannonce = P_A_idannonce AND P_nom LIKE '1-%' AND A_etat != 'brouillon' AND A_ville LIKE '$ville' AND A_CP LIKE '$codepostal' AND A_region LIKE '$region' AND A_T_type LIKE '$type' AND A_type_chauffage LIKE '$typechauffage' AND A_superficie LIKE '$superficie' AND A_cout_loyer BETWEEN '$loyermin' AND '$loyermax' ORDER BY A_idannonce DESC";
+                    $select_annonce = "SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM t_annonce INNER JOIN t_photo WHERE A_idannonce = P_A_idannonce AND P_nom LIKE '1-%' AND A_etat = 'publiée' AND A_ville LIKE '$ville' AND A_CP LIKE '$codepostal' AND A_region LIKE '$region' AND A_T_type LIKE '$type' AND A_type_chauffage LIKE '$typechauffage' AND A_superficie LIKE '$superficie' AND A_cout_loyer BETWEEN '$loyermin' AND '$loyermax' ORDER BY A_idannonce DESC";
 
                     $resultat = mysqli_query($bdd,$select_annonce);
 
@@ -160,13 +160,7 @@
                     else{
                         while ($data = mysqli_fetch_assoc($resultat)) {
                             echo '<div class="carte grow">';
-                                /* TODO recup le mail avec la session
-                                {if $a.A_U_mail eq $mail}
-                                    <a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="entete-uti"><div id="msg1">Votre annonce <i class="fas fa-info-circle"></i></div><div id="msg2"><i class="fas fa-caret-right"></i> Gérer</div></div></a>
-                                {/if}
-                                */
-
-                                echo '<div class="annonce-image"><a href="Annonce-'.$data["A_idannonce"].'"><img src="../../../images/annonces/'.$data["P_nom"].'" class="img-responsive"></a></div>';
+                            echo '<div class="annonce-image"><a href="Annonce-'.$data["A_idannonce"].'"><img src="../../../images/annonces/'.$data["P_nom"].'" class="img-responsive"></a></div>';
                                 echo '<div class="annonce-description">';
                                     echo '<span class="description-titre">'.$data["A_titre"].'</span>';
                                     echo '<span class="description-divers"><i class="fas fa-chart-area"></i> '.$data["A_superficie"].' m²</span>';

@@ -12,6 +12,7 @@ class Ajouter_une_annonce extends Controller
 	{
 	    $session = \Config\Services::session();
         $model = new Annonce_Model();
+        $modelUti = new Uti_Model();
         
         $mail = $session->get('mail'); //a voir
         $titre = $this->request->getPost('title');
@@ -36,31 +37,36 @@ class Ajouter_une_annonce extends Controller
         $codepostal = $this->request->getPost('codepostal');
         $description = $this->request->getPost('description');
 		$dossier = ROOTPATH."public/images/annonces/";
-		if ($selectedbutton === "publiée"){
-            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,"publiée");
-        }else{
-            $insert = $model->insertAnnonce($mail,$titre,$coutlocation,$coutcharges,$type,$superficie,$typechauffage,$modeenergie,$adresse,$ville,$region,$codepostal,$description,"brouillon");
-        }
+        $verifEtat = $modelUti->verifEtat($session->get('mail'));
 
+        if(empty($verifEtat)) {
+            if ($selectedbutton === "publiée") {
+                $insert = $model->insertAnnonce($mail, $titre, $coutlocation, $coutcharges, $type, $superficie, $typechauffage, $modeenergie, $adresse, $ville, $region, $codepostal, $description, "publiée");
+            } else {
+                $insert = $model->insertAnnonce($mail, $titre, $coutlocation, $coutcharges, $type, $superficie, $typechauffage, $modeenergie, $adresse, $ville, $region, $codepostal, $description, "brouillon");
+            }
 
-        //Upload image sur le serveur
-        for ($i=1; $i<=5 ; $i++) { 
-        	${"fichier".$i} = basename($_FILES["image"."$i"]["name"]);
-        	${"image".$i} = 'image'.$i;
-        	$idAnnonce = $model->getLastAnnonce($mail);
+            //Upload image sur le serveur
+            for ($i = 1; $i <= 5; $i++) {
+                ${"fichier" . $i} = basename($_FILES["image" . "$i"]["name"]);
+                ${"image" . $i} = 'image' . $i;
+                $idAnnonce = $model->getLastAnnonce($mail);
 
-        	if(!empty(${"fichier".$i}))
-			{
-				$this->uploadImage(${"image" . $i}, $dossier, $idAnnonce, $i);
-		    }
-        }
+                if (!empty(${"fichier" . $i})) {
+                    $this->uploadImage(${"image" . $i}, $dossier, $idAnnonce, $i);
+                }
+            }
 
-        if ($this->request->getMethod() === 'post'&& $insert){
-            $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
-            return redirect()->to('Mes-annonces');
+            if ($this->request->getMethod() === 'post' && $insert) {
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
+                return redirect()->to('Mes-annonces');
+            } else {
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'annonce a échoué.</div>');
+            }
         }
         else{
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'annonce a échoué.</div>');
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous êtes bloqué.</div>');
+            return redirect()->to('Mes-annonces');
         }
 	}
 
@@ -78,6 +84,7 @@ class Ajouter_une_annonce extends Controller
 	        echo 'Echec de l\'upload !';
 	    }
 	}
+
 	public function deleteannonce($id){
         $session = \Config\Services::session();
         $model = new Annonce_Model();

@@ -4,7 +4,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 Use App\Models\Uti_Model;
 
-
 class Inscription extends Controller
 {
     function Inscription(){
@@ -34,6 +33,8 @@ class Inscription extends Controller
                     $insert = $model->insertUti($mail,$mdp,$pseudo,$nom,$prenom);
                     
                     if ($this->request->getMethod() === 'post'&& $insert){
+                        Administration::sendMail($mail, "De la part de l'administration d'ImmoAnnonce", "La création de votre compte sur ImmoAnnonce a réussi, bienvenue !");
+
                         $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Inscription réussie !</div>');
                         return redirect()->to('Connexion');
                     }
