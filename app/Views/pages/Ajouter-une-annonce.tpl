@@ -7,7 +7,7 @@
 		<section>
 		<div id="section-ajouter-annonce">
 			<h2>Informations générales</h2>
-				<form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce" enctype="multipart/form-data">
+				<form class="pure-form pure-form-aligned formulaire" method="post" name="ajouterAnnonce" enctype="multipart/form-data">
 					<div class="pure-control-group">
 						<label for="title">Titre</label>
 						<input type="text" id="title" placeholder="Titre de l'annonce" name="title" required/>

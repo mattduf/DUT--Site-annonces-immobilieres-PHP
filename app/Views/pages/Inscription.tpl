@@ -1,6 +1,6 @@
 
     <article>
-        <form class="pure-form pure-form-aligned formulaire" method="post" name="signup">
+        <form class="pure-form pure-form-aligned formulaire" method="post" name="inscription">
             <h1 align="center">S'inscrire</h1>
             <fieldset>
                 <div class="pure-control-group">

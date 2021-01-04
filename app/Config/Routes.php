@@ -30,20 +30,32 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+//Affichage
 $routes->get('/', 'Home::views');
-$routes->get('Deconnexion', 'Deconnexion::deconnexion');
-$routes->get('Annonce-(:num)', 'Home::affiche/$1');
-$routes->get('Gestion/Annonce-(:num)', 'ModifierAnnonce::edit/$1');
-$routes->get('Supprimer-annonces/(:num)','Ajouter_une_annonce::deleteannonce/$1');
 $routes->get('(:any)', 'Home::views/$1');
-$routes->post('Connexion', 'Login::signin');
-$routes->post('Inscription', 'Inscription::signup');
+$routes->get('Annonce-(:num)', 'Home::affiche/$1');
+
+//Gestion accès espace membre
+$routes->post('Connexion', 'AccesMembre::connexion');
+$routes->post('Inscription', 'AccesMembre::inscription');
+$routes->get('Deconnexion', 'AccesMembre::deconnexion');
+
+
+//Gestion compte utilisateur
 $routes->post('Mon-compte', 'ModifInfoProfil::index');
 $routes->post('Delete', 'ModifInfoProfil::Delete');
-$routes->post('Gestion/Annonce-(:num)', 'ModifierAnnonce::updateAnnonce');
+
+//Gestion annonces
+$routes->post('Ajouter-une-annonce', 'Annonce::ajouterAnnonce');
+$routes->get('Gestion/Annonce-(:num)', 'Annonce::avantModifierAnnonce/$1');
+$routes->post('Gestion/Annonce-(:num)', 'Annonce::modifierAnnonce');
+$routes->get('Supprimer/Annonce-(:num)','Annonce::supprimerAnnonce/$1');
+
+//Administration
 $routes->post('GestionUtilisateurs', 'Administration::GestionUtilisateurs');
 $routes->post('GestionAnnonces', 'Administration::GestionAnnonces');
-$routes->post('Ajouter-une-annonce', 'Ajouter_une_annonce::addAnnonce');
+
 $routes->setAutoRoute(false);
 
 

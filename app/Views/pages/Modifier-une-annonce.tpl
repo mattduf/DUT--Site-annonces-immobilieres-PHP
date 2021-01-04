@@ -8,7 +8,7 @@
         {foreach $annonce as $a}
         <div id="section-ajouter-annonce">
             <h2>Informations générales</h2>
-            <form class="pure-form pure-form-aligned formulaire" method="post" name="addAnonce">
+            <form class="pure-form pure-form-aligned formulaire" method="post" name="modifierAnnonce">
                 <div class="pure-control-group">
                     <label for="état">État de l'annonce </label>
                     <select id="état" name="etat" required>

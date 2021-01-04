@@ -50,7 +50,7 @@
 							<span class="description-divers"><i class="fas fa-fire-alt"></i> Chauffage&nbsp:&nbsp{$a.A_type_chauffage}</span>
 							<span class="description-divers"><i class="fas fa-map-marker-alt"></i> {$a.A_ville}&nbsp({$a.A_CP})</span></br/>
 							<span class="description-plus"><a href="Gestion/Annonce-{$a.A_idannonce}">Gérer <i class="fas fa-cogs"></i></a></span>
-							<span class="description-plus"><a href="Supprimer-annonces/{$a.A_idannonce}">Supprimer l'annonce <i class="fas fa-trash-alt"></i></a></span>
+							<span class="description-plus"><a href="Supprimer/Annonce-{$a.A_idannonce}">Supprimer l'annonce <i class="fas fa-trash-alt"></i></a></span>
 						</div>
 					</div>
 					{/foreach}

@@ -115,6 +115,7 @@ class Administration extends Controller
                     $modelAnnonce->deleteOneAnnonceID($idAnnonce); //Supprime l'annonce
 
                     //TODO mail utilisateur si on supprime une de ses annonces
+                    //TODO supprimer photos associées aussi
 
                     //Message pour informer l'administrateur du succès de l'action
                     $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée.</div>');

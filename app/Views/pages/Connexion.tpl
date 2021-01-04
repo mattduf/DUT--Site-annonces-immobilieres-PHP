@@ -1,6 +1,6 @@
 
     <article>
-        <form class="pure-form pure-form-aligned formulaire" method="post">
+        <form class="pure-form pure-form-aligned formulaire" method="post" name="connexion">
             <h1 align="center">Se connecter</h1>
             <fieldset>
                 <div class="pure-control-group">
