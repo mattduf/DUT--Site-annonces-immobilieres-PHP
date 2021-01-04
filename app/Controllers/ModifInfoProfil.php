@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Controllers;
 
 use App\Models\Annonce_Model;
 use CodeIgniter\Controller;
 use App\Models\Uti_Model;
-
 
 class ModifInfoProfil extends Controller
 {
@@ -110,77 +108,5 @@ class ModifInfoProfil extends Controller
             $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppression.</div>');
             return redirect()->to('Mon-compte');
         }
-    }
-
-    public function ManageAsAdmin(){
-        $session = \Config\Services::session();
-        $modelUti = new Uti_Model();
-        $modelAnnonce = new Annonce_Model();
-        $emailUti = $this->request->getPost('email');
-        $verifMail = $modelUti->verifMail($emailUti);
-        $selectedbutton = $this->request->getPost('button');
-        $corpsmail = $this->request->getPost('corpsmail');
-
-        if (empty($verifMail)) {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
-            return redirect()->to('Gestion-site');
-        }
-        else if($modelUti->getIsAdmin($emailUti)['U_isAdmin'] == 1)
-        {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas effectuer une action sur un compte administrateur.</div>');
-            return redirect()->to('Gestion-site');
-        }
-        else{
-            if($selectedbutton === "supprimer") {
-                $modelUti->deleteMessage($emailUti);
-                $modelAnnonce->deleteAnnonce($emailUti);
-                $modelUti->deleteAccount($emailUti);
-
-                $this->sendMail($emailUti,"Une action a été effectuée sur votre compte - ImmoAnnonce","Votre compte a été supprimé suite à une action de l'administration.");
-
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le compte a bien été supprimé.</div>');
-                return redirect()->to('Gestion-site');
-            }
-            else if($selectedbutton === "modifier"){
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test modifier.</div>');
-                return redirect()->to('Gestion-site');
-            }
-            else if($selectedbutton === "bloquer"){
-                $modelUti->blockUser($emailUti); //Bloque l'utilisateur
-                $modelAnnonce->blockUserAnnonce($emailUti); //Bloque ses annonces
-
-                $this->sendMail($emailUti,"Une action a été effectuée sur votre compte - ImmoAnnonce","Votre compte a été bloqué suite à une action de l'administration.");
-
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été bloqués.</div>');
-                return redirect()->to('Gestion-site');
-            }
-            else if($selectedbutton === "debloquer"){
-                $modelUti->unblockUser($emailUti); //Débloque l'utilisateur
-                $modelAnnonce->unblockUserAnnonce($emailUti); //Débloque ses annonces
-
-                $this->sendMail($emailUti,"Une action a été effectuée sur votre compte - ImmoAnnonce","Votre compte a été débloqué suite à une action de l'administration.");
-
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été débloqués.</div>');
-                return redirect()->to('Gestion-site');
-            }
-            else if($selectedbutton === "envoyermail"){
-                $this->sendMail($emailUti,"De la part de l'administration d'ImmoAnnonce",$corpsmail);
-
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le mail a bien été envoyé.</div>');
-                return redirect()->to('Gestion-site');
-            }
-        }
-    }
-
-    public function sendMail($emailUti,$sujetmail,$corpsmail){
-        $email = \Config\Services::email();
-
-        $email->setFrom('fr.immoannonce@gmail.com', 'Immo Annonce');
-        $email->setTo($emailUti);
-
-        $email->setSubject($sujetmail);
-        $email->setMessage('<div>Bonjour,</div><br/><div style="width:100%; color:red;">'.$corpsmail.'</div><br/><div>Cordialement,<br/>ImmoAnnonce</div>');
-
-        $email->send();
     }
 }
