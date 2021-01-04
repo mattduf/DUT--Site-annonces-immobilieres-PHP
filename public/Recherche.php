@@ -22,7 +22,8 @@
     </div>
 
 <body>
-
+    <button onclick="topFunction()" id="myBtn" title="Retour en haut"><i class="fas fa-chevron-up"></i></button>
+    <script src="../../../js/backToTop.js"></script>
     <article>
         <section id="cartes-section">
             <!-- Section recherche d'annonces -->
@@ -148,7 +149,7 @@
                         $loyermax = 9999999;
                     }
 
-                    $select_annonce = "SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM t_annonce INNER JOIN t_photo WHERE A_idannonce = P_A_idannonce AND P_nom LIKE '1-%' AND A_etat != 'brouillon' AND A_ville LIKE '$ville' AND A_CP LIKE '$codepostal' AND A_region LIKE '$region' AND A_T_type LIKE '$type' AND A_type_chauffage LIKE '$typechauffage' AND A_superficie LIKE '$superficie' AND A_cout_loyer BETWEEN '$loyermin' AND '$loyermax' ORDER BY A_idannonce DESC";
+                    $select_annonce = "SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP,P_nom FROM t_annonce INNER JOIN t_photo WHERE A_idannonce = P_A_idannonce AND P_nom LIKE '1-%' AND A_etat = 'publiée' AND A_ville LIKE '$ville' AND A_CP LIKE '$codepostal' AND A_region LIKE '$region' AND A_T_type LIKE '$type' AND A_type_chauffage LIKE '$typechauffage' AND A_superficie LIKE '$superficie' AND A_cout_loyer BETWEEN '$loyermin' AND '$loyermax' ORDER BY A_idannonce DESC";
 
                     $resultat = mysqli_query($bdd,$select_annonce);
 
