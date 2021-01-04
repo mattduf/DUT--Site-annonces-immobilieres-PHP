@@ -26,6 +26,11 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
 	}
 
+    public function getEtatAnnonce($idannonce){
+	    $query = 'SELECT A_etat FROM '.$this->table.' WHERE A_idannonce = '.$idannonce;
+        return $this->simpleQuery($query);
+    }
+
     public function getAllphoto(){
         $query = 'SELECT P_nom,P_A_idannonce FROM '.$this->tablePhoto;
         return $this->simpleQuery($query);

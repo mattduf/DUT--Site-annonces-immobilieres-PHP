@@ -14,8 +14,10 @@ class ModifierAnnonce extends Controller
         $model = new Annonce_Model();
 
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
-        if (0 == 1) { #TODO check etat annonce accueil consultation aussi
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Cette annonce est bloquée. </div>');
+
+        $etat = mysqli_fetch_array($model->getEtatAnnonce($page));
+        if ($etat['A_etat'] == "bloquée") { #TODO check etat annonce accueil consultation aussi
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Modification impossible car l\'annonce est bloquée. </div>');
             return redirect()->to('/Mes-annonces');
         }elseif(!empty($verifUser)) {
             if (!empty($session->get('mail'))){
@@ -57,7 +59,7 @@ class ModifierAnnonce extends Controller
 
         $id = $session->getFlashdata('id');
 
-        if ($this->request->getPost('button')) { #TODO mettre les if pour les formulaires
+        if ($this->request->getPost('button')) {
             //Variable getPost qui récupère les saisi dans le formulaire
             $titre = $this->request->getPost('title');
             $coutlocation = $this->request->getPost('coutlocation');
