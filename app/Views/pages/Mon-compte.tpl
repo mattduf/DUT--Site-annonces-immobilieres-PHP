@@ -49,7 +49,7 @@
 					<input name="confpassword" id="confpassword" type="password" placeholder="*********"/>
 				</div>
 				<div class="pure-controls">
-					<button type="submit" class="pure-button pure-button-primary">Enregistrer les modifications</button>
+					<button type="submit" class="pure-button pure-button-primary"><i class="fas fa-save"></i> Enregistrer les modifications</button>
 				</div>
 			</form>
 			<!-- FIN Du formulaire pour modifier les infos du compte -->

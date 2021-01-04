@@ -101,7 +101,7 @@ class ModifierAnnonce extends Controller
                 for ($i=0; $i < sizeof($idphoto) ; $i++) {
                     $annonceModel->deletePhoto($idphoto[$i]);
                 }
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte !</div>');
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
                 return redirect()->to('');
             }
 
@@ -127,6 +127,7 @@ class ModifierAnnonce extends Controller
                     if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                     {
                         $annonceModel->insertImageAnnonce($newfilename,$id);
+                        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'image a bien été ajoutée.</div>');
                     }
                     else //Sinon (la fonction renvoie FALSE).
                     {

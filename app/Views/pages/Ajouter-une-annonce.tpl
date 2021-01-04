@@ -85,11 +85,6 @@
 							<option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
 						</select>
 					</div>
-
-					<div class="pure-control-group">
-						<label for="date">Date de création</label>
-						<input type="date" id="date" placeholder="Date de création de l'annonce" name="date"/>
-					</div>
 					
 					<div class="pure-control-group" id="ajout-description">
 						<label style="width:auto;" for="description">Description <span id="lblRemainingCount"></span></label><br/>
