@@ -20,8 +20,9 @@
 							<td><input type="text" id="email" placeholder="Adresse mail" name="email" required/></td>
 							<td>
 								<button type="submit" name="button" value="modifier" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;">Modifier</button>
-								<button type="submit" name="button" value="supprimer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;">Supprimer</button>
-								<button type="submit" name="button" value="bloquer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#771212;">Bloquer</button>
+								<button type="submit" name="button" value="supprimer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'utilisateur ? Cela aura pour effet de :&#010- détruire son compte&#010- supprimer ses annonces">Supprimer</button>
+								<button type="submit" name="button" value="bloquer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#771212;"><abbr title="Bloquer l'utilisateur ? Cela aura pour effet de :&#010- l'empêcher de publier des annonces&#010- bloquer ses annonces et les rendre inaccessibles">Bloquer</abbr></button>
+								<button type="submit" name="button" value="debloquer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#29ac79;"><abbr title="Déloquer l'utilisateur ? Cela aura pour effet de :&#010- l'autoriser à publier des annonces&#010- réafficher ses annonces et les rendre accessibles">Débloquer</abbr></button>
 							</td>
 						</tr>
 						<tr>

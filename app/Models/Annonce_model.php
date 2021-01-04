@@ -15,14 +15,14 @@ class Annonce_Model extends Model
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite
     //Utilisation : page "Annonces" qui liste toutes les annonces
 	public function getAnnonce(){ //TODO A completer (limiter à 15 + charger plus)
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC';
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC';
         return $this->simpleQuery($query);
 	}
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, occurrences limitées à 6
     //Utilisation : page d'accueil qui liste les 6 dernières annonces publiées
 	public function getAnnonceAccueil(){
-		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM '.$this->table.' WHERE A_etat != \'brouillon\' ORDER BY A_idannonce DESC LIMIT 6';
+		$query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM '.$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC LIMIT 6';
         return $this->simpleQuery($query);
 	}
 
@@ -126,6 +126,18 @@ class Annonce_Model extends Model
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
     }
 
+    //[UPDATE] Requête qui bloque une annonce
+    //Utilisation : administration, lorsqu'un utilisateur est bloqué
+    public function blockUserAnnonce($mail){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "bloquée" WHERE A_U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
 
+    //[UPDATE] Requête qui débloque une annonce
+    //Utilisation : administration, lorsqu'un utilisateur est débloqué
+    public function unblockUserAnnonce($mail){
+        $query = 'UPDATE '.$this->table.' SET A_etat = "publiée" WHERE A_U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
 }
 ?>

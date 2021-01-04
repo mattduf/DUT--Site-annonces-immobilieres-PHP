@@ -12,7 +12,7 @@ class Uti_Model extends Model
     //[INSERT INTO] Requête qui crée un utilisateur
     //Utilisation : page "Inscription" avec un formulaire de création de compte
 	public function insertUti($mail,$mdp,$pseudo,$nom,$prenom,$isadmin = 0){
-		$query = 'INSERT INTO '.$this->table. ' VALUES ("'.$mail.'","'.$mdp.'","'.$pseudo.'","'.$nom.'","'.$prenom.'",CURRENT_TIMESTAMP,"'.$isadmin.'")';
+		$query = 'INSERT INTO '.$this->table. ' VALUES ("'.$mail.'","'.$mdp.'","'.$pseudo.'","'.$nom.'","'.$prenom.'", \'actif\',CURRENT_TIMESTAMP,"'.$isadmin.'")';
 	    return $this->simpleQuery($query);
 	}
 
@@ -21,6 +21,12 @@ class Uti_Model extends Model
 	public function verifMail($mail){
 	    return $this->asArray()->select('U_mail')->where(['U_mail' => $mail])->first();
 	}
+
+    //[SELECT] Requête qui renvoie l'état'
+    //Utilisation : page "Ajouter-une-annonce"
+    public function verifEtat($mail){
+        return $this->asArray()->select('U_etat')->where(['U_mail' => $mail])->where(['U_etat' => "bloqué"])->first();
+    }
 
     //[SELECT] Requête qui renvoie le pseudo d'un utilisateur
     //Utilisation : page "Inscription", on vérifie que le pseudo n'existe pas
@@ -44,7 +50,7 @@ class Uti_Model extends Model
     //[SELECT] Requête qui renvoie les infos de tous les utilisateurs
     //Utilisation : page "Panneau-Administration" qui liste tous les utilisateurs
     public function getAllUsers(){
-        $query = 'SELECT U_mail,U_pseudo,U_nom,U_prenom,DATE_FORMAT(U_date_creation, \'%d-%m-%Y\') AS "U_date_modifiee" FROM '.$this->table.' ORDER BY U_date_creation DESC';
+        $query = 'SELECT U_mail,U_pseudo,U_nom,U_prenom,U_etat,DATE_FORMAT(U_date_creation, \'%d-%m-%Y\') AS "U_date_modifiee" FROM '.$this->table.' ORDER BY U_date_creation DESC';
         return $this->simpleQuery($query);
     }
 
@@ -71,6 +77,20 @@ class Uti_Model extends Model
     //Utilisation : si le mdp est également changé
     public function UpdateInfoWithMdp($mail,$pseudo,$nom,$prenom,$mdp){
         $query = 'UPDATE '.$this->table .' SET U_pseudo = "'.$pseudo.'", U_nom = "'.$nom.'", U_prenom = "'.$prenom.'", U_mdp = "'.$mdp.'" where U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
+
+    //[UPDATE] Requête qui bloque un compte
+    //Utilisation : administration
+    public function blockUser($mail){
+        $query = 'UPDATE '.$this->table .' SET U_etat = "bloqué" WHERE U_mail = "'.$mail.'"';
+        return $this->simpleQuery($query);
+    }
+
+    //[UPDATE] Requête qui débloque un compte
+    //Utilisation : administration
+    public function unblockUser($mail){
+        $query = 'UPDATE '.$this->table .' SET U_etat = "actif" WHERE U_mail = "'.$mail.'"';
         return $this->simpleQuery($query);
     }
 

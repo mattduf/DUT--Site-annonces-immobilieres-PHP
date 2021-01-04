@@ -21,21 +21,27 @@
 							<th>pseudo</th>
 							<th>nom</th>
 							<th>prénom</th>
+							<th>état</th>
 						</tr>
 					{foreach $utilisateur as $u}
 					<tbody>
-						<tr>
+					{if $u.U_etat eq "bloqué"}
+					<tr style="background-color:rgba(255,0,0,0.5);">
+						{else}
+					<tr>
+						{/if}
 							<td>{$u.U_date_modifiee}</td>
 							<td>{$u.U_mail}</td>
 							<td>{$u.U_pseudo}</td>
 							<td>{$u.U_nom}</td>
 							<td>{$u.U_prenom}</td>
+						<td>{$u.U_etat}</td>
 						</tr>
 					</tbody>
 					{/foreach}
 					<tfoot>
 						<tr>
-							<td colspan="5"><strong><em>{$u@total} occurrence(s).</em></strong></td>
+							<td colspan="6"><strong><em>{$u@total} occurrence(s).</em></strong></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -54,7 +60,11 @@
 						</tr>
 					{foreach $annonce as $a}
 					<tbody>
+					{if $a.A_etat eq "bloquée"}
+						<tr style="background-color:rgba(255,0,0,0.5);">
+					{else}
 						<tr>
+					{/if}
 							<td>{$a.A_date_modifiee}</td>
 							<td>{$a.A_idannonce}</td>
 							<td><a href="Annonce-{$a.A_idannonce}">{$a.A_titre}</a></td>
