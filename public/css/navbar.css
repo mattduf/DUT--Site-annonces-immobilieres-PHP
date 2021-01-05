@@ -30,6 +30,11 @@
 	transition:all 0.2s;
 }
 
+.topnav a:focus {
+	background-color: rgba(167, 167, 167, 0.4);
+	transition:all 0.2s;
+}
+
 /* Liens alignés à droite */
 .topnav-right {
 	float: right;

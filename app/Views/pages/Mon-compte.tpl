@@ -19,7 +19,7 @@
 			<h1 class="h1-custom"><span><i class="fas fa-edit"></i> Modifier mes informations personnelles</span></h1>
 
 			<!-- Formulaire pour modifier les infos du compte -->
-			<form class="pure-form pure-form-aligned formulaire" method="post" name="changeprofil">
+			<form class="pure-form pure-form-aligned formulaire" method="post" name="modifierProfil">
 				<div class="pure-control-group">
 					<label>Mail</label>
 					<input type="text" placeholder="{$mail}" disabled/>
@@ -56,7 +56,7 @@
 			<hr>
 
 			<!-- Formulaire pour supprimer le compte -->
-			<form action="Delete" method="post">
+			<form action="supprimerCompte" method="post">
 				<div id="section-suppr">
 					<button type="button" class="collapsible"><i class="fas fa-trash-alt"></i> Supprimer mon compte</button>
 					<div class="content">

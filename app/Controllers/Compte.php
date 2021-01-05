@@ -6,9 +6,9 @@ use App\Models\Annonce_Model;
 use CodeIgniter\Controller;
 use App\Models\Uti_Model;
 
-class ModifInfoProfil extends Controller
+class Compte extends Controller
 {
-    public function index()
+    public function modifierProfil()
     {
         $session = \Config\Services::session();
         $model = new Uti_Model();
@@ -84,7 +84,7 @@ class ModifInfoProfil extends Controller
 
     }
 
-    public function Delete(){
+    public function supprimerCompte(){
         $session = \Config\Services::session();
         $model = new Uti_Model();
         $modelAnnonce = new Annonce_Model();

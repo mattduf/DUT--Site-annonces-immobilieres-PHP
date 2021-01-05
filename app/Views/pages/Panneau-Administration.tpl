@@ -47,7 +47,7 @@
 				</table>
 			</div>
 
-			<h1 class="h1-custom"><span>Liste des annonces créées sur ImmoAnnonce</span></h1>
+			<h1 class="h1-custom" style="margin-top:40px;"><span>Liste des annonces créées sur ImmoAnnonce</span></h1>
 			<div class="cadre-journaux">
 				<table class="table-journaux">
 					<thead>
@@ -81,7 +81,7 @@
 				</table>
 			</div>
 
-			<h1 class="h1-custom"><span>Nombre d'annonces créées par utilisateur</span></h1>
+			<h1 class="h1-custom" style="margin-top:40px;"><span>Nombre d'annonces créées par utilisateur</span></h1>
 			<div class="cadre-journaux">
 				<table class="table-journaux">
 					<thead>

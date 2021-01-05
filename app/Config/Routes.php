@@ -37,8 +37,8 @@ $routes->post('Connexion', 'AccesMembre::connexion');
 $routes->get('Deconnexion', 'AccesMembre::deconnexion');
 
 //Gestion compte utilisateur
-$routes->post('Mon-compte', 'ModifInfoProfil::index');
-$routes->post('Delete', 'ModifInfoProfil::Delete');
+$routes->post('Mon-compte', 'Compte::modifierProfil');
+$routes->post('supprimerCompte', 'Compte::supprimerCompte');
 
 //Gestion annonces
 $routes->post('Ajouter-une-annonce', 'Annonce::ajouterAnnonce');
