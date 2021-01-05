@@ -108,6 +108,5 @@ class AccesMembre extends Controller
         $session = \Config\Services::session();
         $session->destroy();
         return redirect()->to('/');
-
     }
 }

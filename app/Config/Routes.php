@@ -31,16 +31,10 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-//Affichage
-$routes->get('/', 'Home::views');
-$routes->get('(:any)', 'Home::views/$1');
-$routes->get('Annonce-(:num)', 'Home::affiche/$1');
-
 //Gestion accès espace membre
-$routes->post('Connexion', 'AccesMembre::connexion');
 $routes->post('Inscription', 'AccesMembre::inscription');
+$routes->post('Connexion', 'AccesMembre::connexion');
 $routes->get('Deconnexion', 'AccesMembre::deconnexion');
-
 
 //Gestion compte utilisateur
 $routes->post('Mon-compte', 'ModifInfoProfil::index');
@@ -55,6 +49,11 @@ $routes->get('Supprimer/Annonce-(:num)','Annonce::supprimerAnnonce/$1');
 //Administration
 $routes->post('GestionUtilisateurs', 'Administration::GestionUtilisateurs');
 $routes->post('GestionAnnonces', 'Administration::GestionAnnonces');
+
+//Affichage (à laisser à la fin → important !)
+$routes->get('/', 'Home::views');
+$routes->get('Annonce-(:num)', 'Home::affiche/$1');
+$routes->get('(:any)', 'Home::views/$1');
 
 $routes->setAutoRoute(false);
 
