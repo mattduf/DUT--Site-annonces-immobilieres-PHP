@@ -13,8 +13,6 @@
 	$model = new Annonce_Model();
 	$annonce = $model->getAnnonceAccueil();
 
-
-
 	$photo = $model->getAllphoto();
 	service('SmartyEngine')->assign('photo',$photo);
 

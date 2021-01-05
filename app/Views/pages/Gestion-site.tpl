@@ -17,7 +17,7 @@
 					<form action="GestionUtilisateurs" method="post">
 						<tr>
 							<td><label for="email">Adresse mail du compte sur lequel effectuer l'action&nbsp:</label></td>
-							<td><input type="text" id="email" placeholder="Adresse mail" name="email" required/></td>
+							<td><input type="text" id="email" placeholder="Adresse mail" name="email" onkeydown="return event.key != 'Enter';" required/></td>
 							<td>
 								<button type="submit" name="button" value="modifier" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;">Modifier</button>
 								<button type="submit" name="button" value="supprimer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'utilisateur ? Cela aura pour effet de :&#010- détruire son compte&#010- supprimer ses annonces">Supprimer</button>
@@ -38,10 +38,10 @@
 				<hr/>
 				<ul><li class="liste-gestion">Gérer une annonce <a style="color:black; text-decoration:underline;" href="/Panneau-administration">(voir la liste des annonces)</a></li></ul>
 				<table id="table-gestion">
-					<form action="GestionAnnonces" method="post">
+					<form action="GestionAnnonces" method="post" onkeydown="return event.key != 'Enter';">
 						<tr>
 							<td><label for="idannonce">ID de l'annonce sur laquelle effectuer l'action&nbsp:</label></td>
-							<td><input type="number" id="idannonce" placeholder="ID de l'annonce" name="idannonce" required/></td>
+							<td><input type="number" id="idannonce" placeholder="ID de l'annonce" name="idannonce" onkeydown="return event.key != 'Enter';" required/></td>
 							<td>
 								<button type="submit" name="buttonAnnonce" value="modifierAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;">Modifier</button>
 								<button type="submit" name="buttonAnnonce" value="supprimerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'annonce ?&#010Cela aura pour effet de la supprimer définitivement du site.">Supprimer</button>

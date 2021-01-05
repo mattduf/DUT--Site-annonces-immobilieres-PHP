@@ -105,7 +105,6 @@ class Uti_Model extends Model
 	    $query = 'DELETE FROM t_photo WHERE P_A_idannonce = "'.$id.'"';
 	    return $this->simpleQuery($query);
     }
-    
 
     //TODO A déplacer
     public function deleteMessage($mail){

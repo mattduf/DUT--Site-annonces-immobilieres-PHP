@@ -95,6 +95,7 @@ class Administration extends Controller
     public function GestionAnnonces(){
         $session = \Config\Services::session();
         $modelAnnonce = new Annonce_Model();
+        $modelUti = new Uti_Model();
 
         $idAnnonce = $this->request->getPost('idannonce');
         $selectedbuttonAnnonce = $this->request->getPost('buttonAnnonce');
@@ -113,9 +114,9 @@ class Administration extends Controller
                 if ($selectedbuttonAnnonce === "supprimerAnnonce") //Si on clique sur "Supprimer"
                 {
                     $modelAnnonce->deleteOneAnnonceID($idAnnonce); //Supprime l'annonce
+                    $modelUti->deletePhoto($idAnnonce);
 
                     //TODO mail utilisateur si on supprime une de ses annonces
-                    //TODO supprimer photos associées aussi
 
                     //Message pour informer l'administrateur du succès de l'action
                     $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée.</div>');
@@ -125,9 +126,8 @@ class Administration extends Controller
                 {
                     //TODO modifier une annonce (admin)
 
-                    //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été modifiée.</div>');
-                    return redirect()->to('Gestion-site');
+                    $session->setFlashData("id", $idAnnonce);
+                    return redirect()->to('Supprimer-photos');
                 }
                 else if ($selectedbuttonAnnonce === "bloquerAnnonce") //Si on clique sur "Bloquer"
                 {
@@ -150,6 +150,21 @@ class Administration extends Controller
                     return redirect()->to('Gestion-site');
                 }
             }
+        }
+    }
+
+    public function supprimerPhotos(){
+        $session = \Config\Services::session();
+        $annonceModel = new Annonce_Model();
+
+        if($this->request->getPost('buttondeletephoto')){
+            $idphoto = $this->request->getPost('deletePhotoAdmin[]');
+
+        for ($i=0; $i < sizeof($idphoto) ; $i++) {
+            $annonceModel->deletePhoto($idphoto[$i]);
+        }
+        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+        return redirect()->to('Gestion-site');
         }
     }
 

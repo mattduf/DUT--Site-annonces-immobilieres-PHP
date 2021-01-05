@@ -19,6 +19,9 @@
                     {foreach $photos as $p}
                     <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}"></a></td>
                     {/foreach}
+                    {if $p@total == 0}
+                        <td><img src="../../../images/image-placeholder.jpg"></td>
+                    {/if}
                 </tr>
             </table>
         </div>

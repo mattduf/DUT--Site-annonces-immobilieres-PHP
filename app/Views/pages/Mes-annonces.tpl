@@ -42,6 +42,12 @@
 							</div>
 								{/if}
 						{/foreach}
+						{if $bool eq 0}
+							<div class="annonce-image">
+								<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/image-placeholder.jpg" class="img-responsive"></a>
+							</div>
+						{/if}
+
 						<div class="annonce-description">
 							<span class="description-titre">{$a.A_titre}</span>
 							<span class="description-divers"><i class="fas fa-chart-area"></i> {$a.A_superficie} m²</span>

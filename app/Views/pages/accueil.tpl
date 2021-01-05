@@ -11,23 +11,25 @@
 						<!-- Si l'annonce appartient à l'utilisateur, affiche l'entete -->
 						{if $a.A_U_mail eq $mail}
 							<a id="lien-annonce-uti" href="Gestion/Annonce-{$a.A_idannonce}"><div class="entete-uti"><div id="msg1">Votre annonce <i class="fas fa-info-circle"></i></div><div id="msg2"><i class="fas fa-caret-right"></i> Gérer</div></div></a>
-
 						{/if}
 
 						{foreach $photo as $p}
 						{if $bool eq 0}
-
-								{if $p.P_A_idannonce eq $a.A_idannonce}
-									<!-- Image de l'annonce -->
-									<div class="annonce-image">
-								<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$p.P_nom}" class="img-responsive"></a>
-									</div>
-									{assign "bool" 1}
-
-								{/if}
-					{/if}
-
+							{if $p.P_A_idannonce eq $a.A_idannonce}
+								<!-- Image de l'annonce -->
+								<div class="annonce-image">
+									<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$p.P_nom}" class="img-responsive"></a>
+								</div>
+								{assign "bool" 1}
+							{/if}
+						{/if}
 				{/foreach}
+
+				{if $bool eq 0}
+					<div class="annonce-image">
+						<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/image-placeholder.jpg" class="img-responsive"></a>
+					</div>
+				{/if}
 					<!-- Elements décrivant l'annonce -->
 					<div class="annonce-description">
 						<span class="description-titre">{$a.A_titre}</span>
