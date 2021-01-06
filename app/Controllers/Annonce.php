@@ -92,7 +92,7 @@ class Annonce extends Controller
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
 
         $etat = mysqli_fetch_array($model->getEtatAnnonce($page));
-        if ($etat['A_etat'] == "bloquée") { #TODO check etat annonce accueil consultation aussi
+        if ($etat['A_etat'] == "bloquée") {
             $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Modification impossible car l\'annonce est bloquée. </div>');
             return redirect()->to('/Mes-annonces');
         }elseif(!empty($verifUser)) {
