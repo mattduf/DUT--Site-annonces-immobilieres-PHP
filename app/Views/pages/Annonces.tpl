@@ -35,16 +35,20 @@
 						<option value="T5">T5</option>
 						<option value="T6">T6</option>
 					</select>
+					<br class="br-deux"/>
 
 					<label for="type-chauffage">Type de chauffage</label>
 					<select id="type-chauffage" name="typechauffageselect" style="margin-bottom:2px; height:2.3em;">
 						<option value="">Sélectionner</option>
 						<option value="Collectif">Collectif</option>
 						<option value="Individuel">Individuel</option>
-					</select><br/>
+					</select>
+					<br class="br-un"/>
 
 					<label for="superficie">Superficie</label>
 					<input type="number" min="0" id="superficie" placeholder="Superficie du logement" name="superficie"/>
+					<br class="br-deux"/>
+
 					<label for="loyer-min">Loyer min.</label>
 					<input style="width:50px;" type="number" min="0" id="loyer-min" placeholder="" name="loyer-min"/>
 					<label for="loyer-max">Loyer max.</label>

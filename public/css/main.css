@@ -197,3 +197,16 @@ footer div{
 #myBtn:hover {
 	background-color: lightgrey;
 }
+
+/* Barre de recherche responsive */
+@media (min-width:892px){
+	.br-deux{
+		display:none;
+	}
+}
+
+@media (max-width:891px){
+	.br-un{
+		display: none;
+	}
+}
