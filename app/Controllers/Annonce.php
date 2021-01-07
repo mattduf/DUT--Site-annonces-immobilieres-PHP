@@ -166,20 +166,24 @@ class Annonce extends Controller
             $idphoto = $this->request->getPost('deletePhoto[]');
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));
 
-            if ($nombrePhoto['nbrphoto'] == sizeof($idphoto)){
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer toutes vos photos.</div>');
-                return redirect()->to('');
-            }else{
-                if ($nombrePhoto['nbrphoto']  == 1){
-                    $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer l\'unique photo de l\'annnonce.</div>');
+            if (!empty($idphoto)) {
+                if ($nombrePhoto['nbrphoto'] == sizeof($idphoto)) {
+                    $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer toutes vos photos.</div>');
+                    return redirect()->to('');
+                } else {
+                    if ($nombrePhoto['nbrphoto'] == 1) {
+                        $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer l\'unique photo de l\'annnonce.</div>');
+                        return redirect()->to('');
+                    }
+                    for ($i = 0; $i < sizeof($idphoto); $i++) {
+                        $annonceModel->deletePhoto($idphoto[$i]);
+                    }
+                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
                     return redirect()->to('');
                 }
-                for ($i=0; $i < sizeof($idphoto) ; $i++) {
-                    $annonceModel->deletePhoto($idphoto[$i]);
-                }
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
-                return redirect()->to('');
-            }
+            }else{
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> Vous n\'avez sélectionné aucune photo.</div>');
+                return redirect()->to('');}
         }
         if($this->request->getPost('buttonaddphoto')) {
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));

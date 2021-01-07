@@ -159,12 +159,16 @@ class Administration extends Controller
 
         if($this->request->getPost('buttondeletephoto')){
             $idphoto = $this->request->getPost('deletePhotoAdmin[]');
-
-        for ($i=0; $i < sizeof($idphoto) ; $i++) {
-            $annonceModel->deletePhoto($idphoto[$i]);
+        if (!empty($idphoto)) {
+            for ($i = 0; $i < sizeof($idphoto); $i++) {
+                $annonceModel->deletePhoto($idphoto[$i]);
+            }
+            $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+            return redirect()->to('Gestion-site');
+        }else{
+            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> Vous n\'avez sélectionné aucune photo.</div>');
+            return redirect()->to('');
         }
-        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
-        return redirect()->to('Gestion-site');
         }
     }
 
