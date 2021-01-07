@@ -101,6 +101,8 @@ class Compte extends Controller
             $modelAnnonce->deleteAnnonce($session->get('mail'));
             $model->deleteAccount($session->get('mail'));
 
+            Administration::sendMail($session->get('mail'), "De la part de l'administration d'ImmoAnnonce", "Votre compte sur ImmoAnnonce a bien été supprimé.");
+
             return redirect()->to('Deconnexion');
         }
         else

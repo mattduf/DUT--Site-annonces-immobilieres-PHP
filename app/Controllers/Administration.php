@@ -174,7 +174,7 @@ class Administration extends Controller
             for ($i = 0; $i < sizeof($idphoto); $i++) {
                 $annonceModel->deletePhoto($idphoto[$i]);
             }
-            $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', on était supprimées à la suite d\'une action de l\'administration.');
+            $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', ont été supprimées à la suite d\'une action de l\'administration.');
             $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
             return redirect()->to('Gestion-site');
 
