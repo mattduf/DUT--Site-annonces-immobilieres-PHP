@@ -50,7 +50,7 @@ $routes->get('Supprimer/Annonce-(:num)','Annonce::supprimerAnnonce/$1');
 $routes->post('GestionUtilisateurs', 'Administration::GestionUtilisateurs');
 $routes->post('GestionAnnonces', 'Administration::GestionAnnonces');
 $routes->post('Supprimer-photos', 'Administration::supprimerPhotos');
-
+$routes->post('Modifier-utilisateur', 'Administration::modifierUtilisateur');
 
 //Affichage (à laisser à la fin → important !)
 $routes->get('/', 'Home::views');

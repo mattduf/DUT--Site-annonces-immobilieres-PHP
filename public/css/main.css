@@ -115,7 +115,7 @@ footer div{
 
 /* Style de la barre de recherche */
 #recherche-annonce{
-	width:calc(100% - 10px);
+	width:calc(100% - 20px);
 	margin:0 auto 20px;
 	border-radius:3px;
 	background-color:white;
