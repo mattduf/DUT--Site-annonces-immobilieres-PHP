@@ -11,12 +11,12 @@
         </ul>
     </aside>
     <section>
-        <form class="pure-form pure-form-aligned formulaire" method="post" style="max-width: 1000px; text-align:center;">
+        <form class="pure-form pure-form-aligned formulaire" method="post" style="max-width: 1000px; text-align:center; overflow-x:auto;">
             <table style="text-align:center; margin:0 auto;">
                 <tr>
                     {foreach $photos as $p}
                         <td><input type="checkbox" name="deletePhotoAdmin[]" value="{$p.P_idphoto}"></td>
-                        <td><img src="../../../images/annonces/{$p.P_nom}" height="10%"></td>
+                        <td><img src="../../../images/annonces/{$p.P_nom}" width="100"></td>
                     {/foreach}
                     {if $p@total == 0}
                         <p>Cette annonce ne comporte aucune photo.</p>

@@ -28,7 +28,7 @@
 						<tr>
 							<td colspan="3" style="padding-top:10px;">
 								<label for="corpsmail"><strong>Envoyer un mail</strong></label><br/>
-								<textarea id="corpsmail" name="corpsmail" placeholder="Cors du mail à envoyer" style="width:80%; min-width:400px; max-width:800px; min-height:150px; max-height:500px;"></textarea>
+								<textarea id="corpsmail" name="corpsmail" placeholder="Corps du mail à envoyer" style="width:80%; min-width:400px; max-width:800px; min-height:150px; max-height:500px;"></textarea>
 							</td>
 						</tr>
 							<td colspan="3"><button type="submit" name="button" value="envoyermail" class="pure-button pure-button-primary bouton-gestion" style="background-color:#29ac79; width:200px;">Envoyer l'e-mail</button></td>

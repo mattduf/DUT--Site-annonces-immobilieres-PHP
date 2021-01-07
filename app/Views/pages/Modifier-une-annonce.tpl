@@ -107,12 +107,12 @@
             </form>
             <hr>
             <h2>Photo(s) du logement (5 max.)</h2>
-            <form class="pure-form pure-form-aligned formulaire" method="post" style="max-width: 1000px;">
+            <form class="pure-form pure-form-aligned formulaire" method="post" style="max-width: 1000px; overflow-x:auto;">
                 <table style="margin: 0 auto;">
                     <tr>
                         {foreach $photos as $p}
                             <td><input type="checkbox" name="deletePhoto[]" value="{$p.P_idphoto}"></td>
-                            <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}" height="10%"></a></td>
+                            <td><a href="../../../images/annonces/{$p.P_nom}" target="_blank"><img src="../../../images/annonces/{$p.P_nom}" width="150"></a></td>
                         {/foreach}
                     </tr>
                 </table>
