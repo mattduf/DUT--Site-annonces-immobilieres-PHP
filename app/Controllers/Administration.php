@@ -112,15 +112,15 @@ class Administration extends Controller
             {
                 if ($selectedbuttonAnnonce === "supprimerAnnonce") //Si on clique sur "Supprimer"
                 {
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
                     $modelAnnonce->deleteOneAnnonceID($idAnnonce); //Supprime l'annonce
                     $modelUti->deletePhoto($idAnnonce);
-                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
 
                     //Envoie un mail pour notifier la personne concernée
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été supprimée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée.'.var_dump($emailUti).'</div>');
+                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée </div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbuttonAnnonce === "modifierAnnonce") //Si on clique sur "Modifier"
@@ -162,13 +162,19 @@ class Administration extends Controller
         $session = \Config\Services::session();
         $annonceModel = new Annonce_Model();
 
+
         if($this->request->getPost('buttondeletephoto')){
             $idphoto = $this->request->getPost('deletePhotoAdmin[]');
 
-        if (!empty($idphoto)) {
+            $idAnnonce = $annonceModel->idPhotoToidAnnonce($idphoto);
+            $emailUti = $annonceModel->getMailAnnonce($idAnnonce);
+
+
+            if (!empty($idphoto)) {
             for ($i = 0; $i < sizeof($idphoto); $i++) {
                 $annonceModel->deletePhoto($idphoto[$i]);
             }
+            $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', on était supprimées à la suite d\'une action de l\'administration.');
             $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
             return redirect()->to('Gestion-site');
 

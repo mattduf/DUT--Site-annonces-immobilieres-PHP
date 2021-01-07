@@ -143,6 +143,10 @@ class Annonce_Model extends Model
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
     }
 
+    public function idPhotoToidAnnonce($idphoto){
+        return $this->asArray()->select('P_A_idannonce')->from($this->tablePhoto)->where(['P_idphoto' => $idphoto])->first();
+    }
+
     public function verifIDAnnonce($id){
         return $this->select('A_idannonce')->where(['A_idannonce' => $id])->first();
     }
