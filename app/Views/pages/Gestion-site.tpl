@@ -19,8 +19,8 @@
 							<td><label for="email">Adresse mail du compte sur lequel effectuer l'action&nbsp:</label></td>
 							<td><input type="text" id="email" placeholder="Adresse mail" name="email" onkeydown="return event.key != 'Enter';" required/></td>
 							<td>
-								<button type="submit" name="button" value="modifier" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;">Modifier</button>
-								<button type="submit" name="button" value="supprimer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'utilisateur ? Cela aura pour effet de :&#010- détruire son compte&#010- supprimer ses annonces">Supprimer</button>
+								<button type="submit" name="button" value="modifier" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;"><abbr title="Modifier le nom, le prénom et/ou le pseudo.">Modifier</abbr></button>
+								<button type="submit" name="button" value="supprimer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'utilisateur ? Cela aura pour effet de :&#010- détruire son compte&#010- supprimer ses annonces">Supprimer</abbr></button>
 								<button type="submit" name="button" value="bloquer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#771212;"><abbr title="Bloquer l'utilisateur ? Cela aura pour effet de :&#010- l'empêcher de publier des annonces&#010- bloquer ses annonces et les rendre inaccessibles">Bloquer</abbr></button>
 								<button type="submit" name="button" value="debloquer" class="pure-button pure-button-primary bouton-gestion" style="background-color:#29ac79;"><abbr title="Déloquer l'utilisateur ? Cela aura pour effet de :&#010- l'autoriser à publier des annonces&#010- réafficher ses annonces et les rendre accessibles">Débloquer</abbr></button>
 							</td>
@@ -43,10 +43,10 @@
 							<td><label for="idannonce">ID de l'annonce sur laquelle effectuer l'action&nbsp:</label></td>
 							<td><input type="number" id="idannonce" placeholder="ID de l'annonce" name="idannonce" onkeydown="return event.key != 'Enter';" required/></td>
 							<td>
-								<button type="submit" name="buttonAnnonce" value="modifierAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;">Modifier</button>
-								<button type="submit" name="buttonAnnonce" value="supprimerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'annonce ?&#010Cela aura pour effet de la supprimer définitivement du site.">Supprimer</button>
-								<button type="submit" name="buttonAnnonce" value="bloquerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#771212;"><abbr title="Bloquer l'annonce ?&#010Elle ne pourra pas être consultée par les autres utilisateurs.">Bloquer</button>
-								<button type="submit" name="buttonAnnonce" value="debloquerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#29ac79;"><abbr title="Déloquer l'annonce ?&#010Elle pourra être consultée par les autres utilisateurs.">Débloquer</button>
+								<button type="submit" name="buttonAnnonce" value="modifierAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#cdad3a;"><abbr title="Supprimer les photos de l'annonce.">Modifier</abbr></button>
+								<button type="submit" name="buttonAnnonce" value="supprimerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#c2262b;"><abbr title="Supprimer l'annonce ?&#010Cela aura pour effet de la supprimer définitivement du site.">Supprimer</abbr></button>
+								<button type="submit" name="buttonAnnonce" value="bloquerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#771212;"><abbr title="Bloquer l'annonce ?&#010Elle ne pourra pas être consultée par les autres utilisateurs.">Bloquer</abbr></button>
+								<button type="submit" name="buttonAnnonce" value="debloquerAnnonce" class="pure-button pure-button-primary bouton-gestion" style="background-color:#29ac79;"><abbr title="Déloquer l'annonce ?&#010Elle pourra être consultée par les autres utilisateurs.">Débloquer</abbr></button>
 							</td>
 						</tr>
 					</form>

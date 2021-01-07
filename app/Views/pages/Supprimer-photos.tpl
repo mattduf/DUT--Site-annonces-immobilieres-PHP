@@ -28,7 +28,7 @@
                         </table>
                         <button type="submit" name="buttondeletephoto" value="delete" class="pure-button pure-button-primary btn-enregistrement" style="background-color:#c2262b; margin-top:20px;"><i class="fas fa-trash-alt"></i> Supprimer la/les photo(s) selectionée(s)</button>
                     {/if}
-            <a href="/Gestion-site"><div class="decrease" style="background-color:#c2262b; background-color:rgb(0,120,231); max-width:150px; padding:7px; margin:20px auto 0;"><i class="fas fa-chevron-left"></i> Retour</div></a>
+            <a href="/Gestion-site"><div class="decrease" style="background-color:#c2262b; max-width:150px; padding:7px; margin:20px auto 0;"><i class="fas fa-chevron-left"></i> Retour</div></a>
         </form>
     </section>
 </div>
