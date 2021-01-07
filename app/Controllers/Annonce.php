@@ -88,6 +88,7 @@ class Annonce extends Controller
     public function avantModifierAnnonce ($page = 'Mes-annonces'){
         $session = \Config\Services::session();
         $model = new Annonce_Model();
+        $modelUti = new Uti_model();
 
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
 
@@ -119,8 +120,13 @@ class Annonce extends Controller
 
             echo view('pages/Modifier-une-annonce.php',$data);
 
-            echo view('templates/footer.tpl',$data);
+            if (!empty($session->get('mail'))) {
+                if ($modelUti->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) {
+                    echo view('templates/admin.tpl', $data);
+                }
+            }
 
+            echo view('templates/footer.tpl',$data);
         }else{
             $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
             return redirect()->to('/Mes-annonces');
@@ -219,7 +225,6 @@ class Annonce extends Controller
             }
 
         }
-
         return redirect()->to('');
     }
 

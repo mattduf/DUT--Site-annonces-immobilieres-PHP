@@ -10,4 +10,3 @@ $photos = $model->getPhotos($id);
 service('SmartyEngine')->assign('annonce',$annonce);
 service('SmartyEngine')->assign('photos',$photos);
 echo service('SmartyEngine')->view('../pages/Modifier-une-annonce.tpl');
-?>
