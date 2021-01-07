@@ -50,9 +50,8 @@ class Administration extends Controller
                 }
                 else if ($selectedbutton === "modifier") //Si on clique sur "Modifier"
                 {
-                    //TODO modifier un utilisateur (admin)
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> test modifier.</div>');
-                    return redirect()->to('Gestion-site');
+                    $session->setFlashData("mailUti", $emailUti);
+                    return redirect()->to('Modifier-utilisateur');
                 }
                 else if ($selectedbutton === "bloquer") //Si on clique sur "Bloquer"
                 {
@@ -115,11 +114,13 @@ class Administration extends Controller
                 {
                     $modelAnnonce->deleteOneAnnonceID($idAnnonce); //Supprime l'annonce
                     $modelUti->deletePhoto($idAnnonce);
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
 
-                    //TODO mail utilisateur si on supprime une de ses annonces
+                    //Envoie un mail pour notifier la personne concernée
+                    $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été supprimée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée.</div>');
+                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée.'.var_dump($emailUti).'</div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbuttonAnnonce === "modifierAnnonce") //Si on clique sur "Modifier"
@@ -132,8 +133,10 @@ class Administration extends Controller
                 else if ($selectedbuttonAnnonce === "bloquerAnnonce") //Si on clique sur "Bloquer"
                 {
                     $modelAnnonce->blockAnnonce($idAnnonce); //Change "A_etat" en "bloquée"
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
 
-                    //TODO mail utilisateur si on bloque une de ses annonces
+                    //Envoie un mail pour notifier la personne concernée
+                    $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été bloquée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
                     $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été bloquée.</div>');
@@ -142,8 +145,10 @@ class Administration extends Controller
                 else if ($selectedbuttonAnnonce === "debloquerAnnonce") //Si on clique sur "Débloquer"
                 {
                     $modelAnnonce->unblockAnnonce($idAnnonce); //Change "A_etat" en "publiée"
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
 
-                    //TODO mail utilisateur si on débloque une de ses annonces
+                    //Envoie un mail pour notifier la personne concernée
+                    $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été débloquée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
                     $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été débloquée.</div>');
@@ -160,11 +165,39 @@ class Administration extends Controller
         if($this->request->getPost('buttondeletephoto')){
             $idphoto = $this->request->getPost('deletePhotoAdmin[]');
 
-        for ($i=0; $i < sizeof($idphoto) ; $i++) {
-            $annonceModel->deletePhoto($idphoto[$i]);
+            for ($i=0; $i < sizeof($idphoto) ; $i++) {
+                $annonceModel->deletePhoto($idphoto[$i]);
+            }
+            $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+            return redirect()->to('Gestion-site');
         }
-        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
-        return redirect()->to('Gestion-site');
+    }
+
+    public function modifierUtilisateur(){
+        $session = \Config\Services::session();
+        $modelUti = new Uti_Model();
+        $mail = $this->request->getPost('mail');
+        $nom = $this->request->getPost('name');
+        $prenom = $this->request->getPost('firstname');
+        $pseudo = $this->request->getPost('pseudo');
+
+        $verifPseudo = $modelUti->verifPseudo($pseudo);
+
+        if (!empty($verifPseudo)){
+            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+            return redirect()->to('Gestion-site');
+        }
+        else {
+            $requete = $modelUti->updateInfoWithoutMdp($mail, $pseudo, $nom, $prenom);
+
+            if ($this->request->getMethod() === 'post' && $requete) {
+                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte.</div>');
+                $this->sendMail($mail, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été modifié suite à une action de l'administration.");
+                return redirect()->to('Gestion-site');
+            } else {
+                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> La modification a échoué.</div>');
+                return redirect()->to('Gestion-site');
+            }
         }
     }
 
@@ -176,7 +209,7 @@ class Administration extends Controller
         $email->setTo($emailUti); //Destinataire
 
         $email->setSubject($sujetmail); //Sujet
-        $email->setMessage('<div>Bonjour,</div><br/><p style="width:100%; color:red;">'.$corpsmail.'</p><br/><p>Cordialement,<br/>ImmoAnnonce</p>'); //Corps
+        $email->setMessage('<div>Bonjour,</div><br/><p style="width:100%; color:red;">'.$corpsmail.'</p><br/><p>Bonne continuation,<br/>ImmoAnnonce</p>'); //Corps
 
         $email->send(); //Envoi du mail
     }

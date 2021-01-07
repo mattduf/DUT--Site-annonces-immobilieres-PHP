@@ -83,6 +83,12 @@ class Annonce_Model extends Model
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->orderBy('A_idannonce', 'DESC')->first();
     }
 
+    //[SELECT] Requête qui renvoie le mail de l'utilisateur en fonction de l'id de l'anonce
+    //Utilisée pour envoyer mail à uti si annonce supprimée
+    public function getMailAnnonce($idannonce){
+        return $this->asArray()->select('A_U_mail')->where(['A_idannonce' => $idannonce])->first();
+    }
+
     //[DELETE] Requête qui supprime les annonces d'un utilisateur
     //Utilisation : lorsqu'un utilisateur supprime son compte
     public function deleteAnnonce($mail){

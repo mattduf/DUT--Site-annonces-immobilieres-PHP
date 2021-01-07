@@ -92,6 +92,7 @@ h1{margin:0;}
 #section-image img:hover{
     opacity:0.7;
     transition:opacity 0.3s;
+    cursor:zoom-in;
 }
 
 /* Style de la section des infos */
