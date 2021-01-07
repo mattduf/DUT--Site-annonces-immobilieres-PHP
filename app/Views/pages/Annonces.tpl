@@ -70,13 +70,13 @@
 
 					{foreach $photo as $p}
 						{if $bool eq 0}
-							<!-- Image de l'annonce -->
-							<div class="annonce-image">
 								{if $p.P_A_idannonce eq $a.A_idannonce}
-									<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$p.P_nom}" class="img-responsive"></a>
+									<!-- Image de l'annonce -->
+									<div class="annonce-image">
+										<a href="Annonce-{$a.A_idannonce}"><img src="../../../images/annonces/{$p.P_nom}" class="img-responsive"></a>
+									</div>
 									{assign "bool" 1}
 								{/if}
-							</div>
 						{/if}
 					{/foreach}
 
