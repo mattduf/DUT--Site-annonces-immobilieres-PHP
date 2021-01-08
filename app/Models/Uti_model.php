@@ -1,11 +1,11 @@
 <?php
 namespace App\Models;
-
 use CodeIgniter\Model;
 
-
+//Requêtes concernant les utilisateurs
 class Uti_Model extends Model
 {
+    //Variables contenant le nom des tables de la BDD
 	protected $table = 't_utilisateur';
     protected $message = 't_message';
 
@@ -22,7 +22,7 @@ class Uti_Model extends Model
 	    return $this->asArray()->select('U_mail')->where(['U_mail' => $mail])->first();
 	}
 
-    //[SELECT] Requête qui renvoie l'état'
+    //[SELECT] Requête qui renvoie l'état de l'utilisateur
     //Utilisation : page "Ajouter-une-annonce"
     public function verifEtat($mail){
         return $this->asArray()->select('U_etat')->where(['U_mail' => $mail])->where(['U_etat' => "bloqué"])->first();
@@ -116,4 +116,3 @@ class Uti_Model extends Model
         //$this->delete();
     }
 }
-?>

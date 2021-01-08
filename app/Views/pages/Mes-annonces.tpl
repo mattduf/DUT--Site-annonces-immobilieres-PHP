@@ -59,13 +59,11 @@
 					</div>
 					{/foreach}
 					</div>
-			<hr>
+					<hr>
 				<div id="section-suppr">
 					<a href="/Ajouter-une-annonce"><button type="button" class="collapsible"><i class="far fa-plus-square"></i> Ajouter une annonce</button></a>
 					
 				</div>
 			</div>
-
-			
 		</section>
 	</div>
