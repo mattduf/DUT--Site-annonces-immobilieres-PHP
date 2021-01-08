@@ -6,4 +6,3 @@
 	else{
 		echo service('SmartyEngine')->view('../pages/Connexion.tpl');
 	}
-?>

@@ -10,4 +10,3 @@
         service('SmartyEngine')->assign('prenom',$_SESSION['prenom']);
 		echo service('SmartyEngine')->view('../pages/Ajouter-une-annonce.tpl');
 	}
-?>

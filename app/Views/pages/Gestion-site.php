@@ -19,4 +19,3 @@
         service('SmartyEngine')->assign('prenom',$_SESSION['prenom']);
 		echo service('SmartyEngine')->view('../pages/Gestion-site.tpl');
 	}
-?>
