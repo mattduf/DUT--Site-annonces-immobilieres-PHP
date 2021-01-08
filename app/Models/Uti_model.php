@@ -101,12 +101,14 @@ class Uti_Model extends Model
         $this->delete();
     }
 
+    //[DELETE] Requête qui supprime une photo par id donné
+    //Utilisation : Gestion d'une annonce / suppression photo par admin
     public function deletePhoto($id){
 	    $query = 'DELETE FROM t_photo WHERE P_A_idannonce = "'.$id.'"';
 	    return $this->simpleQuery($query);
     }
 
-    //TODO A déplacer
+    //TODO deleteMessage
     public function deleteMessage($mail){
 	    $query = 'DELETE FROM '.$this->message.' WHERE M_U_mail = "'.$mail.'"';
         return $this->simpleQuery($query);

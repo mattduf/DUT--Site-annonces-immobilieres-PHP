@@ -26,11 +26,14 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
 	}
 
+    //[SELECT] Requête qui renvoie l'etat d'une annonce
+    //Utilisation : Utile pour savoir si l'annonce est bloquée ou en brouillon
     public function getEtatAnnonce($idannonce){
 	    $query = 'SELECT A_etat FROM '.$this->table.' WHERE A_idannonce = '.$idannonce;
         return $this->simpleQuery($query);
     }
 
+    //[SELECT] Requête qui toute les photos
     public function getAllphoto(){
         $query = 'SELECT P_nom,P_A_idannonce FROM '.$this->tablePhoto;
         return $this->simpleQuery($query);
@@ -139,14 +142,20 @@ class Annonce_Model extends Model
         return $this->simpleQuery($query);
     }
 
+    //[SELECT] Requête qui renvoie l'id de l'annonce si elle appartient bien à l'utilisateur
+    //Utilisation : page d'accueil qui liste les annonce de l'utilisateur
     public function verifAnnonce($mail,$id){
         return $this->asArray()->select('A_idannonce')->where(['A_U_mail' => $mail])->where(['A_idannonce' => $id])->first();
     }
 
+    //[SELECT] Requête qui renvoie idAnnonce à partir de l'id de la photo
+    //Utilisation : suppresion photo par un administrateur
     public function idPhotoToidAnnonce($idphoto){
         return $this->asArray()->select('P_A_idannonce')->from($this->tablePhoto)->where(['P_idphoto' => $idphoto])->first();
     }
 
+    //[SELECT] Requête qui renvoie l'id si l'annonce existe
+    //Utilisation : page administrateur pour vérifier que l'admin a rentré un id existant
     public function verifIDAnnonce($id){
         return $this->select('A_idannonce')->where(['A_idannonce' => $id])->first();
     }
