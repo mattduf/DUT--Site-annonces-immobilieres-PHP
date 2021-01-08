@@ -8,41 +8,41 @@ use CodeIgniter\Session\Session;
 
 class Annonce extends Controller
 {
+    //Ajouter une annonce
     public function ajouterAnnonce()
     {
         $session = \Config\Services::session();
         $model = new Annonce_Model();
         $modelUti = new Uti_Model();
+        $mail = $session->get('mail');
 
-        $mail = $session->get('mail'); //a voir
+        //Récupération des données du formulaire
         $titre = $this->request->getPost('title');
         $coutlocation = $this->request->getPost('coutlocation');
         $coutcharges = $this->request->getPost('coutcharges');
         $type = $this->request->getPost('typeselect');
         $superficie = $this->request->getPost('superficie');
         $typechauffage = $this->request->getPost('typechauffageselect');
-        $selectedbutton = $this->request->getPost('button');
-        if($typechauffage === "Collectif")
-        {
-            $modeenergie = '4';
-        }
-        else
-        {
-            $modeenergie = $this->request->getPost('modeenergieselect');
-        }
+
+        //Traitement type de chauffage
+        if($typechauffage === "Collectif") $modeenergie = '4'; //Si chauffage collectif, énergie : '4' càd non renseigné
+        else $modeenergie = $this->request->getPost('modeenergieselect');
 
         $adresse = $this->request->getPost('adresse');
         $ville = $this->request->getPost('ville');
         $region = $this->request->getPost('region');
         $codepostal = $this->request->getPost('codepostal');
         $description = $this->request->getPost('description');
-        $dossier = ROOTPATH."public/images/annonces/";
-        $verifEtat = $modelUti->verifEtat($session->get('mail'));
+        $selectedbutton = $this->request->getPost('button');
+        $dossier = ROOTPATH."public/images/annonces/"; //Fichier de destination pour les images
+        $verifEtat = $modelUti->verifEtat($session->get('mail')); //Requête qui renvoie l'état de l'utilisateur s'il est bloqué
 
+        //Si l'utilisateur n'est pas bloqué
         if(empty($verifEtat)) {
+            //Si l'utilisateur choisit de publier directement l'annonce
             if ($selectedbutton === "publiée") {
                 $insert = $model->insertAnnonce($mail, $titre, $coutlocation, $coutcharges, $type, $superficie, $typechauffage, $modeenergie, $adresse, $ville, $region, $codepostal, $description, "publiée");
-            } else {
+            } else { //Sinon l'annonce est mise en brouillon
                 $insert = $model->insertAnnonce($mail, $titre, $coutlocation, $coutcharges, $type, $superficie, $typechauffage, $modeenergie, $adresse, $ville, $region, $codepostal, $description, "brouillon");
             }
 
@@ -52,11 +52,10 @@ class Annonce extends Controller
                 ${"image" . $i} = 'image' . $i;
                 $idAnnonce = $model->getLastAnnonce($mail);
 
-                if (!empty(${"fichier" . $i})) {
-                    $this->uploadImage(${"image" . $i}, $dossier, $idAnnonce, $i);
-                }
+                if (!empty(${"fichier" . $i})) $this->uploadImage(${"image" . $i}, $dossier, $idAnnonce, $i);
             }
 
+            //Si la requête a été exécutée
             if ($this->request->getMethod() === 'post' && $insert) {
                 $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
                 return redirect()->to('Mes-annonces');
@@ -70,33 +69,34 @@ class Annonce extends Controller
         }
     }
 
+    //Méthode pour enregistrer les images de l'annonce
     public function uploadImage($image, $dossier, $idAnnonce, $i){
         $model = new Annonce_Model();
         $temp = explode(".", $_FILES[$image]["name"]);
         $newfilename = $i . '-' . current($temp) . '-' . current($idAnnonce) . '.' . end($temp);
 
-        if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-        {
+        //Si l'image a bien été enregistrée
+        if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename))
             $model->insertImageAnnonce($newfilename,current($idAnnonce));
-        }
-        else //Sinon (la fonction renvoie FALSE).
-        {
+        else
             echo 'Echec de l\'upload !';
-        }
     }
 
+    //Méthode intervenant avant le processus de modification d'une annonce
     public function avantModifierAnnonce ($page = 'Mes-annonces'){
         $session = \Config\Services::session();
         $model = new Annonce_Model();
         $modelUti = new Uti_Model();
 
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
+        $etat = mysqli_fetch_array($model->getEtatAnnonce($page)); //Renvoie l'état de l'annonce
 
-        $etat = mysqli_fetch_array($model->getEtatAnnonce($page));
+        //Empêche la modification si l'annonce est bloquée
         if ($etat['A_etat'] == "bloquée") {
             $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Modification impossible car l\'annonce est bloquée. </div>');
             return redirect()->to('/Mes-annonces');
-        }elseif(!empty($verifUser)) {
+        }
+        else if(!empty($verifUser)) {
             if (!empty($session->get('mail'))){
                 $data = ['mail' => $session->get('mail'),
                     'pseudo' => $session->get('pseudo'),
@@ -107,23 +107,17 @@ class Annonce extends Controller
             $data['title'] = ucfirst($page);
             echo view('templates/header.tpl',$data);
 
-            if (!empty($session->get('mail'))){
-                echo view('templates/navbar-connected.tpl',$data);
-            }else {
-                echo view('templates/navbar.tpl',$data);
-            }
-            if (!empty($session->getFlashdata('warning'))){
-                echo $session->getFlashdata('warning');
-            }
+            if (!empty($session->get('mail'))) echo view('templates/navbar-connected.tpl',$data);
+            else echo view('templates/navbar.tpl',$data);
+
+            if (!empty($session->getFlashdata('warning'))) echo $session->getFlashdata('warning');
 
             $session->setFlashdata("id",$page);
 
             echo view('pages/Modifier-une-annonce.php',$data);
 
             if (!empty($session->get('mail'))) {
-                if ($modelUti->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) {
-                    echo view('templates/admin.tpl', $data);
-                }
+                if ($modelUti->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) echo view('templates/admin.tpl', $data);
             }
 
             echo view('templates/footer.tpl',$data);
@@ -134,15 +128,17 @@ class Annonce extends Controller
 
     }
 
+    //Méthode pour modifier une annonce
     public function modifierAnnonce()
     {
         $session = \Config\Services::session();
         $annonceModel = new Annonce_Model();
 
-        $id = $session->getFlashdata('id');
+        $id = $session->getFlashdata('id'); //Récupère l'id de l'annonce
 
+        //Si on clique sur modifier
         if ($this->request->getPost('button')) {
-            //Variable getPost qui récupère les saisi dans le formulaire
+            //Récupère les données du formulaire
             $titre = $this->request->getPost('title');
             $coutlocation = $this->request->getPost('coutlocation');
             $coutcharges = $this->request->getPost('coutcharges');
@@ -157,8 +153,10 @@ class Annonce extends Controller
             $description = $this->request->getPost('description');
             $etat = $this->request->getPost('etat');
 
-
+            //Exécution de la requête
             $updateAnnonce = $annonceModel->updateAnnonce($id, $titre, $coutlocation, $coutcharges, $type, $superficie, $typeChauffage, $modeEnergie, $adresse, $ville, $region, $codepostal, $description, $etat);
+
+            //Si la requête a bien été exécutée
             if ($this->request->getMethod() === 'post' && $updateAnnonce) {
                 $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
                 return redirect()->to('/Mes-annonces');
@@ -168,6 +166,8 @@ class Annonce extends Controller
             }
 
         }
+
+        //Si on clique sur supprimer les photos
         if($this->request->getPost('buttondeletephoto')){
             $idphoto = $this->request->getPost('deletePhoto[]');
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));
@@ -191,6 +191,8 @@ class Annonce extends Controller
                 $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez sélectionné aucune photo.</div>');
                 return redirect()->to('');}
         }
+
+        //Si on clique sur Ajouter une photo
         if($this->request->getPost('buttonaddphoto')) {
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));
             //$posPhoto = $annonceModel->getPosPhotos($id);
@@ -223,11 +225,11 @@ class Annonce extends Controller
                     return redirect()->to('');
                 }
             }
-
         }
         return redirect()->to('');
     }
 
+    //Méthode pour supprimer une annonce
     public function supprimerAnnonce($id){
         $session = \Config\Services::session();
         $model = new Annonce_Model();

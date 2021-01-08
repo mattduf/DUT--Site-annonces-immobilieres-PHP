@@ -14,10 +14,11 @@ class Administration extends Controller
         $modelUti = new Uti_Model();
         $modelAnnonce = new Annonce_Model();
 
+        //Récupération des données du formulaire
         $emailUti = $this->request->getPost('email');
+        $verifMail = $modelUti->verifMail($emailUti);
         $selectedbutton = $this->request->getPost('button');
         $corpsmail = $this->request->getPost('corpsmail');
-        $verifMail = $modelUti->verifMail($emailUti);
 
         //Si on clique sur l'un des boutons dédiés à la gestion d'un utilisateur
         if(isset($selectedbutton))
@@ -96,6 +97,7 @@ class Administration extends Controller
         $modelAnnonce = new Annonce_Model();
         $modelUti = new Uti_Model();
 
+        //Récupération des données du formulaire
         $idAnnonce = $this->request->getPost('idannonce');
         $selectedbuttonAnnonce = $this->request->getPost('buttonAnnonce');
         $verifID = $modelAnnonce->verifIDAnnonce($idAnnonce);
@@ -125,15 +127,13 @@ class Administration extends Controller
                 }
                 else if ($selectedbuttonAnnonce === "modifierAnnonce") //Si on clique sur "Modifier"
                 {
-                    //TODO modifier une annonce (admin)
-
                     $session->setFlashData("id", $idAnnonce);
                     return redirect()->to('Supprimer-photos');
                 }
                 else if ($selectedbuttonAnnonce === "bloquerAnnonce") //Si on clique sur "Bloquer"
                 {
                     $modelAnnonce->blockAnnonce($idAnnonce); //Change "A_etat" en "bloquée"
-                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce); //Récupère le mail enregistré pour l'annonce
 
                     //Envoie un mail pour notifier la personne concernée
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été bloquée suite à une action de l'administration.");
@@ -145,7 +145,7 @@ class Administration extends Controller
                 else if ($selectedbuttonAnnonce === "debloquerAnnonce") //Si on clique sur "Débloquer"
                 {
                     $modelAnnonce->unblockAnnonce($idAnnonce); //Change "A_etat" en "publiée"
-                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce);
+                    $emailUti = $modelAnnonce->getMailAnnonce($idAnnonce); //Récupère le mail enregistré pour l'annonce
 
                     //Envoie un mail pour notifier la personne concernée
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été débloquée suite à une action de l'administration.");
@@ -158,50 +158,56 @@ class Administration extends Controller
         }
     }
 
+    //Supprimer les photos d'une annonce en tant qu'administrateur
     public function supprimerPhotos(){
         $session = \Config\Services::session();
         $annonceModel = new Annonce_Model();
 
-
+        //Si on clique sur le bouton supprimer
         if($this->request->getPost('buttondeletephoto')){
             $idphoto = $this->request->getPost('deletePhotoAdmin[]');
-
             $idAnnonce = $annonceModel->idPhotoToidAnnonce($idphoto);
             $emailUti = $annonceModel->getMailAnnonce($idAnnonce);
 
-
+            //Suppression des photos
             if (!empty($idphoto)) {
-            for ($i = 0; $i < sizeof($idphoto); $i++) {
-                $annonceModel->deletePhoto($idphoto[$i]);
-            }
-            $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', ont été supprimées à la suite d\'une action de l\'administration.');
-            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
-            return redirect()->to('Gestion-site');
+                for ($i = 0; $i < sizeof($idphoto); $i++) $annonceModel->deletePhoto($idphoto[$i]);
 
-        }else{
-            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez sélectionné aucune photo.</div>');
-            return redirect()->to('');
-        }
+                $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', ont été supprimées à la suite d\'une action de l\'administration.');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+                return redirect()->to('Gestion-site');
+            }
+            else
+            {
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez sélectionné aucune photo.</div>');
+                return redirect()->to('');
+            }
         }
     }
 
+    //Modifier un utilisateur en tant qu'administrateur
     public function modifierUtilisateur(){
         $session = \Config\Services::session();
         $modelUti = new Uti_Model();
+
+        //Récupération des données du formulaire
         $mail = $this->request->getPost('mail');
         $nom = $this->request->getPost('name');
         $prenom = $this->request->getPost('firstname');
         $pseudo = $this->request->getPost('pseudo');
 
-        $verifPseudo = $modelUti->verifPseudo($pseudo);
+        $verifPseudo = $modelUti->verifPseudo($pseudo); //Vérifie la disponibilité du pseudo
 
+        //Si le pseudo existe déjà
         if (!empty($verifPseudo)){
             $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
             return redirect()->to('Gestion-site');
         }
         else {
+            //Sinon mise à jour de la BDD
             $requete = $modelUti->updateInfoWithoutMdp($mail, $pseudo, $nom, $prenom);
 
+            //Si la requête a été exécutée
             if ($this->request->getMethod() === 'post' && $requete) {
                 $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte.</div>');
                 $this->sendMail($mail, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été modifié suite à une action de l'administration.");
@@ -219,10 +225,8 @@ class Administration extends Controller
 
         $email->setFrom('fr.immoannonce@gmail.com', 'Immo Annonce'); //Expéditeur
         $email->setTo($emailUti); //Destinataire
-
         $email->setSubject($sujetmail); //Sujet
         $email->setMessage('<div>Bonjour,</div><br/><p style="width:100%; color:red;">'.$corpsmail.'</p><br/><p>Bonne continuation,<br/>ImmoAnnonce</p>'); //Corps
-
         $email->send(); //Envoi du mail
     }
 }

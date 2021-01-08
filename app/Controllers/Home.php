@@ -3,11 +3,13 @@ use App\Models\Uti_Model;
 
 class Home extends BaseController
 {
-	public function index()
+	//Accueil
+    public function index()
 	{
 		return view('Accueil');
 	}
 
+	//Méthode organisant la structure d'une page
 	public function views($page = 'Accueil'){
         $session = \Config\Services::session();
         $model = new Uti_model();
@@ -17,6 +19,8 @@ class Home extends BaseController
 	        // Whoops, we don't have a page for that!
 	        throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
 	    }
+
+		//Récupère les informations de la session
 		if (!empty($session->get('mail'))){
             $data = ['mail' => $session->get('mail'),
                 'pseudo' => $session->get('pseudo'),
@@ -25,9 +29,12 @@ class Home extends BaseController
             ];
         }
         $data['title'] = ucfirst($page);
+
+		//Affiche le header du fichier html
 	    echo view('templates/header.tpl',$data);
 
-		if (!empty($session->get('mail'))){
+		//Affiche la navbar "connectée" si l'utilisateur est connecté
+	    if (!empty($session->get('mail'))){
 		    echo view('templates/navbar-connected.tpl',$data);
         }else {
             echo view('templates/navbar.tpl',$data);
@@ -36,18 +43,23 @@ class Home extends BaseController
 	    if (!empty($session->getFlashdata('warning'))){
 	        echo $session->getFlashdata('warning');
         }
+
+	    //Affiche le fichier PHP
 	    echo view('pages/'.$page.'.php',$data);
 
-        if (!empty($session->get('mail'))) {
+        //Affiche le bouton pour accéder au panneau admin si l'utilisateur connecté est un admin
+	    if (!empty($session->get('mail'))) {
             if ($model->getIsAdmin($_SESSION['mail'])['U_isAdmin'] == 1) {
                 echo view('templates/admin.tpl', $data);
             }
         }
 
+	    //Affiche le footer
 	    echo view('templates/footer.tpl',$data);
 	}
 
-    public function affiche($page = 'Annonces'){
+    //Méthode pour la structure des pages des annonces individuelles
+	public function affiche($page = 'Annonces'){
         $session = \Config\Services::session();
         $model = new Uti_model();
 
