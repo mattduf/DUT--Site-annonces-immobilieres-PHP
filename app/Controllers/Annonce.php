@@ -88,7 +88,7 @@ class Annonce extends Controller
     public function avantModifierAnnonce ($page = 'Mes-annonces'){
         $session = \Config\Services::session();
         $model = new Annonce_Model();
-        $modelUti = new Uti_model();
+        $modelUti = new Uti_Model();
 
         $verifUser =  $model->verifAnnonce($session->get('mail'),$page);
 

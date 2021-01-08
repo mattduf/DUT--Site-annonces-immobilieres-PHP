@@ -3,8 +3,8 @@
 
     use App\Models\Uti_Model;
     use App\Models\Annonce_model;
-    $model = new Annonce_model();
-    $modelUti = new Uti_model();
+    $model = new Annonce_Model();
+    $modelUti = new Uti_Model();
 
     if(!isset($_SESSION['mail'])){
         header('Location:Connexion');

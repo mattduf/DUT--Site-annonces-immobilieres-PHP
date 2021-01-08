@@ -5,10 +5,10 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return view('accueil');
+		return view('Accueil');
 	}
 
-	public function views($page = 'accueil'){
+	public function views($page = 'Accueil'){
         $session = \Config\Services::session();
         $model = new Uti_model();
 
