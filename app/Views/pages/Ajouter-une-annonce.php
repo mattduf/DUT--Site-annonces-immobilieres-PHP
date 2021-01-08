@@ -1,4 +1,5 @@
 <?php
+    //Si l'utilisateur n'est pas connecté le renvoie automatiquement sur la page de connexion
 	if(!isset($_SESSION['mail'])){
 		header('Location:Connexion');
 		exit;
