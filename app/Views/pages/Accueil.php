@@ -18,4 +18,4 @@
 
     service('SmartyEngine')->assign('bool',0);
 	service('SmartyEngine')->assign('annonce',$annonce);
-	echo service('SmartyEngine')->view('../pages/Accueil.tpl');
+	echo service('SmartyEngine')->view('../pages/accueil.tpl');

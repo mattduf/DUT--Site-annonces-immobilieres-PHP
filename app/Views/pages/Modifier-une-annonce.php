@@ -1,8 +1,8 @@
 <?php
 $session = \Config\Services::session();
 
-use App\Models\Annonce_model;
-$model = new Annonce_model();
+use App\Models\Annonce_Model;
+$model = new Annonce_Model();
 $id= $session->getFlashData("id");
 $annonce = $model->getAnnonceEntiere($id);
 $photos = $model->getPhotos($id);

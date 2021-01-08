@@ -2,7 +2,7 @@
     use App\Models\Uti_Model;
     use App\Models\Annonce_Model;
 
-    $model = new Uti_model();
+    $model = new Uti_Model();
     $session = \Config\Services::session();
 	if(!isset($_SESSION['mail'])){
 		header('Location:Connexion');

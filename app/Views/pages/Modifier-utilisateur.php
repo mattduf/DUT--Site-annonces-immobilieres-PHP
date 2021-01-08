@@ -2,7 +2,7 @@
     $session = \Config\Services::session();
 
     use App\Models\Uti_Model;
-    $modelUti = new Uti_model();
+    $modelUti = new Uti_Model();
 
     if(!isset($_SESSION['mail'])){
         header('Location:Connexion');
