@@ -11,7 +11,7 @@
         exit;
     }elseif ( $modelUti->getIsAdmin($_SESSION['mail'])['U_isAdmin'] != 1){
         header('Location:/');
-        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez pas la permission.</div>');
+        $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez pas la permission.</div>');
         exit;
     }
     else {

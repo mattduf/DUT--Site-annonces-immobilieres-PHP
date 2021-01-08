@@ -24,7 +24,7 @@ class AccesMembre extends Controller
             $verifMail = $model->verifMail($mail);
 
             if (!empty($verifPseudo)){
-                $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+                $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
             }
             else{
                 if (empty($verifMail)){
@@ -33,20 +33,20 @@ class AccesMembre extends Controller
                     if ($this->request->getMethod() === 'post'&& $insert){
                         Administration::sendMail($mail, "De la part de l'administration d'ImmoAnnonce", "La création de votre compte sur ImmoAnnonce a réussi, bienvenue !");
 
-                        $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Inscription réussie !</div>');
+                        $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Inscription réussie !</div>');
                         return redirect()->to('Connexion');
                     }
                     else{
-                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'inscription a échoué.</div>');
+                        $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'inscription a échoué.</div>');
                     }
                 }
                 else{
-                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Cette adresse mail existe déjà.</div>');
+                    $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Cette adresse mail existe déjà.</div>');
                 }
             }
         }
         else{
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les mots de passe saisis ne correspondent pas.</div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les mots de passe saisis ne correspondent pas.</div>');
         }
 
         return redirect()->to('Inscription');
@@ -85,11 +85,11 @@ class AccesMembre extends Controller
                 'nom' => $session->get('nom'),
                 'prenom' => $session->get('prenom')
             ];
-            $session->setFlashdata('warning','<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Connexion réussie !</div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Connexion réussie !</div>');
         }
         else
         {
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Adresse mail ou mot de passe invalide.</div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Adresse mail ou mot de passe invalide.</div>');
         }
 
         $data['title'] = ucfirst('Connexion');

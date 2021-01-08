@@ -58,14 +58,14 @@ class Annonce extends Controller
             }
 
             if ($this->request->getMethod() === 'post' && $insert) {
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été ajoutée !</div>');
                 return redirect()->to('Mes-annonces');
             } else {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'annonce a échoué.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'annonce a échoué.</div>');
             }
         }
         else{
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous êtes bloqué.</div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous êtes bloqué.</div>');
             return redirect()->to('Mes-annonces');
         }
     }
@@ -94,7 +94,7 @@ class Annonce extends Controller
 
         $etat = mysqli_fetch_array($model->getEtatAnnonce($page));
         if ($etat['A_etat'] == "bloquée") {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Modification impossible car l\'annonce est bloquée. </div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Modification impossible car l\'annonce est bloquée. </div>');
             return redirect()->to('/Mes-annonces');
         }elseif(!empty($verifUser)) {
             if (!empty($session->get('mail'))){
@@ -128,7 +128,7 @@ class Annonce extends Controller
 
             echo view('templates/footer.tpl',$data);
         }else{
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
             return redirect()->to('/Mes-annonces');
         }
 
@@ -160,10 +160,10 @@ class Annonce extends Controller
 
             $updateAnnonce = $annonceModel->updateAnnonce($id, $titre, $coutlocation, $coutcharges, $type, $superficie, $typeChauffage, $modeEnergie, $adresse, $ville, $region, $codepostal, $description, $etat);
             if ($this->request->getMethod() === 'post' && $updateAnnonce) {
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
                 return redirect()->to('/Mes-annonces');
             } else {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
                 return redirect()->to('/Mes-annonces');
             }
 
@@ -174,28 +174,28 @@ class Annonce extends Controller
 
             if (!empty($idphoto)) {
                 if ($nombrePhoto['nbrphoto'] == sizeof($idphoto)) {
-                    $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer toutes vos photos.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer toutes vos photos.</div>');
                     return redirect()->to('');
                 } else {
                     if ($nombrePhoto['nbrphoto'] == 1) {
-                        $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer l\'unique photo de l\'annnonce.</div>');
+                        $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer l\'unique photo de l\'annnonce.</div>');
                         return redirect()->to('');
                     }
                     for ($i = 0; $i < sizeof($idphoto); $i++) {
                         $annonceModel->deletePhoto($idphoto[$i]);
                     }
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
                     return redirect()->to('');
                 }
             }else{
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> Vous n\'avez sélectionné aucune photo.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez sélectionné aucune photo.</div>');
                 return redirect()->to('');}
         }
         if($this->request->getPost('buttonaddphoto')) {
             $nombrePhoto = mysqli_fetch_array($annonceModel->getHowManyPhotos($id));
             //$posPhoto = $annonceModel->getPosPhotos($id);
             if ($nombrePhoto['nbrphoto'] >= 5){
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas ajouter plus de photos à cette annonce (maximum 5).</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas ajouter plus de photos à cette annonce (maximum 5).</div>');
                 return redirect()->to('');
             }else{
                 $fichier = basename($_FILES["image"]["name"]);
@@ -211,15 +211,15 @@ class Annonce extends Controller
                     if(move_uploaded_file($_FILES[$image]['tmp_name'], $dossier . $newfilename)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                     {
                         $annonceModel->insertImageAnnonce($newfilename,$id);
-                        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'image a bien été ajoutée.</div>');
+                        $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'image a bien été ajoutée.</div>');
                     }
                     else //Sinon (la fonction renvoie FALSE).
                     {
-                        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'image a échoué.</div>');
+                        $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'image a échoué.</div>');
                         return redirect()->to('');
                     }
                 }else{
-                    $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'image a échoué.</div>');
+                    $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ajout de l\'image a échoué.</div>');
                     return redirect()->to('');
                 }
             }
@@ -238,11 +238,11 @@ class Annonce extends Controller
 
             $utimodel->deletePhoto($id);
             $model->deleteOneAnnonce($session->get('mail'), $id);
-            $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée !</div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée !</div>');
             //TODO delete message
             return redirect()->to('/Mes-annonces');
         }else{
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
             return redirect()->to('/Mes-annonces');
         }
     }

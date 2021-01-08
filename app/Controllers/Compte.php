@@ -32,7 +32,7 @@ class Compte extends Controller
             } else {
                 $verifPseudo = $model->verifPseudo($pseudo);
                 if (!empty($verifPseudo)) {
-                    $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
                     return redirect()->to('Mon-compte');
                 }
             }
@@ -52,12 +52,12 @@ class Compte extends Controller
                     $session->set($newdata);
 
                     if ($this->request->getMethod() === 'post' && $updateWithMdp) {
-                        $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
+                        $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
                     } else {
-                        $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
+                        $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
                     }
                 } else {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les deux mots de passe ne sont pas identiques.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Les deux mots de passe ne sont pas identiques.</div>');
                 }
         } else {
             $updateUtiWithoutMdp = $model->UpdateInfoWithoutMdp($session->get('mail'), $pseudo, $nom, $prenom);
@@ -71,14 +71,14 @@ class Compte extends Controller
 
                 $session->set($newdata);
             if ($this->request->getMethod() === 'post' && $updateUtiWithoutMdp) {
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte !</div>');
 
             } else {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification des informations a échoué.</div>');
             }
         }
     } else {
-        $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ancien mot de passe est incorrect.</div>');
+        $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'ancien mot de passe est incorrect.</div>');
         }
         return redirect()->to('Mon-compte');
 
@@ -93,7 +93,7 @@ class Compte extends Controller
         if(isset($check)) {
             if($model->getIsAdmin($session->get('mail'))['U_isAdmin'] == 1)
             {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer un compte administrateur.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas supprimer un compte administrateur.</div>');
                 return redirect()->to('Mon-compte');
             }
 
@@ -107,7 +107,7 @@ class Compte extends Controller
         }
         else
         {
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppression.</div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous devez cocher la case pour confirmer la suppression.</div>');
             return redirect()->to('Mon-compte');
         }
     }

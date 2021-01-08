@@ -24,12 +24,12 @@ class Administration extends Controller
         {
             if (empty($verifMail)) //Message d'erreur si l'adresse mail saisie n'existe pas
             {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'adresse mail n\'existe pas.</div>');
                 return redirect()->to('Gestion-site');
             }
             else if ($modelUti->getIsAdmin($emailUti)['U_isAdmin'] == 1) //Message d'erreur s'il s'agit d'un compte administrateur
             {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas effectuer une action sur un compte administrateur.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous ne pouvez pas effectuer une action sur un compte administrateur.</div>');
                 return redirect()->to('Gestion-site');
             }
             else
@@ -45,7 +45,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été supprimé suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le compte a bien été supprimé.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le compte a bien été supprimé.</div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbutton === "modifier") //Si on clique sur "Modifier"
@@ -62,7 +62,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été bloqué suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été bloqués.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été bloqués.</div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbutton === "debloquer") //Si on clique sur "Débloquer"
@@ -74,7 +74,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été débloqué suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été débloqués.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'utilisateur et ses annonces ont été débloqués.</div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbutton === "envoyermail")
@@ -83,7 +83,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "De la part de l'administration d'ImmoAnnonce", $corpsmail);
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le mail a bien été envoyé.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Le mail a bien été envoyé.</div>');
                     return redirect()->to('Gestion-site');
                 }
             }
@@ -105,7 +105,7 @@ class Administration extends Controller
         {
             if (empty($verifID)) //Message d'erreur si l'annonce n'existe pas
             {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'annonce n\'existe pas.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> L\'annonce n\'existe pas.</div>');
                 return redirect()->to('Gestion-site');
             }
             else
@@ -120,7 +120,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été supprimée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée </div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a bien été supprimée </div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbuttonAnnonce === "modifierAnnonce") //Si on clique sur "Modifier"
@@ -139,7 +139,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été bloquée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été bloquée.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été bloquée.</div>');
                     return redirect()->to('Gestion-site');
                 }
                 else if ($selectedbuttonAnnonce === "debloquerAnnonce") //Si on clique sur "Débloquer"
@@ -151,7 +151,7 @@ class Administration extends Controller
                     $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", "Votre annonce n°$idAnnonce a été débloquée suite à une action de l'administration.");
 
                     //Message pour informer l'administrateur du succès de l'action
-                    $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été débloquée.</div>');
+                    $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> L\'annonce a été débloquée.</div>');
                     return redirect()->to('Gestion-site');
                 }
             }
@@ -175,11 +175,11 @@ class Administration extends Controller
                 $annonceModel->deletePhoto($idphoto[$i]);
             }
             $this->sendMail($emailUti, "Une action a été effectuée sur l'une de vos annonces - ImmoAnnonce", 'Des photos de votre annonce n°'.$idAnnonce['P_A_idannonce'].', ont été supprimées à la suite d\'une action de l\'administration.');
-            $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> La suppression a bien été prise en compte.</div>');
             return redirect()->to('Gestion-site');
 
         }else{
-            $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> Vous n\'avez sélectionné aucune photo.</div>');
+            $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez sélectionné aucune photo.</div>');
             return redirect()->to('');
         }
         }
@@ -196,18 +196,18 @@ class Administration extends Controller
         $verifPseudo = $modelUti->verifPseudo($pseudo);
 
         if (!empty($verifPseudo)){
-            $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
+            $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Ce pseudo existe déjà.</div>');
             return redirect()->to('Gestion-site');
         }
         else {
             $requete = $modelUti->updateInfoWithoutMdp($mail, $pseudo, $nom, $prenom);
 
             if ($this->request->getMethod() === 'post' && $requete) {
-                $session->setFlashdata('warning', '<div class="alerte alerte-succes"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-succes" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>SUCCÈS </strong><i class="fas fa-check"></i> Les modifications ont bien été prises en compte.</div>');
                 $this->sendMail($mail, "Une action a été effectuée sur votre compte - ImmoAnnonce", "Votre compte a été modifié suite à une action de l'administration.");
                 return redirect()->to('Gestion-site');
             } else {
-                $session->setFlashdata('warning', '<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-check"></i> La modification a échoué.</div>');
+                $session->setFlashdata('warning', '<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> La modification a échoué.</div>');
                 return redirect()->to('Gestion-site');
             }
         }

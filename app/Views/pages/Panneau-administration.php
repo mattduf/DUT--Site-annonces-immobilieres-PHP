@@ -8,7 +8,7 @@ if(!isset($_SESSION['mail'])){
 		exit;
 	}elseif ( $model->getIsAdmin($_SESSION['mail'])['U_isAdmin'] != 1){
         header('Location:/');
-        $session->setFlashdata('warning','<div class="alerte alerte-echec"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez pas la permission.</div>');
+        $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'avez pas la permission.</div>');
         exit;
     }
 	else{
@@ -29,4 +29,3 @@ if(!isset($_SESSION['mail'])){
         service('SmartyEngine')->assign('prenom',$_SESSION['prenom']);
 		echo service('SmartyEngine')->view('../pages/Panneau-Administration.tpl');
 	}
-?>
