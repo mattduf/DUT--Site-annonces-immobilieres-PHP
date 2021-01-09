@@ -23,7 +23,7 @@ class Compte extends Controller
         $pseudo = $this->request->getPost('pseudo');
 
         //Si le mot de passe est renseigné
-        if (!empty($model->getPassword(SHA1($oldmdp)))) {
+        if (!empty($model->getPassword(SHA1($oldmdp),$session->get('mail')))) {
             if (empty($nom)) $nom = $session->get('nom');
             if (empty($prenom)) $prenom = $session->get('prenom');
             if (empty($pseudo)) $pseudo = $session->get('pseudo');

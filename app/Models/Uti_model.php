@@ -56,8 +56,8 @@ class Uti_Model extends Model
 
     //[SELECT] Requête qui renvoie le mdp d'un utilisateur
     //Utilisation : lorsqu'un utilisateur modifie son compte
-    public function getPassword($mdp){
-	    return $this->asArray()->where(['U_mdp' =>$mdp])->first();
+    public function getPassword($mdp,$mail){
+	    return $this->asArray()->where(['U_mdp' =>$mdp])->where(['U_mail' =>$mail])->first();
     }
 
     //[SELECT] Requête qui renvoie le statut admin de l'utilisateur
