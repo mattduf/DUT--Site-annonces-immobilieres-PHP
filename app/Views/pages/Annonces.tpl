@@ -103,7 +103,7 @@
 				    <div style="margin-top:20px;"><em>{$a@total} annonces chargée(s).</em></div>
 			  	{/if}
 			{/foreach}
-			<form method="post"><input type="submit" name="button" value="Plus" > <input type="number" name="more" value="{$num}" hidden ><input type="submit" name="button" value="Moins" ></form>
+			<form method="post" style="margin-top:20px;"><input type="submit" name="button" value="Plus" class="pure-button pure-button-primary decrease" style="width:100px; background-color: rgb(38, 194, 54);"> <input type="number" name="more" value="{$num}" hidden ><input type="submit" name="button" value="Moins" class="pure-button pure-button-primary decrease" style="width:100px; background-color: #c2262b;"></form>
 
 
 
