@@ -9,6 +9,20 @@ use CodeIgniter\Session\Session;
 class Annonce extends Controller
 {
     //Ajouter une annonce
+    public function seemore(){
+        $session = \Config\Services::session();
+        $selectedbutton = $this->request->getPost('button');
+        $nbr = $this->request->getPost('more');
+        if (empty($nbr))
+            $nbr = 0;
+        if ($selectedbutton === 'Moins' && $nbr > 15)
+        $session->set('page', $nbr-15);
+        elseif ($selectedbutton === 'Plus')
+            $session->set('page', $nbr+15);
+
+       return redirect()->to('Annonces');
+
+    }
     public function ajouterAnnonce()
     {
         $session = \Config\Services::session();

@@ -103,6 +103,10 @@
 				    <div style="margin-top:20px;"><em>{$a@total} annonces chargée(s).</em></div>
 			  	{/if}
 			{/foreach}
+			<form method="post"><input type="submit" name="button" value="Plus" > <input type="number" name="more" value="{$num}" hidden ><input type="submit" name="button" value="Moins" ></form>
+
+
+
 			<!-- Fin de l'affichage des annonces -->
 		</section>
 		<!-- FIN Section contenant les annonces -->

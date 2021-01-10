@@ -28,8 +28,8 @@ class Annonce_Model extends Model
 
     //[SELECT] Requête qui renvoie les informations de base d'une annonce, sans limite, par ordre décroissant
     //Utilisation : page "Annonces" qui liste toutes les annonces
-	public function getAnnonce(){
-        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC';
+	public function getAnnonce($limit){
+        $query = 'SELECT A_idannonce,A_titre,A_superficie,A_cout_loyer,A_T_type,A_U_mail,A_type_chauffage,A_ville,A_CP FROM ' .$this->table.' WHERE A_etat = \'publiée\' ORDER BY A_idannonce DESC LIMIT '.$limit;
         return $this->simpleQuery($query);
 	}
 

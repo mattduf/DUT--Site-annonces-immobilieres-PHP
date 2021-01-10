@@ -54,6 +54,7 @@ $routes->post('Modifier-utilisateur', 'Administration::modifierUtilisateur');
 
 //Affichage (à laisser à la fin → important !)
 $routes->get('/', 'Home::views');
+$routes->post('Annonces', 'Annonce::seemore');
 $routes->get('Annonce-(:num)', 'Home::affiche/$1');
 $routes->get('(:any)', 'Home::views/$1');
 

@@ -11,7 +11,12 @@
 
     /* Sollicite le modèle pour obtenir les annonces */
     $model = new Annonce_Model();
-    $annonce = $model->getAnnonce();
+    $session = \Config\Services::session();
+    $id = $session->get('page');
+    $annonce = $model->getAnnonce($id);
+    service('SmartyEngine')->assign('num',$id);
+
+
 
     $photo = $model->getAllphoto();
     service('SmartyEngine')->assign('photo',$photo);
