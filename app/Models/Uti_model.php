@@ -108,6 +108,11 @@ class Uti_Model extends Model
 	    return $this->simpleQuery($query);
     }
 
+    public function sendMessage($mailReceiver,$mailSender,$texte,$idannonce){
+        $query = 'INSERT INTO t_message VALUES(CURRENT_TIMESTAMP,"'.$texte.'","'.$mailSender.'","'.$idannonce.'","'.$mailReceiver.'")';
+        return $this->simpleQuery($query);
+    }
+
     //TODO deleteMessage
     public function deleteMessage($mail){
 	    $query = 'DELETE FROM '.$this->message.' WHERE M_U_mail = "'.$mail.'"';
