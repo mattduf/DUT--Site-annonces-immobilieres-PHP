@@ -8,7 +8,7 @@
         <div class="entete" id="proprietaire"><h1>Propriétaire</h1></div>
         <div class="info-proprietaire"><strong>{$a.U_pseudo}</strong></div>
         <div class="info-proprietaire">{$a.U_mail}</div>
-        <a href=""><div class="info-proprietaire" id="envoyer-msg"><strong><i class="fas fa-comment"></i> CONTACTER</strong></div></a>
+        <a href="Contact-{$a.A_idannonce}"><div class="info-proprietaire" id="envoyer-msg"><strong><i class="fas fa-comment"></i> CONTACTER</strong></div></a>
     </aside>
 
     <section>
