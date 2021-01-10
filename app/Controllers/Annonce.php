@@ -8,24 +8,8 @@ use CodeIgniter\Session\Session;
 
 class Annonce extends Controller
 {
-    public function contact(){
-        $session = \Config\Services::session();
 
-        $modelUti = new Uti_Model();
-        $modelAnnonce = new Annonce_Model();
-        $texte = $this->request->getPost('message');
-
-        $page = $_SERVER['REQUEST_URI'];
-        $id  = (int)filter_var($page, FILTER_SANITIZE_NUMBER_INT);
-
-        $mailReceiver = $modelAnnonce->getMailAnnonce(abs($id));
-        $mailSender = $session->get('mail');
-
-        $modelUti->sendMessage($mailReceiver['A_U_mail'],$mailSender,$texte,abs($id));
-
-        return redirect()->to('Mes-messages');
-    }
-
+    //Fonction qui permet de charger les annonces par block de 15
     public function seemore(){
         $session = \Config\Services::session();
         $selectedbutton = $this->request->getPost('button');
@@ -281,5 +265,24 @@ class Annonce extends Controller
             $session->setFlashdata('warning','<div id="flashdata" class="alerte alerte-echec" onclick="document.getElementById(\'flashdata\').style.display=\'none\';"><strong>ERREUR </strong><i class="fas fa-exclamation-triangle"></i> Vous n\'êtes pas le propriétaire de cette annonce. </div>');
             return redirect()->to('/Mes-annonces');
         }
+    }
+    
+    //Formulaire de premier contact sur une annonce
+    public function contact(){
+        $session = \Config\Services::session();
+
+        $modelUti = new Uti_Model();
+        $modelAnnonce = new Annonce_Model();
+        $texte = $this->request->getPost('message');
+
+        $page = $_SERVER['REQUEST_URI'];
+        $id  = (int)filter_var($page, FILTER_SANITIZE_NUMBER_INT);
+
+        $mailReceiver = $modelAnnonce->getMailAnnonce(abs($id));
+        $mailSender = $session->get('mail');
+
+        $modelUti->sendMessage($mailReceiver['A_U_mail'],$mailSender,$texte,abs($id));
+
+        return redirect()->to('Mes-messages');
     }
 }
