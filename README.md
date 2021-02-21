@@ -1,4 +1,4 @@
-#DUT--Site-annonces-immobilieres-PHP
+# DUT--Site-annonces-immobilieres-PHP
 ## Présentation
 
 Ceci est un site de petites annonces immobilières permettant de mettre en relation des particuliers.
